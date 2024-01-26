@@ -26,6 +26,16 @@
     evince
   ];
 
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    defaultEditor = true;
+    extraConfig = ''
+      set number relativenumber
+    '';
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -62,6 +72,7 @@
         "openweather-extension@jenslody.de"
         "dash-to-dock@micxgx.gmail.com"
         "clipboard-indicator@tudmotu.com"
+        "hidetopbar@mathieu.bidon.ca"
       ];
 
     };
@@ -71,6 +82,9 @@
     enable = true;
     userName = "flo-schn";
     userEmail = "hello@fschn.org";
+    extraConfig = {
+      init.defaultBranch = "main";
+    }
   };
 
 }

@@ -68,11 +68,8 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
   services.gnome.core-utilities.enable = false;
-  #environment.systemPackages = with pkgs; [ gnomeExtensions.appindicator gnomeExtensions.openweather gnome.adwaita-icon-theme ];
-  #environment.systemPackages = [ gnome.adwaita-icon-theme ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment.gnome.excludePackages = (with pkgs; [
-    #gnome-photos
     gnome-tour
   ]);
 
@@ -121,7 +118,6 @@
     htop
     git
     zellij
-    powerline-fonts
     nixfmt
     tree
     alacritty
@@ -132,39 +128,20 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.system-monitor-tray-indicator
     gnome.adwaita-icon-theme
-
-  # required dependencies
-  git
-  emacs    # Emacs 27.2
-  ripgrep
-  # optional dependencies
-  coreutils # basic GNU utilities
-  fd
-  clang
-  nerdfonts
+    gnomeExtensions.hide-top-bar
+    nerdfonts
   ];
 
   fonts.packages = with pkgs; [
   (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
+  # nvim
+  environment.variables.EDITOR = "nvim";
 
   # fishshell
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-
-  # run emacs as daemon
-  services.emacs = {
-    enable = true;
-    # package = pkgs.emacs-unstable; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-    package = pkgs.emacs; # replace with emacs-gtk, or a version provided by the community overlay if desired.    
-  };
-  #nixpkgs.overlays = [
-  #  (import (builtins.fetchTarball {
-  #    url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-  #  }))
-  #];
-  
 
   # wireguard client
   networking.firewall = {
