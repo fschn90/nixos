@@ -130,6 +130,7 @@
     gnome.adwaita-icon-theme
     gnomeExtensions.hide-top-bar
     nerdfonts
+    gcc
   ];
 
   fonts.packages = with pkgs; [

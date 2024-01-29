@@ -1,5 +1,5 @@
-# { inputs, outputs, lib, config, pkgs, ... }:
-{ pkgs, ... }:
+# { inputs, outputs, lib, config, pkgs, ... }:q
+{ pkgs, lib, ... }:
 
 {
   # packages I like to be insalled
@@ -24,17 +24,20 @@
     snapshot
     element-desktop
     evince
+    gtypist
   ];
 
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
-    defaultEditor = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
+    defaultEditor = true; 
   };
+
+  #xdg.configFile.nvim = {
+  #  source = ./nvim;
+  #  recursive = true;
+  #};
 
   programs.fish = {
     enable = true;
@@ -84,7 +87,18 @@
     userEmail = "hello@fschn.org";
     extraConfig = {
       init.defaultBranch = "main";
-    }
+    };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  home.file.".ssh" = {
+    enable = true; 
+    source = ./ssh;
+    recursive = true;
   };
 
 }
