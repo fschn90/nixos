@@ -34,10 +34,16 @@
     defaultEditor = true; 
   };
 
-  #xdg.configFile.nvim = {
-  #  source = ./nvim;
-  #  recursive = true;
-  #};
+  xdg.configFile.nvim = {
+    source = ./nvim;
+    recursive = true;
+  };
+
+ home.file.".config/nvim/lua/fschn" = {
+    enable = true;
+    source = ./nvim-user;
+    recursive = true;
+ };
 
   programs.fish = {
     enable = true;
@@ -47,7 +53,6 @@
       if status is-interactive
         eval (zellij setup --generate-auto-start fish | string collect)
       end
-      set -x PATH $HOME/.emacs.d/bin $PATH 
     '';
   };
 
