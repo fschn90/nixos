@@ -17,8 +17,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs =
-    { self, nixpkgs, home-manager, hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hardware, ... }@inputs:
     let inherit (self) outputs;
     in {
       # NixOS configuration entrypoint
@@ -33,12 +32,11 @@
             ./bluetooth.nix
             ./sound.nix
             ./t490.nix
+            #./amd.nix
             home-manager.nixosModules.home-manager
             hardware.nixosModules.lenovo-thinkpad-t490
-            {
-              home-manager.users.fschn = import ./homes/fschn;
-            }
-           
+            { home-manager.users.fschn = import ./homes/fschn; }
+
           ];
         };
       };

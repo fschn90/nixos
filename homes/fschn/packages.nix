@@ -18,6 +18,7 @@
     digikam
     viking
     gnome.gnome-disk-utility
+    gnome.dconf-editor
     gnome.nautilus
     gnome-decoder
     loupe
@@ -31,7 +32,7 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
-    defaultEditor = true; 
+    defaultEditor = true;
   };
 
   xdg.configFile.nvim = {
@@ -39,11 +40,11 @@
     recursive = true;
   };
 
- home.file.".config/nvim/lua/fschn" = {
+  home.file.".config/nvim/lua/fschn" = {
     enable = true;
     source = ./nvim-user;
     recursive = true;
- };
+  };
 
   programs.fish = {
     enable = true;
@@ -90,9 +91,7 @@
     enable = true;
     userName = "flo-schn";
     userEmail = "hello@fschn.org";
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
+    extraConfig = { init.defaultBranch = "main"; };
   };
 
   programs.zoxide = {
@@ -101,7 +100,7 @@
   };
 
   home.file.".ssh" = {
-    enable = true; 
+    enable = true;
     source = ./ssh;
     recursive = true;
   };
