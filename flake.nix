@@ -23,22 +23,34 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        # FIXME replace with your hostname
+        # LAPTOP
         nix-fschn = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          # > Our main nixos configuration file <
           modules = [
-            ./configuration.nix
-            ./bluetooth.nix
-            ./sound.nix
-            ./t490.nix
-            #./amd.nix
+            ./hosts/oide/configuration.nix
+            ./hosts/oide/t490-nvidia.nix
+            ./modules/sound.nix
+            ./modules/bluetooth.nix
             home-manager.nixosModules.home-manager
-            hardware.nixosModules.lenovo-thinkpad-t490
+            hardware.nixosModule.lenovo-thinkpad-t490
             { home-manager.users.fschn = import ./homes/fschn; }
 
           ];
         };
+
+        # DESKTOP
+        fschn = nixpkgs.lib.nixosSystem {
+              specialArgs = { inherit inputs outputs; };
+              modules = [
+                ./hosts/rainbow/configuration.nix
+                ./hosts/rainbow/amd.nix
+                ./modules/sound.nix
+                ./modules/bluetooth.nix
+                home-manager.nixosModules.home-manager
+                { home-manager.users.fschn = import ./homes/fschn; }
+
+              ];
+            };
       };
     };
 }
