@@ -32,7 +32,7 @@
             ./modules/sound.nix
             ./modules/bluetooth.nix
             home-manager.nixosModules.home-manager
-            hardware.nixosModule.lenovo-thinkpad-t490
+            hardware.nixosModules.lenovo-thinkpad-t490
             { home-manager.users.fschn = import ./homes/fschn; }
 
           ];
