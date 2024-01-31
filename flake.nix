@@ -23,6 +23,7 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
+      
         # LAPTOP
         nix-fschn = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
@@ -40,10 +41,6 @@
               specialArgs = { inherit inputs outputs; };
               modules = [
                 ./hosts/rainbow/configuration.nix
-                ./hosts/rainbow/amd.nix
-                ./modules/sound.nix
-                ./modules/bluetooth.nix
-                home-manager.nixosModules.home-manager
                 { home-manager.users.fschn = import ./homes/fschn; }
 
               ];

@@ -7,33 +7,27 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-  ];
-
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
-
-  # zfs
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.requestEncryptionCredentials = true;
+    ./amd.nix
+    ../../modules/boot.nix
+    ../../modules/sound.nix
+    ../../modules/bluetooth.nix
+    ../../modules/zfs.nix
+    ../../modules/gnome.nix 
+    ../../modules/users.nix
+    ../../modules/systemPackages.nix
+    ../../modules/wireguard.nix
+    ../../modules/steam.nix
+ ];
+  
+  # necesarry for zfs
   networking.hostId = "b3d58883";
-  services.zfs.autoScrub.enable = true;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nix-fschn"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Vienna";
@@ -50,44 +44,14 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  #services.xserver.xterm.enable = false;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "fschn";
-    gdm.wayland = true;
-    gdm.enable = true;
-   };
-
-  services.xserver.excludePackages = [ pkgs.xterm ];
-
-  # necesarry for gnome 
-  hardware.pulseaudio.enable = false;
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-  services.gnome.core-utilities.enable = false;
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-  ]);
-
-
+  # allow unfree
   nixpkgs.config.allowUnfree = true;
 
+  # home-manager
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-
-  # STEAM
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    #dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -98,44 +62,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fschn = {
-    isNormalUser = true;
-    initialPassword = "pw321"; # change password immediatly
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    # packages = with pkgs; [
-    # ];
-  };
-
-  users.mutableUsers = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    lshw
-    htop
-    git
-    zellij
-    nixfmt
-    tree
-    alacritty
-    fishPlugins.bobthefish
-    gnomeExtensions.appindicator
-    gnomeExtensions.openweather
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.system-monitor-tray-indicator
-    gnome.adwaita-icon-theme
-    gnomeExtensions.hide-top-bar
-    nerdfonts
-    gcc
-  ];
-
-  fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  ];
 
   # nvim
   environment.variables.EDITOR = "nvim";
