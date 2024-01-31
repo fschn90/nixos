@@ -28,9 +28,6 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/oide/configuration.nix
-            ./hosts/oide/t490-nvidia.nix
-            ./modules/sound.nix
-            ./modules/bluetooth.nix
             home-manager.nixosModules.home-manager
             hardware.nixosModules.lenovo-thinkpad-t490
             { home-manager.users.fschn = import ./homes/fschn; }
