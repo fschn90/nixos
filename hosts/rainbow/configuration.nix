@@ -63,9 +63,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # nvim
-  environment.variables.EDITOR = "nvim";
-
   # fishshell
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
