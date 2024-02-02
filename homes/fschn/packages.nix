@@ -49,7 +49,7 @@
     recursive = true;
   };
 
-  home.file.".config/nvim/lua/fschn" = {
+  home.file.".config/nvim/lua/user" = {
     enable = true;
     source = ./nvim-user;
     recursive = true;
