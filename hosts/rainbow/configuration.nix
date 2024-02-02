@@ -25,7 +25,7 @@
   # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "nix-fschn"; # Define your hostname.
+  networking.hostName = "rainbow"; # Define your hostname.
   
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 

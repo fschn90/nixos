@@ -25,7 +25,7 @@
       nixosConfigurations = {
       
         # LAPTOP
-        nix-fschn = nixpkgs.lib.nixosSystem {
+        oide = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/oide/configuration.nix
@@ -37,7 +37,7 @@
         };
 
         # DESKTOP
-        fschn = nixpkgs.lib.nixosSystem {
+        rainbow = nixpkgs.lib.nixosSystem {
               specialArgs = { inherit inputs outputs; };
               modules = [
                 ./hosts/rainbow/configuration.nix

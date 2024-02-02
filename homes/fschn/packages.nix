@@ -26,6 +26,7 @@
     element-desktop
     evince
     gtypist
+    lazygit
   ];
 
   programs.alacritty = {
