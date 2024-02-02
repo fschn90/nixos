@@ -29,22 +29,21 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/oide/configuration.nix
-            home-manager.nixosModules.home-manager
             hardware.nixosModules.lenovo-thinkpad-t490
+            home-manager.nixosModules.home-manager
             { home-manager.users.fschn = import ./homes/fschn; }
-
           ];
         };
 
         # DESKTOP
         rainbow = nixpkgs.lib.nixosSystem {
-              specialArgs = { inherit inputs outputs; };
-              modules = [
-                ./hosts/rainbow/configuration.nix
-                { home-manager.users.fschn = import ./homes/fschn; }
-
-              ];
-            };
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/rainbow/configuration.nix
+            home-manager.nixosModules.home-manager
+            { home-manager.users.fschn = import ./homes/fschn; }
+          ];
+        };
       };
     };
 }
