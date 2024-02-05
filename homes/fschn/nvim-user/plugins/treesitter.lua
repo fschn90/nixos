@@ -5,5 +5,5 @@ return {
     opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
       "lua", "nix", "bash", "python", "html", "json", "dockerfile", "css", "javascript", "sql", "markdown", "yaml", "xml", "ssh_config"
     })
-  end, 
+  end,
 } 

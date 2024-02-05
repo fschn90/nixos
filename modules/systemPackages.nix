@@ -21,8 +21,24 @@
     gnomeExtensions.system-monitor-tray-indicator
     gnome.adwaita-icon-theme
     gnomeExtensions.hide-top-bar
-    nerdfonts
-    gcc
+    lua
+    python3
+    nix
+    bash
+    docker
+    postgresql
+    # astronvim dependency
+    nerdfonts 
+    gcc 
+    unzip # for mason
+    tree-sitter 
+    wl-clipboard  
+    ripgrep
+    gdu
+    bottom
+    nodejs_20
+    fd
+    nil
   ];
 
   fonts.packages = with pkgs; [

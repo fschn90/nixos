@@ -3,6 +3,7 @@
 
 {
   # packages I like to be insalled
+
   home.packages = with pkgs; [
     firefox
     thunderbird
@@ -12,7 +13,7 @@
     vscode
     google-chrome
     spotify
-    signal-desktop
+    signal-desktop 
     libreoffice
     mumble
     digikam
@@ -26,7 +27,7 @@
     element-desktop
     evince
     gtypist
-    lazygit
+    lazygit # astronvim dependency
   ];
 
   programs.alacritty = {
