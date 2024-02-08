@@ -43,6 +43,10 @@
     viAlias = true;
     vimAlias = true;
     defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
+    ];
   };
 
   xdg.configFile.nvim = {
