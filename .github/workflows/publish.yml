@@ -40,6 +40,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           git config user.name "fschn90"
           git config user.email "hello@fschn.org"
+          git branch -m main
           git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://github.com/fschn90/nixos-conf.git
           
