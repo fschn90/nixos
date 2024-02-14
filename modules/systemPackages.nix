@@ -23,7 +23,7 @@
     gnomeExtensions.hide-top-bar
     lua
     python3
-    nix
+    # nix
     bash
     docker
     postgresql
@@ -31,14 +31,13 @@
     nerdfonts 
     gcc 
     unzip # for mason
-    tree-sitter 
+    # tree-sitter 
     wl-clipboard  
     ripgrep
     gdu
     bottom
     nodejs_20
     fd
-    nil
   ];
 
   fonts.packages = with pkgs; [
