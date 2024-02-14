@@ -37,18 +37,17 @@ jobs:
           cd $GITHUB_WORKSPACE
           git config user.name "fschn90"
           git config user.email "hello@fschn.org"
-          # git branch -m main
           git config --unset-all http.https://github.com/.extraheader # https://stackoverflow.com/a/69979203/21035928
-          # git remote set-url origin https://github.com/fschn90/nixos-conf.git 
+          git remote set-url origin https://github.com/fschn90/nixos-conf.git 
 
 
-          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
-          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
-          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
-          # echo "# My  NixOs config
-          #
-          # personal setup with a flake and home-manager." >> README.md
+          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
+          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
+          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
+          echo "# My  NixOs config
 
-          # git add .
-          # git commit -m 'publishable commit'
+          personal setup with a flake and home-manager." >> README.md
+
+          git add .
+          git commit -m 'publishable commit'
           git push --force https://fschn90:"$SUPER_SECRET"@github.com/fschn90/nixos-conf.git main
