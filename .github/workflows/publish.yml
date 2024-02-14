@@ -23,7 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       # - name: Run a one-line script
@@ -34,11 +34,14 @@ jobs:
         env:
           SUPER_SECRET: ${{ secrets.TOKEN }}
         run: |
-          cd $GITHUB_WORKSPACE
+          # cd $GITHUB_WORKSPACE
+          git clone https://fschn90:"$SUPER_SECRET"@github.com/fschn90/nixos.git 
+          cd nixos
+
           git config user.name "fschn90"
           git config user.email "hello@fschn.org"
           git config --unset-all http.https://github.com/.extraheader # https://stackoverflow.com/a/69979203/21035928
-          git remote set-url origin https://github.com/fschn90/nixos-conf.git 
+          # git remote set-url origin https://github.com/fschn90/nixos-conf.git 
 
 
           git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
