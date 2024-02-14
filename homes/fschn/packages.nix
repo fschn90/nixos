@@ -99,7 +99,7 @@
 
   programs.git = {
     enable = true;
-    userName = "flo-schn";
+    userName = "fschn90";
     userEmail = "hello@fschn.org";
     extraConfig = { init.defaultBranch = "main"; };
   };

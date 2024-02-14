@@ -17,3 +17,4 @@ personal setup with a flake and home-manager.
 - sops von mozilla (managing secrets and passwords)
 - make public? without ups etc
 - gitignore file?
+- vim keybindings for terminal
