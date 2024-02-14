@@ -40,13 +40,14 @@ jobs:
           cd $GITHUB_WORKSPACE
           git config user.name "fschn90"
           git config user.email "hello@fschn.org"
-          git branch -m main
+          # git branch -m main
           git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://github.com/fschn90/nixos-conf.git
           
 
           git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
           git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
+          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
           echo "# My NixOs config" >> README.md
           
           git add .
