@@ -40,9 +40,9 @@ jobs:
           git config --unset-all http.https://github.com/.extraheader
           git remote set-url origin https://github.com/fschn90/nixos-conf.git
           
-          echo "homes/fschn/ssh/config" >> .gitignore
-          bfg --replace-text homes/fschn/ssh/config
-          bfg --replace-text README.md
+
+          git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
+          git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
           echo "# My NixOs config" >> README.md
           
           git add .
