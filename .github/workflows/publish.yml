@@ -4,11 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
-
-
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   # pull_request:
   #   branches: [ "main" ]
 
@@ -24,7 +22,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
@@ -41,18 +38,17 @@ jobs:
           git config user.name "fschn90"
           git config user.email "hello@fschn.org"
           # git branch -m main
-          git config --unset-all http.https://github.com/.extraheader
-          git remote set-url origin https://github.com/fschn90/nixos-conf.git
-          
+          # git config --unset-all http.https://github.com/.extraheader # https://stackoverflow.com/a/69979203/21035928
+          # git remote set-url origin https://github.com/fschn90/nixos-conf.git 
 
-          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
-          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
-          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
-          echo "# My NixOs config" >> README.md
-          
-          git add .
-          git commit -m 'published'
+
+          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
+          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
+          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
+          # echo "# My  NixOs config
+          #
+          # personal setup with a flake and home-manager." >> README.md
+
+          # git add .
+          # git commit -m 'publishable commit'
           git push --force https://fschn90:"$SUPER_SECRET"@github.com/fschn90/nixos-conf.git main
-          
-
-          
