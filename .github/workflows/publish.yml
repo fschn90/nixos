@@ -47,7 +47,7 @@ jobs:
           
           git add .
           git commit -m 'published'
-          git push --force https://fschn90:${{ secrets.TOKEN }}@github.com/fschn90/nixos-conf.git
+          git push --force https://fschn90:${{ secrets.TOKEN }}@github.com/fschn90/nixos-conf.git main
           
 
           
