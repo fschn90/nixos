@@ -42,9 +42,10 @@ jobs:
           # git remote set-url origin https://github.com/fschn90/nixos-conf.git 
 
 
-          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
-          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
-          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
+          git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config README.md .github/workflows/publish.yml' HEAD
+          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch homes/fschn/ssh/config' HEAD
+          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch README.md' HEAD
+          # git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch .github/workflows/publish.yml' HEAD
           echo "# My  NixOs config
 
           personal setup with a flake and home-manager." >> README.md
