@@ -18,3 +18,7 @@ personal setup with a flake and home-manager.
 - make public? without ups etc
 - gitignore file?
 - vim keybindings for terminal
+- remove top-tab-bar in firefox
+- make nvim config extra repo
+- how do updates work in channel unstable? question!
+- make home manager modular?

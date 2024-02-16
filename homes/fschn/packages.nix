@@ -28,7 +28,8 @@
     evince
     gtypist
     lazygit # astronvim dependency
-    filezilla 
+    filezilla
+    sops
   ];
 
   programs.alacritty = {
