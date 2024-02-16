@@ -22,3 +22,4 @@ personal setup with a flake and home-manager.
 - make nvim config extra repo
 - how do updates work in channel unstable? question!
 - make home manager modular?
+- check if in all nix modules { config, lib, pkgs, ... } is necessary
