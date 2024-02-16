@@ -38,6 +38,9 @@
     bottom
     nodejs_20
     fd
+    sops
+    gnupg
+    pinentry-gnome # gnupg dependency to generate pgp key
   ];
 
   fonts.packages = with pkgs; [

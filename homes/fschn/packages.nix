@@ -29,16 +29,7 @@
     gtypist
     lazygit # astronvim dependency
     filezilla
-    sops
-    gnupg
-    pinentry # gnupg dependency to generate pgp key
   ];
-
-  programs.gnupg.agent = {
-    enable = true; 
-    enableSSHSupport = true;
-    pinentryFlavor = "gnome3";
-  };
 
   programs.alacritty = {
     enable = true;
