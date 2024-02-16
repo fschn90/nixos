@@ -34,6 +34,11 @@
     pinentry # gnupg dependency to generate pgp key
   ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
