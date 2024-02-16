@@ -31,6 +31,7 @@
     filezilla
     sops
     gnupg
+    pinentry # gnupg dependency to generate pgp key
   ];
 
   programs.alacritty = {
