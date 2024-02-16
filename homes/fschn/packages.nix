@@ -30,6 +30,7 @@
     lazygit # astronvim dependency
     filezilla
     sops
+    gnupg
   ];
 
   programs.alacritty = {
