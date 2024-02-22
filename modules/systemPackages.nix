@@ -22,7 +22,7 @@
     gnome.adwaita-icon-theme
     gnomeExtensions.hide-top-bar
     lua
-    python3
+    python313
     # nix
     bash
     docker
@@ -41,7 +41,6 @@
     sops
     gnupg
     pinentry-gnome # gnupg dependency to generate pgp key
-    zlib # python numpy, to get rid of error
   ];
 
   fonts.packages = with pkgs; [
