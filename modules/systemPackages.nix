@@ -41,6 +41,7 @@
     sops
     gnupg
     pinentry-gnome # gnupg dependency to generate pgp key
+    zlib # python numpy, to get rid of error
   ];
 
   fonts.packages = with pkgs; [

@@ -23,3 +23,4 @@ personal setup with a flake and home-manager.
 - how do updates work in channel unstable? question!
 - make home manager modular?
 - check if in all nix modules { config, lib, pkgs, ... } is necessary
+- seperate ssh identities for hosts
