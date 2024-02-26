@@ -22,8 +22,7 @@
     gnome.adwaita-icon-theme
     gnomeExtensions.hide-top-bar
     lua
-    python313
-    # nix
+    python3
     bash
     docker
     postgresql
@@ -31,7 +30,6 @@
     nerdfonts 
     gcc 
     unzip # for mason
-    # tree-sitter 
     wl-clipboard  
     ripgrep
     gdu

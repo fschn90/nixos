@@ -18,6 +18,7 @@
     ../../modules/wireguard.nix
     ../../modules/steam.nix
     ../../modules/gnupg.nix
+    ../../modules/python-shell.nix
   ];
 
   # necessary for zfs
