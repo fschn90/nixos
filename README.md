@@ -24,3 +24,4 @@ personal setup with a flake and home-manager.
 - make home manager modular?
 - check if in all nix modules { config, lib, pkgs, ... } is necessary
 - seperate ssh identities for hosts
+- make sure vpn doesnt automatically connect
