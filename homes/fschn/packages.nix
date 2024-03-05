@@ -29,6 +29,7 @@
     gtypist
     lazygit # astronvim dependency
     filezilla
+    youtube-dl
   ];
 
   programs.alacritty = {
