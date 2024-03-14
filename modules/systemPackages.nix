@@ -13,6 +13,7 @@
     nixfmt
     tree
     alacritty
+    gnome-console
     fishPlugins.bobthefish
     gnomeExtensions.appindicator
     gnomeExtensions.openweather
@@ -38,7 +39,7 @@
     fd
     sops
     gnupg
-    pinentry-gnome # gnupg dependency to generate pgp key
+    # pinentry-gnome # gnupg dependency to generate pgp key
   ];
 
   fonts.packages = with pkgs; [
