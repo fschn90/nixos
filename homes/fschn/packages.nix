@@ -30,6 +30,7 @@
     lazygit # astronvim dependency
     filezilla
     youtube-dl
+    age
   ];
 
   programs.alacritty = {
