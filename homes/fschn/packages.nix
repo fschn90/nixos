@@ -116,21 +116,21 @@
     enableZshIntegration = true;
   };
 
-  # home.file.".ssh" = {
-  #   enable = true;
-  #   source = ./ssh;
-  #   recursive = true;
-  # };
+  home.file.".ssh" = {
+    enable = true;
+    source = ./ssh;
+    recursive = true;
+  };
 
 
   sops = {
     gnupg.home = "~/.gnupg";
-    gnupg.sshKeyPaths = [];
-    defaultSopsFile = '/etc/nixos/secrets/.sops.yaml'
+    # gnupg.sshKeyPaths = [];
+    # defaultSopsFile = '/etc/nixos/secrets/.sops.yaml';
     secrets.test = {
-      sopsFile = '/etc/nixos/secrets/config.txt'
-      path = '/home/fschn/test.txt'
-    }
+      sopsFile = "/etc/nixos/secrets/config.txt";
+      path = "/home/fschn/test.txt";
+    }; 
   };
 
 }

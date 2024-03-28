@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -18,6 +18,7 @@
     ../../modules/wireguard.nix
     ../../modules/steam.nix
     ../../modules/gnupg.nix 
+    # inputs.sops-nix.nixosModules.sops 
  ];
   
   # necesarry for zfs
@@ -53,6 +54,10 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
+
+  home-manager.sharedModules = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
