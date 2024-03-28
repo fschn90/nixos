@@ -46,7 +46,7 @@
             ./hosts/rainbow/configuration.nix
             home-manager.nixosModules.home-manager
             { home-manager.users.fschn = import ./homes/fschn; }
-            sops-nix.nixosModules.sops
+            # sops-nix.nixosModules.sops
           ];
         };
       };

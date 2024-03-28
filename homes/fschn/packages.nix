@@ -30,7 +30,6 @@
     lazygit # astronvim dependency
     filezilla
     youtube-dl
-    age
   ];
 
   programs.alacritty = {
@@ -120,17 +119,6 @@
     enable = true;
     source = ./ssh;
     recursive = true;
-  };
-
-
-  sops = {
-    gnupg.home = "~/.gnupg";
-    # gnupg.sshKeyPaths = [];
-    # defaultSopsFile = '/etc/nixos/secrets/.sops.yaml';
-    secrets.test = {
-      sopsFile = "/etc/nixos/secrets/config.txt";
-      path = "/home/fschn/test.txt";
-    }; 
   };
 
 }

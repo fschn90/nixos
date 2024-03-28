@@ -18,7 +18,6 @@
     ../../modules/wireguard.nix
     ../../modules/steam.nix
     ../../modules/gnupg.nix 
-    # inputs.sops-nix.nixosModules.sops 
  ];
   
   # necesarry for zfs
@@ -54,10 +53,6 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-
-  home-manager.sharedModules = [
-    inputs.sops-nix.homeManagerModules.sops
-  ];
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
