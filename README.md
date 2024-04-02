@@ -8,13 +8,13 @@ personal setup with a flake and home-manager.
   - add to-do plugin
   - fix error: "failed to launch neovim wrapper, unable to find terminal required for application"
   - fix 'client 1 quit with exit code 127 and signal 0' error message
-- zfs ssh
-- wireguard files rein?
+- zfs ssh !!
+- wireguard file rein !!
 - polybar?
 - sops von mozilla (managing secrets and passwords)
 - remove top-tab-bar in firefox
 - make nvim config extra repo
-- make home manager modular?
+- make home manager modular!!
 - check if in all nix modules { config, lib, pkgs, ... } is necessary
-- seperate ssh identities for hosts
-- make sure vpn doesnt automatically connect
+- seperate ssh identities for hosts !!
+- seperate age and gpg keys for everyone !! including backup on usb !!
