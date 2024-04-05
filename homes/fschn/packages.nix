@@ -1,8 +1,11 @@
 # { inputs, outputs, lib, config, pkgs, ... }:q
-{ pkgs, lib, ... }:
+{ pkgs, inputs, config, lib, ... }:
 
 {
   # packages I like to be insalled
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
 
   home.packages = with pkgs; [
     firefox
@@ -115,10 +118,33 @@
     enableZshIntegration = true;
   };
 
-  home.file.".ssh" = {
-    enable = true;
-    source = ./ssh;
-    recursive = true;
-  };
+  # home.file.".ssh" = {
+  #   enable = true;
+  #   source = ./ssh;
+  #   recursive = true;
+  # };
 
+  sops = {
+  defaultSopsFile = ../../secrets/example.yaml;
+  defaultSopsFormat = "yaml";
+  
+  age.keyFile = "/home/fschn/.config/sops/age/keys.txt";
+  secrets.example-key = {};
+  };
+  
+  home.activation.setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+
+    /run/current-system/sw/bin/systemctl start --user sops-nix
+  '';
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      test = {
+        hostname = "test";
+        user = config.sops.secrets.example-key.path;
+        # user = "testi";
+      };
+    };
+  };
 }

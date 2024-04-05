@@ -19,7 +19,6 @@
     ../../modules/steam.nix
     ../../modules/gnupg.nix 
     ../../modules/sops.nix 
-    inputs.sops-nix.nixosModules.sops
  ];
   
   # necesarry for zfs
@@ -55,6 +54,8 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
+
+  systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

@@ -35,7 +35,8 @@
             hardware.nixosModules.lenovo-thinkpad-t490
             home-manager.nixosModules.home-manager
             { home-manager.users.fschn = import ./homes/fschn; }
-            sops-nix.nixosModules.sops
+            # sops-nix.nixosModules.sops
+            # sops-nix.homeManagerModules.sops
           ];
         };
 
@@ -46,7 +47,8 @@
             ./hosts/rainbow/configuration.nix
             home-manager.nixosModules.home-manager
             { home-manager.users.fschn = import ./homes/fschn; }
-            # sops-nix.nixosModules.sops
+            sops-nix.nixosModules.sops
+            # sops-nix.homeManagerModules.sops
           ];
         };
       };

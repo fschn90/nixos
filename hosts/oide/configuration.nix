@@ -18,6 +18,7 @@
     ../../modules/wireguard.nix
     ../../modules/steam.nix
     ../../modules/gnupg.nix
+    ../../modules/sops.nix
   ];
 
   # necessary for zfs

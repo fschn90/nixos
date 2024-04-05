@@ -12,5 +12,5 @@
   home.homeDirectory = "/home/fschn";
 
   home.stateVersion = "23.11";
-
+  
 }
