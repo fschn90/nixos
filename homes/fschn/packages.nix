@@ -114,9 +114,9 @@
     enableZshIntegration = true;
   };
 
-  home.file.".ssh" = {
-    enable = true;
-    source = ./ssh;
-    recursive = true;
-  };
+  # home.file.".ssh" = {
+  #   enable = true;
+  #   source = ./ssh;
+  #   recursive = true;
+  # };
 }
