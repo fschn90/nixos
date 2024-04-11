@@ -29,6 +29,7 @@
     lazygit # astronvim dependency
     filezilla
     youtube-dl
+    git-filter-repo
   ];
 
   programs.alacritty = {

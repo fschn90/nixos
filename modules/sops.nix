@@ -18,12 +18,18 @@
     owner = "fschn";
   };
  
+  secrets."ssh/authorized_keys" = {
+    mode = "0600";
+    path = "/home/fschn/.ssh/authorized_keys";
+    owner = "fschn";
+  };
+
   secrets."ssh/keys/hetzner_flo" = {
     mode = "0600";
     path = "/home/fschn/.ssh/hetzner_flo";
     owner = "fschn";
   };
- 
+
   secrets."ssh/keys/hetzner_flo.pub" = {
     mode = "0644";
     path = "/home/fschn/.ssh/hetzner_flo.pub";
