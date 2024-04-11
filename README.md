@@ -16,5 +16,5 @@ personal setup with a flake and home-manager.
 - make nvim config extra repo
 - make home manager modular!!
 - check if in all nix modules { config, lib, pkgs, ... } is necessary
-- seperate ssh identities for hosts !!
+- seperate ssh identities / keys for hosts !! add authorized_keys to ssh
 - seperate age and gpg keys for everyone !! including backup on usb !!

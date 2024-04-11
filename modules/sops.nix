@@ -7,7 +7,10 @@
   defaultSopsFile = ../secrets/example.yaml;
   defaultSopsFormat = "yaml";
   
-  age.keyFile = "/home/fschn/.config/sops/age/keys.txt";
+  age.keyFile = "/var/lib/sops-nix/key.txt";
+
+  age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  age.generateKey = true;
 
   secrets."ssh/config" = {
     mode = "0644";
