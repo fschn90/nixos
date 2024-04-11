@@ -1,9 +1,11 @@
 keys:
   - &admin_fschn age1t2nn70frspz6l8c407y2kamqtvwug6e3zye6lrdf7xefs7w9pcjs6gq7w6
   - &host_rainbow age1dal0p4q5un4x6gpaxa7arkj7zxq372hrats8ft4qw05gx0ezkqkssn576a
+  - &host_oide age14t9xnmtevjk83g9k6kczkakuaje4d7m35evjzpmt3uza7peaw5esq85zy2
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *admin_fschn
           - *host_rainbow
+          - *host_oide
