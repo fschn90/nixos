@@ -19,8 +19,10 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.system-monitor-tray-indicator
-    gnome.adwaita-icon-theme
     gnomeExtensions.hide-top-bar
+    gnomeExtensions.caffeine
+    gnome.adwaita-icon-theme
+    gnome.gnome-session
     lua
     python3
     bash

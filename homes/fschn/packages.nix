@@ -98,6 +98,7 @@
         "dash-to-dock@micxgx.gmail.com"
         "clipboard-indicator@tudmotu.com"
         "hidetopbar@mathieu.bidon.ca"
+        "caffeine@patapon.info" 
       ];
 
     };
@@ -114,10 +115,17 @@
     enable = true;
     enableZshIntegration = true;
   };
-
-  # home.file.".ssh" = {
-  #   enable = true;
-  #   source = ./ssh;
-  #   recursive = true;
-  # };
+  
+  xdg.desktopEntries.spotify = {
+    type = "Application";
+    name = "Spotify";
+    genericName = "Music Player";
+    icon = "spotify-client";
+    # tryExec = "spotify" ;
+    exec = "gnome-session-inhibit --inhibit suspend spotify %U";
+    terminal = false;
+    mimeType = [ "x-scheme-handler/spotify" ];
+    # Categories = [ "Audio" "Music" "Player" "AudioVideo" ];
+    # StartupWMClass = "spotify";
+  };
 }
