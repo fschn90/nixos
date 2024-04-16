@@ -78,6 +78,7 @@
     settings = {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/desktop/interface".show-battery-percentage = true;
+      "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-timeout = 0;
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -116,16 +117,4 @@
     enableZshIntegration = true;
   };
   
-  xdg.desktopEntries.spotify = {
-    type = "Application";
-    name = "Spotify";
-    genericName = "Music Player";
-    icon = "spotify-client";
-    # tryExec = "spotify" ;
-    exec = "gnome-session-inhibit --inhibit suspend spotify %U";
-    terminal = false;
-    mimeType = [ "x-scheme-handler/spotify" ];
-    # Categories = [ "Audio" "Music" "Player" "AudioVideo" ];
-    # StartupWMClass = "spotify";
-  };
 }
