@@ -19,6 +19,7 @@
     ../../modules/steam.nix
     ../../modules/gnupg.nix
     ../../modules/sops.nix
+    ../../modules/ssh.nix
   ];
 
   # necessary for zfs
@@ -80,9 +81,9 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
-  services.openssh.settings.PermitRootLogin = "no";
+  # services.openssh.enable = true;
+  # services.openssh.settings.PasswordAuthentication = false;
+  # services.openssh.settings.PermitRootLogin = "no";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
