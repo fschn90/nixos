@@ -11,6 +11,7 @@
       ../../modules/ssh.nix
       ../../modules/boot.nix
       ../../modules/users.nix
+      ../../modules/sops.nix
     ];
 
   # Use the GRUB 2 boot loader.
