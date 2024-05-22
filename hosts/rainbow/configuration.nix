@@ -66,7 +66,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # fishshell
+  # fishshell, necessary
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 

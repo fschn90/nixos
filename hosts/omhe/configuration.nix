@@ -9,19 +9,21 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/ssh.nix
+      ../../modules/boot.nix
+      ../../modules/users.nix
     ];
 
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.requestEncryptionCredentials = true;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.trim.enable = true;
-  programs.zsh.enable = true;
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.devices = [ "nodev" ];
+  # boot.loader.grub.efiInstallAsRemovable = true;
+  # boot.loader.grub.efiSupport = true;
+  # boot.supportedFilesystems = [ "zfs" ];
+  # boot.zfs.requestEncryptionCredentials = true;
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # services.zfs.autoScrub.enable = true;
+  # services.zfs.trim.enable = true;
+  # programs.zsh.enable = true;
 
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
@@ -74,15 +76,15 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fschn = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #  packages = with pkgs; [
-  #    firefox
-  #     tree
-  #  ];
-  };
-  users.mutableUsers = true;
+  # users.users.fschn users {
+  #   isNormalUser = true;
+  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  # #  packages = with pkgs; [
+  # #    firefox
+  # #     tree
+  # #  ];
+  # };
+  # users.mutableUsers = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
