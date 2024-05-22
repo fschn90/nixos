@@ -49,6 +49,17 @@
             sops-nix.nixosModules.sops
           ];
         };
+
+        # HOME SERVER
+        ohme = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/omhe/configuration.nix
+            home-manager.nixosModules.home-manager
+            { home-manager.users.fschn = import ./homes/fschn; }
+            sops-nix.nixosModules.sops
+          ];
+        };
       };
     };
 }
