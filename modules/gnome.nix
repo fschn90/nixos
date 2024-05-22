@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -12,7 +12,6 @@
     gdm.wayland = true;
     gdm.enable = true;
    };
-
 
   # necesarry for gnome 
   systemd.services."getty@tty1".enable = false;
