@@ -37,6 +37,9 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.hostId = "e2990a3c";
 
+  # flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
@@ -51,6 +54,15 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
+
+   # allow unfree
+  nixpkgs.config.allowUnfree = true;
+
+  # home-manager
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+  };
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
