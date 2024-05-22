@@ -56,7 +56,7 @@
           modules = [
             ./hosts/omhe/configuration.nix
             home-manager.nixosModules.home-manager
-            { home-manager.users.fschn = import ./homes/fschn; }
+            { home-manager.users.fschn = import ./homes/headless; }
             sops-nix.nixosModules.sops
           ];
         };

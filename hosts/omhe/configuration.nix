@@ -64,6 +64,10 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
+  
+  # fishshell, necessary
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
