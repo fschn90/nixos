@@ -31,7 +31,7 @@
     # youtube-dl
     # git-filter-repo
     git
-    zellij
+    # zellij
     fishPlugins.bobthefish
   ];
 
