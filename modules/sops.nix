@@ -59,5 +59,40 @@
       mode = "0600";
       path = "/etc/NetworkManager/system-connections/wg-CH-UK-1.nmconnection";
     };
+
+    secrets."networking/system-connections/wg-CH-DE-1.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-CH-DE-1.nmconnection";
+    };
+    
+    secrets."networking/system-connections/wg-CH-US-1.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-CH-US-1.nmconnection";
+    };
+
+    secrets."networking/system-connections/wg-CH-NL-1.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-CH-NL-1.nmconnection";
+    };
+    
+    secrets."networking/system-connections/wg-CH-FR-1.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-CH-FR-1.nmconnection";
+    };
+
+    secrets."networking/system-connections/wg-CH-AT-1.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-CH-AT-1.nmconnection";
+    };
+    
+    secrets."networking/system-connections/wg-NL-323-P2P.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-NL-323-P2P.nmconnection";
+    };
+
+    secrets."networking/system-connections/wg-FR-13-TOR.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-FR-13-TOR.nmconnection";
+    };
   };
 }  
