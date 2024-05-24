@@ -54,5 +54,10 @@
       mode = "0600";
       path = "/etc/NetworkManager/system-connections/wg-flocoding.nmconnection";
     };
+    
+    secrets."networking/system-connections/wg-CH-UK-1.nmconnection" = {
+      mode = "0600";
+      path = "/etc/NetworkManager/system-connections/wg-CH-UK-1.nmconnection";
+    };
   };
 }  
