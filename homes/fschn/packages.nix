@@ -30,6 +30,7 @@
     filezilla
     youtube-dl
     git-filter-repo
+    protonmail-bridge
   ];
 
   programs.alacritty = {
