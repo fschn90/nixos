@@ -5,7 +5,6 @@
    # ./i3.nix
    ./packages.nix
    # ./ssh.nix
-   # ./protonmail-bridge.nix
    # ./taskwarrior.nix
   ];
 
