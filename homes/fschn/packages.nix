@@ -20,6 +20,7 @@
     gnome.gnome-disk-utility
     gnome.dconf-editor
     gnome.nautilus
+    gnome.seahorse
     gnome-decoder
     loupe
     snapshot
