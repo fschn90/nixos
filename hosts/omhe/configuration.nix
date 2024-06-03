@@ -48,6 +48,11 @@
 
   '';
   
+  
+  hardware.bluetooth.enable = false;
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
+
   # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
