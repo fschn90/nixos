@@ -7,11 +7,13 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "fschn";
+    # autoLogin.enable = true;
+    # autoLogin.user = "fschn";
     gdm.wayland = true;
     gdm.enable = true;
    };
+   services.displayManager.autoLogin.enable = true;
+   services.displayManager.autoLogin.user = "fschn";
 
   # necesarry for gnome 
   systemd.services."getty@tty1".enable = false;

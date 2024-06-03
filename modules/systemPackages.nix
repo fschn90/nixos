@@ -10,7 +10,7 @@
     htop
     git
     zellij
-    nixfmt
+    nixfmt-classic
     tree
     alacritty
     fishPlugins.bobthefish
@@ -37,7 +37,7 @@
     fd
     sops
     gnupg
-    pinentry-gnome # gnupg dependency to generate pgp key
+    pinentry-gnome3 # gnupg dependency to generate pgp key
   ];
 
   fonts.packages = with pkgs; [
