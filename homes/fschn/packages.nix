@@ -21,6 +21,7 @@
     gnome.dconf-editor
     gnome.nautilus
     gnome.seahorse
+    gnome.gnome-calculator
     gnome-decoder
     loupe
     snapshot
