@@ -33,6 +33,7 @@
     youtube-dl
     git-filter-repo
     protonmail-bridge
+    gimp-with-plugins
   ];
 
   programs.alacritty = {
