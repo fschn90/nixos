@@ -39,6 +39,25 @@
   networking.hostId = "e2990a3c";
   boot.zfs.extraPools = [ "tank" ];
 
+  services.sanoid = {
+    enable = true;
+    interval = "hourly"; # run this hourly, run syncoid daily to prune ok
+    datasets = {
+      "NIXROOT/home" = {
+        autoprune = true;
+        autosnap = true;
+        frequent_period  = 15;
+        frequently = 4;
+        hourly = 0;
+        daily = 0;
+        weekly = 0;
+        monthly = 0;
+        yearly = 0;
+      };
+    };
+    extraArgs = [ "--debug" ];
+  };
+
   boot.extraModprobeConfig = ''
   
     options iwlwifi 11n_disable=8 swcrypto=0 bt_coex_active=0 power_save=0
