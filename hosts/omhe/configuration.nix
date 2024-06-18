@@ -46,17 +46,17 @@
       "NIXROOT/home" = {
         autoprune = true;
         autosnap = true;
-        frequent_period  = 15;
-        frequently = 4;
-        hourly = 0;
-        daily = 0;
-        weekly = 0;
-        monthly = 0;
-        yearly = 0;
+        hourly = 24;
+        daily = 31;
+        weekly = 7;
+        monthly = 12;
+        yearly = 2;
       };
     };
     extraArgs = [ "--debug" ];
   };
+  
+  boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 
   boot.extraModprobeConfig = ''
   
