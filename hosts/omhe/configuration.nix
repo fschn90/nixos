@@ -12,6 +12,7 @@
       ../../modules/boot.nix
       ../../modules/users.nix
       ../../modules/sops.nix
+      ./sanoid-backup-target.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -39,23 +40,6 @@
   networking.hostId = "e2990a3c";
   boot.zfs.extraPools = [ "tank" ];
 
-  services.sanoid = {
-    enable = true;
-    interval = "hourly"; # run this hourly, run syncoid daily to prune ok
-    datasets = {
-      "NIXROOT/home" = {
-        autoprune = true;
-        autosnap = true;
-        hourly = 24;
-        daily = 31;
-        weekly = 7;
-        monthly = 12;
-        yearly = 2;
-      };
-    };
-    extraArgs = [ "--debug" ];
-  };
-  
   boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 
   boot.extraModprobeConfig = ''

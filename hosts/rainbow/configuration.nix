@@ -21,6 +21,7 @@
     ../../modules/sops.nix 
     ../../modules/ssh.nix 
     ../../modules/protonmail-bridge.nix 
+    ./sanoid-backup-source.nix
  ];
   
   # necesarry for zfs
