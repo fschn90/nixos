@@ -1,29 +1,4 @@
-{ config, ... }:
-
 {
-
-  sops = {
-
-    # secrets."ssh/keys/backup" = {
-    #   mode = "0604";
-    #   path = "/var/lib/syncoid/backup";
-    #   owner = config.users.users.backup.name;
-    # };
-    
-    secrets."ssh/keys/backup" = {
-      # mode = "0600";
-      # path = "/home/fschn/.ssh/backup";
-      # owner = config.users.users.fschn.name;
-    };
-   
-    secrets."ssh/keys/backup.pub" = {
-      # mode = "0644";
-      # path = "/home/fschn/.ssh/backup.pub"; 
-      # owner = config.users.users.fschn.name;
-    };   
-  
-  };
-
 
   users.users.backup = {
     isNormalUser = true;
@@ -32,10 +7,18 @@
     extraGroups = [ ];
     openssh = {
       authorizedKeys.keys = [
-        config.sops.secrets."ssh/keys/backup.pub".path
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMg2AFhpk8nsyxXSRLnSaEWXDQFQzCEsw+TsQsK/Hi9U fschn@rainbow''
       ];
-      # authorizedKeys.keyFiles = [ config.sops.secrets."ssh/keys/backup.pub".path ];
     };
   };
+
+  
+environment.systemPackages = with pkgs; [
+  # used by zfs send/receive
+  pv
+  mbuffer
+  lzop
+  zstd
+];
 
 }
