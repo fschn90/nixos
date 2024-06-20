@@ -1,4 +1,23 @@
+{ pkgs, ... }:
+
 {
+
+  services.sanoid = {
+    enable = true;
+    interval = "hourly"; # run this hourly, run syncoid daily to prune ok
+    datasets = {
+      "NIXROOT/test" = {
+        autoprune = true;
+        autosnap = true;
+        hourly = 24;
+        daily = 31;
+        weekly = 1;
+        monthly = 1;
+        yearly = 1;
+      };
+    };
+    extraArgs = [ "--debug" ];
+  };
 
   users.users.backup = {
     isNormalUser = true;

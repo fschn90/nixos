@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 
 {
 
@@ -46,7 +46,6 @@ environment.systemPackages = with pkgs; [
 sops.secrets."ssh/keys/backup" = {
       mode = "0604";
       path = "/var/lib/syncoid/backup";
-      owner = config.users.users.backup.name;
     };
 
 }
