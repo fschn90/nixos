@@ -5,7 +5,8 @@
 services.syncoid = {
   enable = true;
   # interval = "daily";
-  interval = "*:0/1"; # run this hourly, run syncoid daily to prune ok
+  # interval = "*-*-* */3:05:00"; # run this hourly, run syncoid daily to prune ok
+  interval = "*-*-* 00/2:30:00"; # run this hourly, run syncoid daily to prune ok
   commonArgs = [ "--debug" ];
   commands = {
     "test-home" = {
@@ -50,4 +51,4 @@ sops.secrets."ssh/keys/backup" = {
       owner = "syncoid";
     };
 
-}
+} 
