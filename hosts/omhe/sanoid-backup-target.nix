@@ -47,6 +47,7 @@ environment.systemPackages = with pkgs; [
 sops.secrets."ssh/keys/backup" = {
       mode = "0600";
       path = "/var/lib/syncoid/backup";
+      owner = "syncoid";
     };
 
 }
