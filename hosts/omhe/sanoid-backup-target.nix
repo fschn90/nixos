@@ -4,7 +4,8 @@
 
 services.syncoid = {
   enable = true;
-  interval = "daily";
+  # interval = "daily";
+  interval = "*:0/1"; # run this hourly, run syncoid daily to prune ok
   commonArgs = [ "--debug" ];
   commands = {
     "test-home" = {
@@ -19,7 +20,7 @@ services.syncoid = {
 
   services.sanoid = {
     enable = true;
-    interval = "*:0/1"; # run this hourly, run syncoid daily to prune ok
+    interval = "daily"; # run this hourly, run syncoid daily to prune ok
     datasets = {
       "tank/test-home" = {
         autoprune = true;
