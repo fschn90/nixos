@@ -19,7 +19,7 @@ services.syncoid = {
 
   services.sanoid = {
     enable = true;
-    interval = "hourly"; # run this hourly, run syncoid daily to prune ok
+    interval = "*:0/1"; # run this hourly, run syncoid daily to prune ok
     datasets = {
       "tank/test-home" = {
         autoprune = true;
@@ -44,7 +44,7 @@ environment.systemPackages = with pkgs; [
 ];
 
 sops.secrets."ssh/keys/backup" = {
-      mode = "0604";
+      mode = "0600";
       path = "/var/lib/syncoid/backup";
     };
 
