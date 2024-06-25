@@ -34,7 +34,7 @@
             ./hosts/oide/configuration.nix
             hardware.nixosModules.lenovo-thinkpad-t490
             home-manager.nixosModules.home-manager
-            { home-manager.users.fschn = import ./homes/fschn; }
+            { home-manager.users.fschn = import ./homes/portable; }
             sops-nix.nixosModules.sops
           ];
         };
