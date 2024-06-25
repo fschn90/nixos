@@ -4,7 +4,7 @@
    # ./git.nix
    # ./i3.nix
    ./packages.nix
-   # ./ssh.nix
+   ../home-modules/nvim.nix
    # ./taskwarrior.nix
   ];
 

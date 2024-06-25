@@ -5,9 +5,7 @@
 
   home.packages = with pkgs; [
     firefox
-    # thunderbird
     vlc
-    # keepassxc
     transmission-gtk
     vscode
     google-chrome
@@ -15,8 +13,6 @@
     signal-desktop 
     libreoffice
     mumble
-    # digikam
-    # viking
     gnome.gnome-disk-utility
     gnome.dconf-editor
     gnome.nautilus
@@ -28,12 +24,6 @@
     element-desktop
     evince # gnome doc viewer
     gtypist
-    # lazygit # astronvim dependency
-    # filezilla
-    # youtube-dl
-    # git-filter-repo
-    # protonmail-bridge
-    # gimp-with-plugins
     git
   ];
 
@@ -44,28 +34,6 @@
       window.startup_mode = "Maximized";
     };
   };              
-
-  # programs.neovim = {
-  #   enable = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  #   defaultEditor = true;
-  #   plugins = with pkgs.vimPlugins; [
-  #     nvim-lspconfig
-  #     nvim-treesitter.withAllGrammars
-  #   ];
-  # };
-  #
-  # xdg.configFile.nvim = {
-  #   source = ./nvim;
-  #   recursive = true;
-  # };
-  #
-  # home.file.".config/nvim/lua/user" = {
-  #   enable = true;
-  #   source = ./nvim-user;
-  #   recursive = true;
-  # };
 
   programs.fish = {
     enable = true;

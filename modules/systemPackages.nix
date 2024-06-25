@@ -29,10 +29,6 @@
     pinentry-gnome3 # gnupg dependency to generate pgp key
   ];
 
-  # fonts.packages = with pkgs; [
-  # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  # ];
-
 }
 
 

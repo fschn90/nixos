@@ -28,12 +28,13 @@
     element-desktop
     evince
     gtypist
-    lazygit # astronvim dependency
+    # lazygit # astronvim dependency
     filezilla
     youtube-dl
     git-filter-repo
     protonmail-bridge
     gimp-with-plugins
+    git
   ];
 
   programs.alacritty = {
@@ -44,28 +45,28 @@
     };
   };              
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
-      nvim-treesitter.withAllGrammars
-    ];
-  };
-
-  xdg.configFile.nvim = {
-    source = ./nvim;
-    recursive = true;
-  };
-
-  home.file.".config/nvim/lua/user" = {
-    enable = true;
-    source = ./nvim-user;
-    recursive = true;
-  };
-
+  # programs.neovim = {
+  #   enable = true;
+  #   viAlias = true;
+  #   vimAlias = true;
+  #   defaultEditor = true;
+  #   plugins = with pkgs.vimPlugins; [
+  #     nvim-lspconfig
+  #     nvim-treesitter.withAllGrammars
+  #   ];
+  # };
+  #
+  # xdg.configFile.nvim = {
+  #   source = ./nvim;
+  #   recursive = true;
+  # };
+  #
+  # home.file.".config/nvim/lua/user" = {
+  #   enable = true;
+  #   source = ./nvim-user;
+  #   recursive = true;
+  # };
+  #
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
