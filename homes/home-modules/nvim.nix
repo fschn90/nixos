@@ -2,6 +2,26 @@
 
 {
 
+  # astronvim dependency
+  home.packages = with pkgs; [
+    lazygit
+    nerdfonts 
+    gcc 
+    unzip # for mason
+    wl-clipboard  
+    ripgrep
+    gdu
+    bottom
+    nodejs_20
+    fd
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
+  
+  fonts.fontconfig.enable = true;
+  # fonts.packages = with pkgs; [
+  # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  # ];
+
   programs.neovim = {
     enable = true;
     viAlias = true;

@@ -28,12 +28,13 @@
     element-desktop
     evince # gnome doc viewer
     gtypist
-    lazygit # astronvim dependency
+    # lazygit # astronvim dependency
     # filezilla
     # youtube-dl
     # git-filter-repo
     # protonmail-bridge
     # gimp-with-plugins
+    git
   ];
 
   programs.alacritty = {

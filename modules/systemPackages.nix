@@ -8,7 +8,6 @@
     wget
     lshw
     htop
-    git
     zellij
     nixfmt-classic
     tree
@@ -25,24 +24,14 @@
     bash
     docker
     postgresql
-    # astronvim dependency
-    nerdfonts 
-    gcc 
-    unzip # for mason
-    wl-clipboard  
-    ripgrep
-    gdu
-    bottom
-    nodejs_20
-    fd
     sops
     gnupg
     pinentry-gnome3 # gnupg dependency to generate pgp key
   ];
 
-  fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  ];
+  # fonts.packages = with pkgs; [
+  # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  # ];
 
 }
 
