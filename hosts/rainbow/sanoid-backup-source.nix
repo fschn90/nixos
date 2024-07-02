@@ -6,7 +6,7 @@
     enable = true;
     interval = "hourly"; # run this hourly, run syncoid daily to prune ok
     datasets = {
-      "NIXROOT/test" = {
+      "NIXROOT/home" = {
         autoprune = true;
         autosnap = true;
         hourly = 24;

@@ -4,15 +4,13 @@
 
 services.syncoid = {
   enable = true;
-  # interval = "daily";
-  # interval = "*-*-* */3:05:00"; # run this hourly, run syncoid daily to prune ok
-  interval = "*-*-* 00/2:30:00"; # run this hourly, run syncoid daily to prune ok
+  interval = "*-*-* 00/2:30:00"; 
   commonArgs = [ "--debug" ];
   commands = {
-    "test-home" = {
+    "rainbow" = {
       sshKey = "/var/lib/syncoid/backup";
-      source = "backup@rainbow:NIXROOT/test";
-      target = "tank/test-home";
+      source = "backup@rainbow:NIXROOT/home";
+      target = "tank/rainbow-backup";
       sendOptions = "w c";
       extraArgs = [ "--sshoption=StrictHostKeyChecking=off" ];
     };
@@ -23,7 +21,7 @@ services.syncoid = {
     enable = true;
     interval = "daily"; # run this hourly, run syncoid daily to prune ok
     datasets = {
-      "tank/test-home" = {
+      "tank/rainbow-backup" = {
         autoprune = true;
         autosnap = false;
         hourly = 24;
