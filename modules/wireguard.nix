@@ -6,5 +6,6 @@
   };
   networking.firewall.checkReversePath = false;
   networking.wireguard.enable = true;
-  
+ 
+  services.tailscale.enable = true;
 } 
