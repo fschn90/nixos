@@ -13,6 +13,7 @@
     signal-desktop 
     libreoffice
     mumble
+    fishPlugins.bobthefish
     gnome.gnome-disk-utility
     gnome.dconf-editor
     gnome.nautilus

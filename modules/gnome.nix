@@ -25,4 +25,14 @@
     gnome-tour
   ]);
 
+  # gnome extentions
+  environment.systemPackages = with pkgs; [
+    gnomeExtensions.appindicator
+    gnomeExtensions.openweather
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.system-monitor-tray-indicator
+    gnome.adwaita-icon-theme
+  ];
+
 }
