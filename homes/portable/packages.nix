@@ -1,4 +1,3 @@
-# { inputs, outputs, lib, config, pkgs, ... }:q
 { pkgs, inputs, config, lib, ... }:
 
 {
@@ -13,6 +12,7 @@
     signal-desktop 
     libreoffice
     mumble
+    # alacritty
     fishPlugins.bobthefish
     gnome.gnome-disk-utility
     gnome.dconf-editor

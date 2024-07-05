@@ -1,4 +1,3 @@
-# { inputs, outputs, lib, config, pkgs, ... }:q
 { pkgs, inputs, config, lib, ... }:
 
 {
@@ -17,6 +16,8 @@
     mumble
     digikam
     viking
+    # alacritty
+    fishPlugins.bobthefish
     gnome.gnome-disk-utility
     gnome.dconf-editor
     gnome.nautilus
@@ -28,7 +29,6 @@
     element-desktop
     evince
     gtypist
-    # lazygit # astronvim dependency
     filezilla
     youtube-dl
     git-filter-repo
@@ -45,28 +45,6 @@
     };
   };              
 
-  # programs.neovim = {
-  #   enable = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  #   defaultEditor = true;
-  #   plugins = with pkgs.vimPlugins; [
-  #     nvim-lspconfig
-  #     nvim-treesitter.withAllGrammars
-  #   ];
-  # };
-  #
-  # xdg.configFile.nvim = {
-  #   source = ./nvim;
-  #   recursive = true;
-  # };
-  #
-  # home.file.".config/nvim/lua/user" = {
-  #   enable = true;
-  #   source = ./nvim-user;
-  #   recursive = true;
-  # };
-  #
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
