@@ -27,7 +27,7 @@
     # sops
     # gnupg
     # pinentry-gnome3 # gnupg dependency to generate pgp key
-    tailscale
+    # tailscale
   ];
 
 }

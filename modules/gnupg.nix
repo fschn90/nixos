@@ -8,9 +8,9 @@
     pinentryPackage = pkgs.pinentry-gnome3;
   };
 
-  environment.systemPackages = with pkgs; [
+  users.users."fschn".packages = with pkgs; [
     gnupg
-    pinentry-gnome3 # gnupg dependency to generate pgp key
+    pinentry-gnome3
   ];
 
 }

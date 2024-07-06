@@ -20,6 +20,7 @@
     ../../modules/gnupg.nix 
     ../../modules/sops.nix 
     ../../modules/ssh.nix 
+    ../../modules/tailscale.nix
     ../../modules/protonmail-bridge.nix 
     ./sanoid-backup-source.nix
  ];

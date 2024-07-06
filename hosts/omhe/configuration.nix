@@ -14,6 +14,7 @@
       ../../modules/boot.nix
       ../../modules/users.nix
       ../../modules/sops.nix
+      ../../modules/tailscale.nix
       ./sanoid-backup-target.nix
     ];
 
@@ -44,8 +45,8 @@
 
   boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 
+  # wifi card driver settings to ensure stable connection
   boot.extraModprobeConfig = ''
-  
     options iwlwifi 11n_disable=8 swcrypto=0 bt_coex_active=0 power_save=0
     options iwlmvm power_scheme=1 
     options iwlwifi uapsd_disable=1 

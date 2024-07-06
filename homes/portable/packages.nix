@@ -25,7 +25,7 @@
     element-desktop
     evince # gnome doc viewer
     gtypist
-    git
+    # git
   ];
 
   programs.alacritty = {
