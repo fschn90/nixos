@@ -7,4 +7,5 @@
   ];
 
   services.tailscale.enable = true;
+  
 } 

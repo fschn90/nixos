@@ -16,7 +16,6 @@
     mumble
     digikam
     viking
-    # alacritty
     fishPlugins.bobthefish
     gnome.gnome-disk-utility
     gnome.dconf-editor
@@ -27,14 +26,11 @@
     loupe
     snapshot
     element-desktop
-    evince
-    gtypist
+    evince # gnome doc viewer
+    gtypist # type tutor, 10-finger-system
     filezilla
-    youtube-dl
-    git-filter-repo
     protonmail-bridge
     gimp-with-plugins
-    git
   ];
 
   programs.alacritty = {

@@ -12,7 +12,6 @@
     signal-desktop 
     libreoffice
     mumble
-    # alacritty
     fishPlugins.bobthefish
     gnome.gnome-disk-utility
     gnome.dconf-editor
@@ -24,8 +23,8 @@
     snapshot
     element-desktop
     evince # gnome doc viewer
-    gtypist
-    # git
+    gtypist # type tutor, 10-finger-system
+    zellij
   ];
 
   programs.alacritty = {
