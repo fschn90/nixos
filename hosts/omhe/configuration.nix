@@ -51,8 +51,6 @@
     options iwlmvm power_scheme=1 
     options iwlwifi uapsd_disable=1 
   '';
-  
-  # networking.wireless.enable = true; 
   hardware.bluetooth.enable = false;
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
@@ -83,6 +81,8 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
+
+  system.autoUpgrade.enable = true;
   
   # fishshell, necessary
   programs.fish.enable = true;

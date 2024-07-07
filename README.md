@@ -4,7 +4,6 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
-- auto upgrade
 - more fish extentions?
 - polibar?
 - better neovim integratoin
@@ -22,3 +21,4 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 - zfs backup:
   - sanoid more frequent, every 15 mins
   - syncoid less frequent, every 6 hours eg
+- HEADSCALE?
