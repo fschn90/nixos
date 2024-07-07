@@ -32,14 +32,6 @@
     gimp-with-plugins
   ];
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window.decorations = "None";
-      window.startup_mode = "Maximized";
-    };
-  };              
-
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
