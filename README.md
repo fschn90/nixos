@@ -4,12 +4,10 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
-- polibar?
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
   - or configure everythin in nix?
   - nixvim seems out of the question
-- modularizon of nix configuration and home-manager (see vimjoyer for inspiration)
   - systemPackages vs userPackages
 - NH the nix helper (vimjoyer)
 - documentation:
@@ -21,3 +19,4 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
   - sanoid more frequent, every 15 mins
   - syncoid less frequent, every 6 hours eg
 - HEADSCALE?
+- better modularization like vimjoyer
