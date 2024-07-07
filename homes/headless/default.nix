@@ -1,11 +1,10 @@
 # your home manager configuration
 {
   imports = [
-   # ./git.nix
-   # ./i3.nix
    ./packages.nix
    ../home-modules/nvim.nix
-   # ./taskwarrior.nix
+   ../home-modules/git.nix
+   ../home-modules/zoxide.nix
   ];
 
   home.username = "fschn";

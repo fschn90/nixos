@@ -82,7 +82,11 @@
     useUserPackages = true;
   };
 
+  # auto upgrade but not auto reboot
   system.autoUpgrade.enable = true;
+  # nix store garbage collection
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
   
   # fishshell, necessary
   programs.fish.enable = true;

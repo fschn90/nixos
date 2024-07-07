@@ -18,9 +18,6 @@
   ];
   
   fonts.fontconfig.enable = true;
-  # fonts.packages = with pkgs; [
-  # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  # ];
 
   programs.neovim = {
     enable = true;

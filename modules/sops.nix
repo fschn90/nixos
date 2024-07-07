@@ -6,7 +6,6 @@
     sops    
   ];
 
-
   sops = {
 
     defaultSopsFile = ../secrets/main.yaml;
