@@ -6,7 +6,6 @@
     firefox
     thunderbird
     vlc
-    keepassxc
     transmission-gtk
     vscode
     google-chrome
@@ -22,9 +21,9 @@
     gnome.nautilus
     gnome.seahorse
     gnome.gnome-calculator
-    gnome-decoder
-    loupe
-    snapshot
+    gnome-decoder # bar- / qr-code scanner
+    loupe # image viewer
+    snapshot # webcam viewer
     element-desktop
     evince # gnome doc viewer
     gtypist # type tutor, 10-finger-system

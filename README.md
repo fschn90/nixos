@@ -4,7 +4,6 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
-- more fish extentions?
 - polibar?
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?

@@ -5,6 +5,7 @@
    # ./i3.nix
    ./packages.nix
    ../home-modules/nvim.nix
+   ../home-modules/alacritty.nix
    # ./taskwarrior.nix
   ];
 
