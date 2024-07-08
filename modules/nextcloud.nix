@@ -9,7 +9,7 @@
     config = {
       dbtype = "sqlite";
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
-      dbpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
+      # dbpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true;
     maxUploadSize = "16G";
@@ -18,9 +18,14 @@
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
-    home = "/mnt/Nextcloud-test"
+    home = "/mnt/Nextcloud-test";
+    package = pkgs.nextcloud29;
   };
 
-  sops.secrets."Nextcloud/admin/Password" = {};
+  sops.secrets."Nextcloud/admin/Password" = {
+    mode = "0400";
+    path = "/mnt/Nextcloud-test";
+    owner = "nextcloud";
+  };
  
 }
