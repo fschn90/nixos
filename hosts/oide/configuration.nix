@@ -21,6 +21,7 @@
     ../../modules/sops.nix
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
+    ../../modules/nextcloud.nix
   ];
 
   # necessary for zfs
