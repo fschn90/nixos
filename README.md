@@ -20,3 +20,26 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
   - syncoid less frequent, every 6 hours eg
 - HEADSCALE?
 - better modularization like vimjoyer
+
+## Documentation
+
+### Initial ZFS setup
+
+### Sanoid and Syncoid
+
+### Nextcloud
+
+prerequesite for `home = "/mnt/Nextcloud-test";` :
+
+```bash
+sudo zfs create NIXROOT/Nextcloud-test
+sudo zfs set mountpoint=/mnt/Nextcloud-test NIXROOT/Nextcloud-test
+```
+
+to avoid `nexcould version is marked insecure` error, specify nextcloud package:
+
+```nix
+    services.nextcloud.package = pkgs.nextcloud29;
+```
+
+TODO: make available on vpn only

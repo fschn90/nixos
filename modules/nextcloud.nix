@@ -9,7 +9,6 @@
     config = {
       dbtype = "sqlite";
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
-      # dbpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true;
     maxUploadSize = "16G";
