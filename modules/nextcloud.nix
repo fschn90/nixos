@@ -24,7 +24,7 @@
 
   sops.secrets."Nextcloud/admin/Password" = {
     mode = "0400";
-    path = "/mnt/Nextcloud-test";
+    path = "/mnt/Nextcloud-test/Password";
     owner = "nextcloud";
   };
  
