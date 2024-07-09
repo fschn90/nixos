@@ -19,6 +19,7 @@
     autoUpdateApps.enable = true;
     home = "/mnt/Nextcloud-test";
     package = pkgs.nextcloud29;
+    settings.trusted_domains = [ "oide.tail9e2438.ts.net"];
   };
 
   sops.secrets."Nextcloud/admin/Password" = {
