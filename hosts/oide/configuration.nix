@@ -22,13 +22,11 @@
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
     ../../modules/nextcloud.nix
+    ../../modules/nix.nix
   ];
 
   # necessary for zfs
   networking.hostId = "8425e349";
-
-  # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "oide"; # Define your hostname.
   
@@ -60,9 +58,6 @@
 
   # auto upgrade but not auto reboot
   system.autoUpgrade.enable = true;
-  # nix store garbage collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
   
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";

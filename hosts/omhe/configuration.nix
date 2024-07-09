@@ -16,6 +16,7 @@
       ../../modules/sops.nix
       ../../modules/tailscale.nix
       ./sanoid-backup-target.nix
+      ../../modules/nix.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -55,9 +56,6 @@
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
 
-  # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
 
@@ -84,9 +82,6 @@
 
   # auto upgrade but not auto reboot
   system.autoUpgrade.enable = true;
-  # nix store garbage collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
   
   # fishshell, necessary
   programs.fish.enable = true;

@@ -23,13 +23,11 @@
     ../../modules/tailscale.nix
     ../../modules/protonmail-bridge.nix 
     ./sanoid-backup-source.nix
+    ../../modules/nix.nix
  ];
   
   # necesarry for zfs
   networking.hostId = "b3d58883";
-
-  # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "rainbow"; # Define your hostname.
   
@@ -61,9 +59,6 @@
 
   # auto upgrade but not auto reboot
   system.autoUpgrade.enable = true;
-  # nix store garbage collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
