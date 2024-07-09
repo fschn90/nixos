@@ -7,7 +7,7 @@
     hostName = "localhost";
     database.createLocally = true;
     config = {
-      dbtype = "sqlite";
+      dbtype = "pgsql";
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true;
