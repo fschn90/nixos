@@ -25,6 +25,8 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ### Initial partitioning and formating the drive with zfs
 
+full credit to https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/README.rst
+
 - `sudo sgdisk --zap-all /dev/nvme0n1`
 
 - `sudo fdisk /dev/nvme0n1`, then::
@@ -85,7 +87,62 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
   sudo mount /dev/nvme0n1p1 /mnt/boot
   sudo mount -t zfs NIXROOT/home /mnt/home
 
-### Sanoid and Syncoid
+### Sanoid and Syncoida
+
+fully based on: https://github.com/mcdonc/.nixconfig/blob/master/videos/zfsremotebackups/script.rst
+
+backup target is home-server (omhe) and backup source is eg desktop (rainbow, with data to be backed up).
+
+prerequisites:
+
+- ssh key passphraseless generated via `ssh-keygen` and then deployed via sops:
+
+```nix
+# hosts/omhe/sanoid-backup-target.nix
+
+sops.secrets."ssh/keys/backup" = {
+      mode = "0600";
+      path = "/var/lib/syncoid/backup"; # key need to be on this location, if this directory doesnt exist yet: i think it gets created when syncoid is either installed or maybe when it attempts to sync at least one source
+      owner = "syncoid"; # key is for the syncoid user, if this is not set there are permission issues
+    };
+```
+
+- on the source machine (rainbow) set up a backup user:
+
+```nix
+# hosts/rainbow/sanoid-backup-source.nix
+
+  users.users.backup = {
+    isNormalUser = true;
+    createHome = false;
+    home = "/var/empty";
+    extraGroups = [ ];
+    openssh = {
+      authorizedKeys.keys = [
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMg2AFhpk8nsyxXSRLnSaEWXDQFQzCEsw+TsQsK/Hi9U fschn@rainbow''
+      ];
+    };
+  };
+```
+
+- On your source system (rainbow), give some ZFS permissions to the backup user on the dataset that you want to back up. These are necessary for syncoid to do its job:
+
+```bash
+sudo zfs allow backup compression,hold,send,snapshot,mount,destroy NIXROOT/home
+```
+
+- for backup target (omhe):
+
+```nix
+# hosts/omhe/configuration.nix
+
+# dont ask for "tank/rainbow-backup" credentials at boot
+boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
+```
+
+- Finally on the target system(omhe) configure a `services.syncoid` to pull from the source system dataset `NIXROOT/home` in `hosts/omhe/sanoid-backup-target.nix`, and a 'services.sanoid' to keep around historical snapshots. The dataset I'm backing up to is 'tank/rainbow-backup' and this can not exist before syncoid and sanoid services inital run as they create it automatically and throw an error otherwise.
+
+- On the source system (rainbow), configure a `services.sanoid` in `hosts/rainbow/sanoid-backup-source.nix` to keep around a few historical datasets.
 
 ### Nextcloud
 

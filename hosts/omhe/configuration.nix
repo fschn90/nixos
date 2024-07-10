@@ -44,6 +44,7 @@
   networking.hostId = "e2990a3c";
   boot.zfs.extraPools = [ "tank" ];
 
+  # make sure only NIXROOT credentials are requested, and not other pools as well
   boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 
   # wifi card driver settings to ensure stable connection
