@@ -42,4 +42,4 @@ to avoid `nexcould version is marked insecure` error, specify nextcloud package:
     services.nextcloud.package = pkgs.nextcloud29;
 ```
 
-TODO: make available on vpn only
+TODO: make available on vpn only with custom url
