@@ -10,27 +10,36 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
   - nixvim seems out of the question
   - systemPackages vs userPackages
 - NH the nix helper (vimjoyer)
-- documentation:
-  - zfs backup
-  - zfs setup (see videos)
 - zfs backup for laptop via tailscale after some data clean up
-- next cloud
+- nextcloud, available via custom link on vpn
 - zfs backup:
   - sanoid more frequent, every 15 mins
   - syncoid less frequent, every 6 hours eg
 - HEADSCALE?
 - better modularization like vimjoyer
+- custom dns server
+- disko
 
 ## Documentation
 
-### Initial partitioning and formating the drive with zfs
+1. [Initial partitioning and formating the drive with zfs](#initial)
+2. [Sanoid and Syncoid](#Sanoid)
+3. [Nextcloud](#Nextcloud)
 
-full credit to https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/README.rst
+
+
+### Initial partitioning and formating the drive with zfs <a name="inital"></a>
+___
+
+- full credit to https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/README.rst
+
+- Partition and format the drive:
 
 - `sudo sgdisk --zap-all /dev/nvme0n1`
 
-- `sudo fdisk /dev/nvme0n1`, then::
+- `sudo fdisk /dev/nvme0n1`, then:
 
+```bash
   g
   n
   accept default part num
@@ -43,16 +52,20 @@ full credit to https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/README.r
   accept default first sector
   accept default last sector
   w
+```
 
 - No swap partition (huge amount of memory, also security)
 
-- Create the boot volume::
+- Create the boot volume:
 
+```bash
   sudo mkfs.fat -F 32 /dev/nvme0n1p1
   sudo fatlabel /dev/nvme0n1p1 NIXBOOT
+```
 
-- Create a zpool::
+- Create a zpool:
 
+```bash
   sudo zpool create -f \
    -o altroot="/mnt" \
    -o ashift=12 \
@@ -70,24 +83,29 @@ full credit to https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/README.r
    -O mountpoint=none \
    NIXROOT \
    /dev/nvme0n1p2
+```
 
 - Create zfs volumes::
 
+```bash
   sudo zfs create -o mountpoint=legacy NIXROOT/root
   sudo zfs create -o mountpoint=legacy NIXROOT/home
-
   # reserved to cope with running out of disk space
-
   sudo zfs create -o refreservation=1G -o mountpoint=none NIXROOT/reserved
+```
 
 - `sudo mount -t zfs NIXROOT/root /mnt`
-- Mount subvolumes::
+- Mount subvolumes:
+
+```bash
   sudo mkdir /mnt/boot
   sudo mkdir /mnt/home
   sudo mount /dev/nvme0n1p1 /mnt/boot
   sudo mount -t zfs NIXROOT/home /mnt/home
+```
 
-### Sanoid and Syncoida
+### Sanoid and Syncoid <a name="Sanoid"></a>
+___
 
 fully based on: https://github.com/mcdonc/.nixconfig/blob/master/videos/zfsremotebackups/script.rst
 
@@ -144,19 +162,20 @@ boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 
 - On the source system (rainbow), configure a `services.sanoid` in `hosts/rainbow/sanoid-backup-source.nix` to keep around a few historical datasets.
 
-### Nextcloud
+### Nextcloud <a name="Nextcloud"></a>
+___
 
-prerequesite for `home = "/mnt/Nextcloud-test";` :
+- prerequesite for `home = "/mnt/Nextcloud-test";` :
 
 ```bash
 sudo zfs create NIXROOT/Nextcloud-test
 sudo zfs set mountpoint=/mnt/Nextcloud-test NIXROOT/Nextcloud-test
 ```
 
-to avoid `nexcould version is marked insecure` error, specify nextcloud package:
+- to avoid `nexcould version is marked insecure` error, specify nextcloud package:
 
 ```nix
     services.nextcloud.package = pkgs.nextcloud29;
 ```
 
-TODO: make available on vpn only with custom url
+- TODO: make available on vpn only with custom url
