@@ -4,6 +4,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
+- encrypted dns
 - tailscale ssh for rainbow
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
@@ -170,8 +171,8 @@ boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 - prerequesite for `home = "/mnt/Nextcloud-test";` :
 
 ```bash
-sudo zfs create NIXROOT/Nextcloud-test
-sudo zfs set mountpoint=/mnt/Nextcloud-test NIXROOT/Nextcloud-test
+sudo zfs create NIXROOT/Nextcloud
+sudo zfs set mountpoint=/mnt/Nextcloud tank/Nextcloud
 ```
 
 - to avoid `nexcould version is marked insecure` error, specify nextcloud package:
