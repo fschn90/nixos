@@ -4,6 +4,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
+- tailscale ssh for rainbow
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
   - or configure everythin in nix?
@@ -26,10 +27,9 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 2. [Sanoid and Syncoid](#Sanoid)
 3. [Nextcloud](#Nextcloud)
 
-
-
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
-___
+
+---
 
 - full credit to https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/README.rst
 
@@ -105,7 +105,8 @@ ___
 ```
 
 ### Sanoid and Syncoid <a name="Sanoid"></a>
-___
+
+---
 
 fully based on: https://github.com/mcdonc/.nixconfig/blob/master/videos/zfsremotebackups/script.rst
 
@@ -163,7 +164,8 @@ boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 - On the source system (rainbow), configure a `services.sanoid` in `hosts/rainbow/sanoid-backup-source.nix` to keep around a few historical datasets.
 
 ### Nextcloud <a name="Nextcloud"></a>
-___
+
+---
 
 - prerequesite for `home = "/mnt/Nextcloud-test";` :
 
