@@ -4,8 +4,10 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
-- encrypted dns
+- encrypted dns and or adguardhome
+- tailscale auth file
 - tailscale ssh for rainbow
+- collect home lab ideas
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
   - or configure everythin in nix?
