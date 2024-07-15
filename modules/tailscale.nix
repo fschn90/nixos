@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
 
@@ -10,5 +10,12 @@
   services.tailscale.extraUpFlags = [
     "--ssh"
   ];
+  services.tailscale.authKeyFile = config.sops.secrets."tailscale/key".path; 
+
+  sops.secrets."tailscale/key" = {
+    # mode = "0400";
+    # path = "/mnt/Nextcloud/Admin-Password";
+    # owner = "nextcloud";
+  };
   
 } 
