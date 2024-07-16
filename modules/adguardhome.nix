@@ -32,10 +32,12 @@
         enable = true;
         interval = "8760h";
       };
-      users = {
-        name = "fschn";
-        password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
-      };
+      users = [
+        {
+          name = "fschn";
+          password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
+        }
+      ];
       filtering = {
         protection_enabled = true;
         filtering_enabled = true;

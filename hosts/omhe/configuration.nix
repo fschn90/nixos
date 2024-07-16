@@ -17,9 +17,10 @@
       ../../modules/tailscale.nix
       ./sanoid-backup-target.nix
       ../../modules/nix.nix
-      ../../modules/coredns.nix
+      # ../../modules/coredns.nix
       ../../modules/nameserver.nix
       ../../modules/nextcloud.nix
+      ../../modules/adguardhome.nix
     ];
 
   # Use the GRUB 2 boot loader.
