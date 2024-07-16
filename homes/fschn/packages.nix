@@ -30,6 +30,7 @@
     filezilla
     protonmail-bridge
     gimp-with-plugins
+    zellij
   ];
 
 }
