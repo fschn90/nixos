@@ -5,7 +5,7 @@
     settings = {
       http = {
         # You can select any ip and port, just make sure to open firewalls where needed
-        address = "100.106.245.44:3003";
+        address = "100.106.245.44:3000";
       };
       dns = {
         upstream_dns = [
@@ -85,7 +85,7 @@
          "/" = {
            # proxyPass = "localhost";
            # proxyPass = "http://127.0.0.1:8080";
-           proxyPass = "http://100.106.245.44:3003";
+           proxyPass = "http://100.106.245.44:3000";
         };
       };
     };
