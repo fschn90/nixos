@@ -5,7 +5,7 @@
     settings = {
       http = {
         # You can select any ip and port, just make sure to open firewalls where needed
-        address = "127.0.0.1:3003";
+        address = "100.106.245.44:3003";
       };
       dns = {
         upstream_dns = [
@@ -19,10 +19,34 @@
           "https://cloudflare-dns.com/dns-query"
           "tls://unfiltered.adguard-dns.com"
         ];
+
+        bootstrap_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        fallback_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        cache_optimistic = true;
+        upstream_mode = "parallel";
+        enable_dnssec = true;
+        theme = "auto";
+  
+      };
+      statistics = {
+        enable = true;
+        interval = "8760h";
+      };
+      users = {
+        name = "fschn";
+        password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
       };
       filtering = {
         protection_enabled = true;
         filtering_enabled = true;
+
+        filters_update_interval = 1;
+        rewrites = [
+          {
+            domain = "*.home";
+            answer = "100.106.245.44";
+          }
+        ];
 
         parental_enabled = false;  # Parental control-based DNS requests filtering.
         safe_search = {

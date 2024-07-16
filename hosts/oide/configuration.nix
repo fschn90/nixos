@@ -23,7 +23,8 @@
     ../../modules/tailscale.nix
     # ../../modules/nextcloud.nix
     ../../modules/nix.nix
-    ../../modules/nameserver.nix
+    # ../../modules/nameserver.nix
+    ../../modules/adguardhome.nix
   ];
 
   # necessary for zfs
