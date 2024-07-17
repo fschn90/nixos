@@ -4,68 +4,152 @@
     enable = true;
     settings = {
       http = {
-        # You can select any ip and port, just make sure to open firewalls where needed
+        # Web interface IP address with port to listen on.
         address = "100.106.245.44:3000";
       };
       dns = {
+        # List of upstream DNS servers
         upstream_dns = [
-          # Example config with quad9
-          # "9.9.9.9#dns.quad9.net"
-          # "149.112.112.112#dns.quad9.net"
-          # Uncomment the following to use a local DNS service (e.g. Unbound)
-          # Additionally replace the address & port as needed
-          # "127.0.0.1:5335"
-
-          "https://cloudflare-dns.com/dns-query"
-          "tls://unfiltered.adguard-dns.com"
+          https://cloudflare-dns.com/dns-query
+          https://dns.quad9.net/dns-query
+          https://dns.adguard.com/dns-query
+          tls://dns.adguard.com
+          tls://cloudflare-dns.com
+          tls://dns.quad9.net
         ];
-
+        # Enables DNS-over-HTTP/3 for DNS-over-HTTPS upstreams that support it.
+        use_http3_upstreams = true;
+        # Enables DNS-over-HTTP/3 serving for DNS-over-HTTPS clients as well as for the web UI.
+        serve_http3 = true;
+        # List of DNS servers used for initial hostname resolution in case an upstream server name is a hostname.
         bootstrap_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        # List of fallback DNS servers used when upstream DNS servers are not responding.
         fallback_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        # DNS cache size (in bytes).
+        cache_size = 33554432;
+        #The minimum TTL override, in seconds. If the TTL of a response from upstream is below this value, the TTL is replaced with it.
+        cache_ttl_min = 2400;
+        # The maximum TTL override, in seconds. If the TTL of a response from upstream is above this value, the TTL is replaced with it.
+        cache_ttl_max = 86400;
+        # Make AdGuard Home respond from the cache even when the entries are expired and also try to refresh them. such responses is 10 seconds.
         cache_optimistic = true;
         upstream_mode = "parallel";
+        # Set DNSSEC flag in the outgoing DNS requests and check the result.
         enable_dnssec = true;
+        # The theme of UI.
         theme = "auto";
+        # DDoS protection, specifies how many queries per second AdGuard Home should handle. Anything above that is silently dropped.
+        ratelimit = 20;
+        # rarely needed, so refusing to serve them mitigates against attackers trying to use your DNS as a reflection. 
+        refuse_any = true;
+
   
       };
       statistics = {
         enable = true;
+        # Time interval for statistics. It's a string with human-readable duration between an hour (1h) and a year (8760h).
         interval = "8760h";
       };
+      # For web interface UI.
       users = [
         {
           name = "fschn";
+          # htpasswd encryped password for web interface UI.
           password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
         }
       ];
       filtering = {
+        # Whether any kind of filtering and protection should be performed.
         protection_enabled = true;
+        # Whether filtering of DNS requests based on rule lists should be performed.
         filtering_enabled = true;
-
+        # Time interval in hours for updating filters.
         filters_update_interval = 1;
+        # List of legacy DNS rewrites, where domain is the domain or wildcard you want to be rewritten and answer is IP address, CNAME record, A or AAAA special values. Special value A keeps A records from the upstream and AAAA keeps AAAA values from the upstream.
         rewrites = [
           {
             domain = "*.home";
             answer = "100.106.245.44";
           }
         ];
-
-        parental_enabled = false;  # Parental control-based DNS requests filtering.
+        # Parental control-based DNS requests filtering.
+        parental_enabled = false;  
+        # Enforcing "Safe search" option for search engines, when possible.
         safe_search = {
-          enabled = false;  # Enforcing "Safe search" option for search engines, when possible.
-        };
+          enabled = true;      
+          };
       };
       # The following notation uses map
       # to not have to manually create {enabled = true; url = "";} for every filter
       # This is, however, fully optional
       filters = map(url: { enabled = true; url = url; }) [
-        # "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"  # The Big List of Hacked Malware Web Sites
-        # "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"  # malicious url blocklist
-        https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt
+        #other
         https://big.oisd.nl
-        https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt
+        https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt
+        https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
+        https://easylist-downloads.adblockplus.org/easylistgermany.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
-        https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_trackingservers.txt
+        https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt
+
+        # easylist
+        https://easylist.to/easylist/easylist.txt
+        https://easylist.to/easylist/easyprivacy.txt
+        https://secure.fanboy.co.nz/fanboy-annoyance.txt
+        https://easylist.to/easylist/fanboy-social.txt
+
+        # adguard annoyances
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Cookies/sections/cookies_general.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Cookies/sections/cookies_specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/MobileApp/sections/mobile-app_general.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/MobileApp/sections/mobile-app_specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Other/sections/annoyances.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Other/sections/tweaks.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/popups_general.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/popups_specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/push-notifications_general.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/push-notifications_specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/subscriptions_general.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/subscriptions_specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Widgets/sections/widgets.txt
+
+        # adguard basefilter
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/adservers.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/adservers_firstparty.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/antiadblock.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/banner_sizes.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/content_blocker.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/cryptominers.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/foreign.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/general_elemhide.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/general_extensions.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/general_url.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/replace.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/specific.txt
+
+        # adguard german
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/adservers.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/antiadblock.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_elemhide.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_extensions.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_url.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/replace.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/specific.txt
+
+        # adguard spyware
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/cookies_general.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/cookies_specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/general_elemhide.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/general_extensions.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/general_url.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/mobile.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/mobile_allowlist.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/specific.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers_firstparty.txt
+
+        # adguard trackingparam
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/general_url.txt
+        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/specific.txt
       ];
     };
   };

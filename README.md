@@ -5,10 +5,18 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 ## TO-DOs:
 
 - encrypted dns and or adguardhome
+  - add more filter lists, ublock
 - tailscale auth file
 - tailscale ssh for rainbow
 - collect home lab ideas
   - sync firefox tabs
+  - jellyfin?
+  - photoprism?
+  - fritz.home reverse proxy
+  - openbooks?
+  - maybes: deluge, sonarr, homeassistant
+  - graphana u prometheus
+  -
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
   - or configure everythin in nix?
