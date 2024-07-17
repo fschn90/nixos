@@ -4,7 +4,7 @@
 
   services.nextcloud = {
     enable = true;
-    hostName = "cloud.home";
+    hostName = "cloud.fschn.org";
     # https = true;
     database.createLocally = true;
     config = {
@@ -36,8 +36,8 @@
     # recommendedProxySettings = true; 
     # recommendedTlsSettings = true;
     virtualHosts.${config.services.nextcloud.hostName} = {
-      # enableACME = true;
-      # forceSSL = true;
+      enableACME = true;
+      forceSSL = true;
       # sslCertificate =
       # sslCertificateKey =
       locations = {
@@ -50,6 +50,8 @@
     };
   };
 
+  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "hello@fschn.org";
  
   # security.pki.certificateFiles # for self signed root openssl cert
 
