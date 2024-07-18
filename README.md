@@ -10,11 +10,11 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 - tailscale ssh for rainbow
 - collect home lab ideas
   - sync firefox tabs
-  - jellyfin?
+  - jellyfin? vs plex?
   - photoprism?
   - fritz.home reverse proxy
   - openbooks?
-  - maybes: deluge, sonarr, homeassistant
+  - maybes: deluge, sonarr, homeassistant, arr suit, navidrome, paperless, immich
   - graphana u prometheus
   -
 - better neovim integratoin

@@ -80,7 +80,7 @@
         parental_enabled = false;  
         # Enforcing "Safe search" option for search engines, when possible.
         safe_search = {
-          enabled = true;      
+          enabled = false;      
           };
       };
       # The following notation uses map
