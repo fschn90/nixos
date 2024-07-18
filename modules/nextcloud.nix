@@ -5,7 +5,7 @@
   services.nextcloud = {
     enable = true;
     hostName = "cloud.fschn.org";
-    # https = true;
+    https = true;
     database.createLocally = true;
     config = {
       dbtype = "pgsql"; # nextcloud is not optimised for sqlite thus pgsql
@@ -52,7 +52,21 @@
 
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "hello@fschn.org";
- 
+  security.acme.certs."fschn.org" = {
+    domain = "*.fschn.org";
+    dnsProvider = "cloudflare";
+    environmentFile = config.sops.secrets."cloudflare/dns-api-token".path;
+    # We don't need to wait for propagation since this is a local DNS server
+    dnsPropagationCheck = true;
+    reloadServices = [ "nginx" ];
+  };
   # security.pki.certificateFiles # for self signed root openssl cert
 
+  sops.secrets."cloudflace/dns-api-token" = {
+    # mode = "0400";
+    # path = "/mnt/Nextcloud/Admin-Password";
+    # owner = "nextcloud";
+  };
 }
+
+
