@@ -62,7 +62,7 @@
   };
   # security.pki.certificateFiles # for self signed root openssl cert
 
-  sops.secrets."cloudflace/dns-api-token" = {
+  sops.secrets."cloudflare/dns-api-token" = {
     # mode = "0400";
     # path = "/mnt/Nextcloud/Admin-Password";
     # owner = "nextcloud";
