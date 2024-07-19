@@ -68,7 +68,7 @@
         # List of legacy DNS rewrites, where domain is the domain or wildcard you want to be rewritten and answer is IP address, CNAME record, A or AAAA special values. Special value A keeps A records from the upstream and AAAA keeps AAAA values from the upstream.
         rewrites = [
           {
-            domain = "*.home";
+            domain = "adguard.fschn.org";
             answer = "100.106.245.44";
           }
           {
@@ -164,7 +164,7 @@
     # recommendedOptimisation = true;
     # recommendedProxySettings = true; 
     # recommendedTlsSettings = true;
-    virtualHosts."adguard.home" = {
+    virtualHosts."adguard.fschn.org" = {
       enableACME = true;
       forceSSL = true;
       # sslCertificate =
