@@ -38,12 +38,8 @@
     virtualHosts.${config.services.nextcloud.hostName} = {
       enableACME = true;
       forceSSL = true;
-      # sslCertificate =
-      # sslCertificateKey =
       locations = {
          "/" = {
-           # proxyPass = "localhost";
-           # proxyPass = "http://127.0.0.1:8080";
            proxyPass = "http://100.106.245.44:8080";
         };
       };
@@ -55,17 +51,13 @@
   security.acme.certs."fschn.org" = {
     domain = "*.fschn.org";
     dnsProvider = "cloudflare";
+    dnsResolver = "1.1.1.1:53";
     environmentFile = config.sops.secrets."cloudflare/dns-api-token".path;
-    # We don't need to wait for propagation since this is a local DNS server
     dnsPropagationCheck = true;
     reloadServices = [ "nginx" ];
   };
-  # security.pki.certificateFiles # for self signed root openssl cert
 
   sops.secrets."cloudflare/dns-api-token" = {
-    # mode = "0400";
-    # path = "/mnt/Nextcloud/Admin-Password";
-    # owner = "nextcloud";
   };
 }
 

@@ -51,7 +51,7 @@
         };
 
         # HOME SERVER
-        ohme = nixpkgs.lib.nixosSystem {
+        omhe = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/omhe/configuration.nix
