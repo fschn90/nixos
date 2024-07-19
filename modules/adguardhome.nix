@@ -71,10 +71,10 @@
             domain = "*.home";
             answer = "100.106.245.44";
           }
-          # {
-          #   domain = "cloud.fschn.org";
-          #   answer = "100.106.245.44";
-          # }
+          {
+            domain = "cloud.fschn.org";
+            answer = "100.106.245.44";
+          }
         ];
         # Parental control-based DNS requests filtering.
         parental_enabled = false;  
@@ -165,8 +165,8 @@
     # recommendedProxySettings = true; 
     # recommendedTlsSettings = true;
     virtualHosts."adguard.home" = {
-      # enableACME = true;
-      # forceSSL = true;
+      enableACME = true;
+      forceSSL = true;
       # sslCertificate =
       # sslCertificateKey =
       locations = {
