@@ -4,19 +4,8 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
-- encrypted dns and or adguardhome
-  - add more filter lists, ublock
-- tailscale auth file
-- tailscale ssh for rainbow
-- collect home lab ideas
-  - sync firefox tabs
-  - jellyfin? vs plex?
-  - photoprism?
-  - fritz.home reverse proxy
-  - openbooks?
-  - maybes: deluge, sonarr, homeassistant, arr suit, navidrome, paperless, immich
-  - graphana u prometheus
-  -
+- problem: tailscale requires auth everytime when rebooting.
+- SSL certs for local custom urls, eg. cloud.fschn.org. prob: acme challange keeps failing. see issue.
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
   - or configure everythin in nix?
@@ -24,14 +13,19 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
   - systemPackages vs userPackages
 - NH the nix helper (vimjoyer)
 - zfs backup for laptop via tailscale after some data clean up
-- nextcloud, available via custom link on vpn
-- zfs backup:
-  - sanoid more frequent, every 15 mins
-  - syncoid less frequent, every 6 hours eg
-- HEADSCALE?
 - better modularization like vimjoyer
-- custom dns server
 - disko
+
+## Home Lab ideas
+
+- sync firefox tabs
+- jellyfin? vs plex?
+- photoprism?
+- fritz.home reverse proxy
+- openbooks?
+- maybes: deluge, sonarr, homeassistant, arr suit, navidrome, paperless, immich
+- graphana u prometheus
+- HEADTAIL?
 
 ## Documentation
 
@@ -191,5 +185,3 @@ sudo zfs set mountpoint=/mnt/Nextcloud tank/Nextcloud
 ```nix
     services.nextcloud.package = pkgs.nextcloud29;
 ```
-
-- TODO: make available on vpn only with custom url
