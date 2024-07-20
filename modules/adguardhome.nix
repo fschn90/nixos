@@ -158,25 +158,25 @@
     };
   };
 
-  services.nginx = {
-    enable = true;
-    # recommendedGzipSettings = true;
-    # recommendedOptimisation = true;
-    # recommendedProxySettings = true; 
-    # recommendedTlsSettings = true;
-    virtualHosts."adguard.fschn.org" = {
-      enableACME = true;
-      forceSSL = true;
-      # sslCertificate =
-      # sslCertificateKey =
-      locations = {
-         "/" = {
-           # proxyPass = "localhost";
-           # proxyPass = "http://127.0.0.1:8080";
-           proxyPass = "http://100.106.245.44:3000";
-        };
-      };
-    };
-  };
-
+  # services.nginx = {
+  #   enable = true;
+  #   # recommendedGzipSettings = true;
+  #   # recommendedOptimisation = true;
+  #   # recommendedProxySettings = true; 
+  #   # recommendedTlsSettings = true;
+  #   virtualHosts."adguard.fschn.org" = {
+  #     enableACME = true;
+  #     forceSSL = true;
+  #     # sslCertificate =
+  #     # sslCertificateKey =
+  #     locations = {
+  #        "/" = {
+  #          # proxyPass = "localhost";
+  #          # proxyPass = "http://127.0.0.1:8080";
+  #          proxyPass = "http://100.106.245.44:3000";
+  #       };
+  #     };
+  #   };
+  # };
+  #
 }
