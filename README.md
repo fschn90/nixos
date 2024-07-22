@@ -4,6 +4,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
+- fix issue after rebuild, see error msg below: maybe with yet another update
 - problem: tailscale requires auth everytime when rebooting.
 - SSL certs for local custom urls, eg. cloud.fschn.org. prob: acme challange keeps failing. see issue.
 - better neovim integratoin
@@ -184,4 +185,31 @@ sudo zfs set mountpoint=/mnt/Nextcloud tank/Nextcloud
 
 ```nix
     services.nextcloud.package = pkgs.nextcloud29;
+```
+
+### error switching to newly upgraded config:
+
+```fish
+Job for NetworkManager-wait-online.service failed because the control process exited with error code.
+See "systemctl status NetworkManager-wait-online.service" and "journalctl -xeu NetworkManager-wait-online.service" for details.
+the following new units were started: nix-optimise.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
+warning: the following units failed: NetworkManager-wait-online.service
+
+× NetworkManager-wait-online.service - Network Manager Wait Online
+     Loaded: loaded (/etc/systemd/system/NetworkManager-wait-online.service; enabled; preset: enabled)
+    Drop-In: /nix/store/fsikvggrvicy5znp3m843fncvs5h8b1x-system-units/NetworkManager-wait-online.service.d
+             └─overrides.conf
+     Active: failed (Result: exit-code) since Mon 2024-07-22 00:04:07 CEST; 40ms ago
+   Duration: 4min 28.335s
+       Docs: man:NetworkManager-wait-online.service(8)
+    Process: 123194 ExecStart=/nix/store/bahdsd3kk98jq47b0yv58zbg1i3z2bsy-networkmanager-1.46.2/bin/nm-online -s -q (code=exited, status=1/FAILURE)
+   Main PID: 123194 (code=exited, status=1/FAILURE)
+         IP: 0B in, 0B out
+        CPU: 25ms
+
+Jul 22 00:03:07 rainbow systemd[1]: Starting Network Manager Wait Online...
+Jul 22 00:04:07 rainbow systemd[1]: NetworkManager-wait-online.service: Main process exited, code=exited, status=1/FAILURE
+Jul 22 00:04:07 rainbow systemd[1]: NetworkManager-wait-online.service: Failed with result 'exit-code'.
+Jul 22 00:04:07 rainbow systemd[1]: Failed to start Network Manager Wait Online.
+warning: error(s) occurred while switching to the new configuration
 ```
