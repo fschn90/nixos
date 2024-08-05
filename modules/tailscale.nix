@@ -9,7 +9,6 @@
   services.tailscale.enable = true;
   services.tailscale.extraUpFlags = [
     "--ssh"
-    "--auth-key=file:${config.sops.secrets."tailscale/key".path}"
   ];
   services.tailscale.authKeyFile = config.sops.secrets."tailscale/key".path; 
 
