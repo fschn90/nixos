@@ -17,7 +17,8 @@
       };
     };
 
-  declarativePlugins = with pkgs.grafanaPlugins; [ ... ];
+  # declarativePlugins = with pkgs.grafanaPlugins; [ ... ];
+  declarativePlugins = with pkgs.grafanaPlugins;
 
   provision = {
     enable = true;
