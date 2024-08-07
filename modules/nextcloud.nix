@@ -36,7 +36,8 @@
     # recommendedProxySettings = true; 
     # recommendedTlsSettings = true;
     virtualHosts.${config.services.nextcloud.hostName} = {
-      enableACME = true;
+      # enableACME = true;
+      useACMEHost = "fschn.org";
       forceSSL = true;
       locations = {
          "/" = {
@@ -46,6 +47,8 @@
     };
   };
 
+  users.users.nginx.extraGroups = [ "acme" ];
+  
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "hello@fschn.org";
   security.acme.defaults.dnsProvider = "cloudflare";
