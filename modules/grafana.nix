@@ -7,9 +7,9 @@
     settings = {
       server = {
         # Listening Address
-        http_addr = "127.0.0.1";
+        http_addr = "100.106.245.44";
         # and Port
-        http_port = 3000;
+        http_port = 3001;
         # Grafana needs to know on which domain and URL it's running
         domain = "https://grafana.fschn.org";
         # root_url = "https://your.domain/grafana/"; # Not needed if it is `https://your.domain/`
@@ -19,12 +19,12 @@
   };
 
   services.nginx.virtualHosts."grafana.fschn.org" = {
-  addSSL = true;
+  forceSSL = true;
   useACMEHost = "fschn.org";
   locations."/grafana/" = {
       proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
       proxyWebsockets = true;
-      recommendedProxySettings = true;
+      # recommendedProxySettings = true;
   };
 };
 
