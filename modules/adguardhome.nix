@@ -75,6 +75,10 @@
             domain = "cloud.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "grafana.fschn.org";
+            answer = "100.106.245.44";
+          }
         ];
         # Parental control-based DNS requests filtering.
         parental_enabled = false;  
