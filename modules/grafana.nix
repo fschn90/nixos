@@ -11,8 +11,8 @@
         # and Port
         http_port = 3001;
         # Grafana needs to know on which domain and URL it's running
-        domain = "https://grafana.fschn.org";
-        # root_url = "https://your.domain/grafana/"; # Not needed if it is `https://your.domain/`
+        domain = "grafana.fschn.org";
+        root_url = "https://grafana.fschn.org/grafana/"; # Not needed if it is `https://your.domain/`
         serve_from_sub_path = true;
       };
     };
