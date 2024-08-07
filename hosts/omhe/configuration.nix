@@ -23,6 +23,8 @@
       ../../modules/adguardhome.nix
       ../../modules/acme.nix
       ../../modules/grafana.nix
+      ../../modules/prometheus-exporters.nix
+      ../../modules/prometheus-scraper.nix
     ];
 
   # Use the GRUB 2 boot loader.
