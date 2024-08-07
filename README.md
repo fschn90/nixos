@@ -16,6 +16,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 - zfs backup for laptop via tailscale after some data clean up
 - better modularization like vimjoyer
 - disko
+- check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 
 ## Home Lab ideas
 

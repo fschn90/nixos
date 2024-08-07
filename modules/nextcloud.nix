@@ -50,18 +50,20 @@
   security.acme.defaults.email = "hello@fschn.org";
   security.acme.defaults.dnsProvider = "cloudflare";
   security.acme.defaults.dnsResolver = "1.1.1.1:53";
-  security.acme.defaults.environmentFile = config.sops.secrets."cloudflare/dns-api-token".path;
+  security.acme.defaults.environmentFile = config.sops.secrets."cloudflare/dns-api".path;
   security.acme.defaults.dnsPropagationCheck = true;
 
-  security.acme.certs."cloud.fschn.org" = {
+  security.acme.certs."fschn.org" = {
+    domain = "*.fschn.org";
+    group = "nginx";
     reloadServices = [ "nginx" ];
   };
   
-  security.acme.certs."adguard.fschn.org" = {
-    reloadServices = [ "nginx" ];
-  };
-  
-  sops.secrets."cloudflare/dns-api-token" = {
+  # security.acme.certs."adguard.fschn.org" = {
+  #   reloadServices = [ "nginx" ];
+  # };
+  # 
+  sops.secrets."cloudflare/dns-api" = {
   };
 }
 
