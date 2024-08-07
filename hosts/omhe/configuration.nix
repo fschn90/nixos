@@ -21,6 +21,7 @@
       ../../modules/nameserver.nix
       ../../modules/nextcloud.nix
       ../../modules/adguardhome.nix
+      ../../modules/acme.nix
     ];
 
   # Use the GRUB 2 boot loader.
