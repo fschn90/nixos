@@ -21,7 +21,7 @@
   services.nginx.virtualHosts."grafana.fschn.org" = {
   forceSSL = true;
   useACMEHost = "fschn.org";
-  locations."/grafana/" = {
+  locations."/" = {
       proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
       proxyWebsockets = true;
       # recommendedProxySettings = true;
