@@ -25,6 +25,7 @@
       ../../modules/grafana.nix
       ../../modules/prometheus-exporters.nix
       ../../modules/prometheus-scraper.nix
+      ../../modules/jellyfin.nix
     ];
 
   # Use the GRUB 2 boot loader.
