@@ -6,10 +6,11 @@
       "logind"
       "systemd"
     ];
+    extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" ];
     disabledCollectors = [
       "textfile"
     ];
-    # openFirewall = true;
-    # firewallFilter = "-i br0 -p tcp -m tcp --dport 9100";
+    openFirewall = true;
+    firewallFilter = "-i br0 -p tcp -m tcp --dport 9100";
   };
 }
