@@ -9,13 +9,12 @@
     pkgs.jellyfin-ffmpeg
   ];
 
-  services.nginx.virtualHosts."jellyfin.fschn.org" = {
-    forceSSL = true;
-    useACMEHost = "fschn.org";
-    locations."/" = {
-        proxyPass = "127.0.0.1:8096";
-        # proxyWebsockets = true;
-        # recommendedProxySettings = true;
-    };
-  };
+  # services.nginx.virtualHosts."jellyfin.fschn.org" = {
+  #   forceSSL = true;
+  #   useACMEHost = "fschn.org";
+  #   locations."/" = {
+  #       proxyPass = "100.106.245.44:8096";
+  #       recommendedProxySettings = true;
+  #   };
+  # };
 }

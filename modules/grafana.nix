@@ -7,12 +7,14 @@
     settings = {
       server = {
         # Listening Address
-        http_addr = "100.106.245.44";
+        # http_addr = "100.106.245.44";
+        http_addr = "127.0.0.1";
+        protocol = "http";
         # and Port
         http_port = 3001;
         # Grafana needs to know on which domain and URL it's running
         domain = "grafana.fschn.org";
-        root_url = "https://grafana.fschn.org/"; # Not needed if it is `https://your.domain/`
+        root_url = "http://grafana.fschn.org/"; # Not needed if it is `https://your.domain/`
         serve_from_sub_path = true;
       };
     };
@@ -34,13 +36,14 @@
         {
           name = "Prometheus";
           type = "prometheus";
-          url = "${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+          # url = "${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+          url = "http://100.106.245.44:9090/";
         }
-        # # Some plugins also can - c.f. https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/setup/provisioning/
-        # {
-        #   name = "Infinity";
-        #   type = "yesoreyeram-infinity-datasource";
-        # }
+        # Some plugins also can - c.f. https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/setup/provisioning/
+        {
+          name = "Infinity";
+          type = "yesoreyeram-infinity-datasource";
+        }
         # But not all - c.f. https://github.com/fr-ser/grafana-sqlite-datasource/issues/141
       ];
 
@@ -64,7 +67,7 @@
     locations."/" = {
         proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
-        recommendedProxySettings = true;
+        # recommendedProxySettings = true;
     };
   };
 
