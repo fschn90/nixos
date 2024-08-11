@@ -6,7 +6,7 @@
       "logind"
       "systemd"
     ];
-    # extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" ];
+    extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" ];
     disabledCollectors = [
       "textfile"
     ];

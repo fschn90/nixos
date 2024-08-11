@@ -5,6 +5,7 @@
       # ...
       enable = true;
       port = 9090;
+      # listenAddress = "127.0.0.1";
 
       scrapeConfigs = [
         {
