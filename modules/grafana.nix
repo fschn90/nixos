@@ -5,6 +5,12 @@
   services.grafana = {
     enable = true;
     settings = {
+      analytics.reporting_enabled = false;
+
+      "auth.anonymous".enabled = true;
+      "auth.anonymous".org_name = "Main Org.";
+      "auth.anonymous".org_role = "Viewer";
+
       server = {
         # Listening Address
         # http_addr = "100.106.245.44";
@@ -16,7 +22,12 @@
         domain = "grafana.fschn.org";
         root_url = "https://grafana.fschn.org/"; # Not needed if it is `https://your.domain/`
         serve_from_sub_path = true;
+        enable_gzip = true;
+        enforce_domain = true;
       };
+
+      security.admin_password = "$__file{${config.sops.secrets."grafana/admin-password".path}}";
+
     };
   };
 
@@ -69,7 +80,15 @@
         proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
         recommendedProxySettings = true;
+        recommendedGzipSettings = true;
+        recommendedOptimisation = true;
     };
   };
+
+  sops.secrets."grafana/admin-password" = {
+    owner = "grafana";
+  };
+
+
 
 }
