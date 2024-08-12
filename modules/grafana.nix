@@ -79,10 +79,16 @@
     locations."/" = {
         proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
         proxyWebsockets = true;
-        recommendedProxySettings = true;
-        recommendedGzipSettings = true;
-        recommendedOptimisation = true;
+        # recommendedProxySettings = true;
+        # recommendedGzipSettings = true;
+        # recommendedOptimisation = true;
     };
+  };
+
+  services.nginx = {
+    recommendedProxySettings = true;
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
   };
 
   sops.secrets."grafana/admin-password" = {
