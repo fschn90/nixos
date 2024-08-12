@@ -21,10 +21,9 @@
     ../../modules/sops.nix
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
-    # ../../modules/nextcloud.nix
     ../../modules/nix.nix
     ../../modules/nameserver.nix
-    # ../../modules/adguardhome.nix
+    ../../modules/prometheus-exporters.nix
   ];
 
   # necessary for zfs
