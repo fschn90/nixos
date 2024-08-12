@@ -90,7 +90,7 @@
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
   };
-
+  #
   sops.secrets."grafana/admin-password" = {
     owner = "grafana";
   };

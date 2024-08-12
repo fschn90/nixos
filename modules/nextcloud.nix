@@ -34,11 +34,11 @@
     virtualHosts.${config.services.nextcloud.hostName} = {
       useACMEHost = "fschn.org";
       forceSSL = true;
-      locations = {
-         "/" = {
-           proxyPass = "http://100.106.245.44:8080";
-        };
-      };
+      # locations = {
+      #    "/" = {
+      #      proxyPass = "http://100.106.245.44:8080";
+      #   };
+      # };
     };
   };
 
