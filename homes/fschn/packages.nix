@@ -31,6 +31,7 @@
     protonmail-bridge
     gimp-with-plugins
     zellij
+    nextcloud-client
   ];
 
 }
