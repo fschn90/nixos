@@ -25,6 +25,7 @@
     ./sanoid-backup-source.nix
     ../../modules/nix.nix
     ../../modules/nameserver.nix
+    ../../modules/prometheus-exporters.nix
  ];
   
   # necesarry for zfs
