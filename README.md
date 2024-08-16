@@ -4,7 +4,6 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
-- problem: tailscale requires manual auth everytime when rebooting.
 - better neovim integratoin
   - auto fetch github repo for lua part (plugins, lsps, etc)?
   - or configure everythin in nix?
@@ -15,6 +14,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 - better modularization like vimjoyer
 - disko
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
+- systemd-boot for non dual boot devices
 
 ## Home Lab ideas
 
@@ -25,6 +25,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 - maybes: deluge, sonarr, homeassistant, arr suit, navidrome, paperless, immich
 - graphana loki
 - HEADSCALE?
+- remove node source in prometheus scraper ?? maybe not necessary
 
 ## Documentation
 
