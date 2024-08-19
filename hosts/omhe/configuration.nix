@@ -27,6 +27,7 @@
       ../../modules/prometheus-scraper.nix
       ../../modules/jellyfin.nix
       ../../modules/nginx.nix
+      ../../modules/loki.nix
     ];
 
   # Use the GRUB 2 boot loader.

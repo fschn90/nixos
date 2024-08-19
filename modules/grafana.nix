@@ -51,12 +51,18 @@
           url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
           # url = "http://100.106.245.44:9090/";
         }
-        # Some plugins also can - c.f. https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/setup/provisioning/
         {
-          name = "Infinity";
-          type = "yesoreyeram-infinity-datasource";
+          name = "Loki";
+          type = "loki";
+          access = "proxy";
+          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
         }
-        # But not all - c.f. https://github.com/fr-ser/grafana-sqlite-datasource/issues/141
+        # # Some plugins also can - c.f. https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/setup/provisioning/
+        # {
+        #   name = "Infinity";
+        #   type = "yesoreyeram-infinity-datasource";
+        # }
+        # # But not all - c.f. https://github.com/fr-ser/grafana-sqlite-datasource/issues/141
       ];
 
       # Note: removing attributes from the above `datasources.settings.datasources` is not enough for them to be deleted on `grafana`;
