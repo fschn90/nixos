@@ -11,24 +11,27 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
   - systemPackages vs userPackages
 - zed as nvim replacement ?????????
 - NH the nix helper (vimjoyer)
-- zfs backup for laptop via tailscale after some data clean up
+- zfs backup for laptop via tailscale
 - better modularization like vimjoyer
 - disko
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 - systemd-boot for non dual boot devices
 - keyring unlock for oides nextcloud client (same approach as for proton bridge)
 - nextcloud cospend error msg: `Failed to get projects: failure 500 Internal Server Error`
+- signal crashed several times since latest update -> check logs
+- logs indicated that 2 block list of adguard home doent load
+- wrong permissions for sanoid rainbow-backup??
 
 ## Home Lab ideas
 
 - sync firefox tabs
-- photoprism?
 - fritz.home reverse proxy
-- openbooks?
-- maybes: deluge, sonarr, homeassistant, arr suit, navidrome, paperless, immich
+- deluge, paperless
+- maybes: sonarr, homeassistant, arr suit, navidrome, immich, photoprism?
 - graphana loki
-- HEADSCALE?
-- remove node source in prometheus scraper ?? maybe not necessary
+- HEADSCALE!!
+- https://github.com/tailscale/tailscale/tree/main/cmd/nginx-auth
+- restic off-site backup with hetzner storage box or backblaze
 
 ## Documentation
 
