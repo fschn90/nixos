@@ -28,6 +28,7 @@
       ../../modules/jellyfin.nix
       ../../modules/nginx.nix
       ../../modules/loki.nix
+      ./promtail.nix
     ];
 
   # Use the GRUB 2 boot loader.

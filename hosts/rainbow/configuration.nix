@@ -26,7 +26,8 @@
     ../../modules/nix.nix
     ../../modules/nameserver.nix
     ../../modules/prometheus-exporters.nix
- ];
+    ./promtail.nix
+ ]; 
   
   # necesarry for zfs
   networking.hostId = "b3d58883";
