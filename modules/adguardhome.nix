@@ -11,8 +11,11 @@
         # List of upstream DNS servers
         upstream_dns = [
           https://cloudflare-dns.com/dns-query
+          https://1.1.1.1/dns-query
+          https://1.0.0.1/dns-query
           # https://dns.quad9.net/dns-query
           https://dns.adguard.com/dns-query
+          https://dns.mullvad.net/dns-query
           tls://dns.adguard.com
           tls://cloudflare-dns.com
           # tls://dns.quad9.net
@@ -66,7 +69,7 @@
         # Whether filtering of DNS requests based on rule lists should be performed.
         filtering_enabled = true;
         # Time interval in hours for updating filters.
-        filters_update_interval = 1;
+        filters_update_interval = 12;
         # List of legacy DNS rewrites, where domain is the domain or wildcard you want to be rewritten and answer is IP address, CNAME record, A or AAAA special values. Special value A keeps A records from the upstream and AAAA keeps AAAA values from the upstream.
         rewrites = [
           {
@@ -131,7 +134,7 @@
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/adservers.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/adservers_firstparty.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/antiadblock.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/banner_sizes.txt
+        # https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/banner_sizes.txt # doesnt seem to exist anymore
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/content_blocker.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/cryptominers.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/foreign.txt
@@ -144,7 +147,7 @@
         # adguard german
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/adservers.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/antiadblock.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_elemhide.txt
+        # https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_elemhide.txt # doesnt seem to exist anymore
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_extensions.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_url.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/replace.txt
