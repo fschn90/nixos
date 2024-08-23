@@ -6,6 +6,7 @@
     configuration = {
       server.http_listen_port = 3030;
       auth_enabled = false;
+      analytics.reporting_enabled = false;
 
       ingester = {
         lifecycler = {
@@ -53,7 +54,13 @@
       limits_config = {
         reject_old_samples = true;
         reject_old_samples_max_age = "168h";
+        # volume_enabled = true;
+        # allow_structured_metadata = true;
       };
+
+      # pattern_ingester = {
+      #   enabled = true;
+      # };
 
       table_manager = {
         retention_deletes_enabled = false;
