@@ -11,11 +11,11 @@
         # List of upstream DNS servers
         upstream_dns = [
           https://cloudflare-dns.com/dns-query
-          https://dns.quad9.net/dns-query
+          # https://dns.quad9.net/dns-query
           https://dns.adguard.com/dns-query
           tls://dns.adguard.com
           tls://cloudflare-dns.com
-          tls://dns.quad9.net
+          # tls://dns.quad9.net
         ];
         # Enables DNS-over-HTTP/3 for DNS-over-HTTPS upstreams that support it.
         use_http3_upstreams = true;
@@ -24,7 +24,8 @@
         # List of DNS servers used for initial hostname resolution in case an upstream server name is a hostname.
         bootstrap_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
         # List of fallback DNS servers used when upstream DNS servers are not responding.
-        fallback_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        # fallback_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        fallback_dns = [ "1.1.1.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
         # DNS cache size (in bytes).
         cache_size = 33554432;
         #The minimum TTL override, in seconds. If the TTL of a response from upstream is below this value, the TTL is replaced with it.
@@ -48,7 +49,8 @@
       statistics = {
         enable = true;
         # Time interval for statistics. It's a string with human-readable duration between an hour (1h) and a year (8760h).
-        interval = "8760h";
+        # interval = "8760h";
+        interval = "720h";
       };
       # For web interface UI.
       users = [
