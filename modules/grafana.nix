@@ -77,6 +77,11 @@
       group = "grafana";
       user = "grafana";
     };
+    "grafana-dashboards/logs-1.json" = {
+      source = ../logs-1.json;
+      group = "grafana";
+      user = "grafana";
+    };
   };
 
   services.nginx.virtualHosts."grafana.fschn.org" = {
