@@ -23,9 +23,10 @@
     snapshot # webcam viewer
     element-desktop
     evince # gnome doc viewer
-    gtypist # type tutor, 10-finger-system
+    gtypist # type tutor, 10-finger-system 
     zellij
     nextcloud-client
+    zed-editor
   ];
 
 }
