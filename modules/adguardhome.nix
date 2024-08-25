@@ -63,6 +63,12 @@
           password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
         }
       ];
+      # clients.persistent = [
+      #   {
+      #     name = "omhe";
+      #     ids = [ "100.106.245.44" ];
+      #   }
+      # ];
       filtering = {
         # Whether any kind of filtering and protection should be performed.
         protection_enabled = true;
@@ -90,6 +96,43 @@
           }
 
         ];
+
+        blocked_services = {
+          ids = [
+            "linkedin"
+          ];
+          schedule = {
+            mon = {
+              start = "19h";
+              end = "22h";
+            };
+            tue = {
+              start = "19h";
+              end = "22h";
+            };
+            wed = {
+              start = "19h";
+              end = "22h";
+            };
+            thu = {
+              start = "19h";
+              end = "22h";
+            };
+            fri = {
+              start = "19h";
+              end = "22h";
+            };
+            sat = {
+              start = "19h";
+              end = "22h";
+            };
+            sun = {
+              start = "19h";
+              end = "22h";
+            };
+            time_zone = "Europe/Vienna";
+          };
+        };
         # Parental control-based DNS requests filtering.
         parental_enabled = false;  
         # Enforcing "Safe search" option for search engines, when possible.
