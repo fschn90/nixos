@@ -10,12 +10,14 @@
     gdm.wayland = true;
     gdm.enable = true;
    };
-   services.displayManager.autoLogin.enable = true;
-   services.displayManager.autoLogin.user = "fschn";
 
-  # necesarry for gnome 
+  # auto login user at boot up
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "fschn";
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
+
+  # tweaks 
   services.gnome.core-utilities.enable = false;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   hardware.pulseaudio.enable = false;
@@ -32,5 +34,12 @@
     gnomeExtensions.system-monitor-tray-indicator
     gnome.adwaita-icon-theme
   ];
+
+  # making sure the keyring auto unlocks at boot up, needed for protonmail-bridge and nextcloud-client
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  programs.seahorse.enable = true; # installing gui 
+
+
 
 }

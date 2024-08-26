@@ -14,10 +14,8 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 ### Minor Features
 
 - systemd-boot for non dual boot devices
-- keyring unlock for oides nextcloud client (same approach as for proton bridge)
 - zfs backup for laptop via tailscale
 - better structure for monitoring files
-- time based adguardhome blocking rules?
 
 ### Major Features
 
@@ -46,6 +44,7 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 1. [Initial partitioning and formating the drive with zfs](#initial)
 2. [Sanoid and Syncoid](#Sanoid)
 3. [Nextcloud](#Nextcloud)
+4. [Auto unlock gnome keyring](#keyring)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -199,3 +198,25 @@ sudo zfs set mountpoint=/mnt/Nextcloud tank/Nextcloud
 ```nix
     services.nextcloud.package = pkgs.nextcloud29;
 ```
+
+### Auto unlock gnome keyring <a name="keyring"></a>
+
+needed for protonmail-bridge and nextclould-client. First:
+
+```nix
+# modules/gnome.nix
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  programs.seahorse.enable = true; # installing gui
+```
+
+Then from [reddit](https://www.reddit.com/r/NixOS/comments/1c225c8/gnome_keyring_is_not_unlocked_upon_boot/?rdt=40009):
+
+> This is extremely non obvious, but if you want to have autologin unlock your gnome keyring on startup, the keyring needs to have a blank password.
+>
+> I actually don't remember where I read this, I just have this as a comment in my config. I do remember spending hours trying to figure out wtf it wasn't working though.
+>
+> I can't speak to the security implications of this. I autologin on my laptop, because my "login" is the ZFS passphrase prompt to decrypt the drives, so that isn't really a concern for me.
+
+Changing the keyring password with seahorse to blank, and voilà it works.

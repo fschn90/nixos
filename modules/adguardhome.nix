@@ -63,12 +63,17 @@
           password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
         }
       ];
-      # clients.persistent = [
+      # # somehow crashes my rebuild of adguard home 
+      # clients = 
       #   {
-      #     name = "omhe";
-      #     ids = [ "100.106.245.44" ];
-      #   }
-      # ];
+      #     persistent = [
+      #       {
+      #         name = "omhe";
+      #         ids = [ "100.106.245.44" ];
+      #         use_global_settings = true;
+      #       }
+      #     ];
+      #   };
       filtering = {
         # Whether any kind of filtering and protection should be performed.
         protection_enabled = true;

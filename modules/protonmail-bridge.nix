@@ -1,9 +1,9 @@
  {pkgs, ...}: 
 
  {
-   services.gnome.gnome-keyring.enable = true;
-   security.pam.services.gdm.enableGnomeKeyring = true;
-   programs.seahorse.enable = true;
+   # services.gnome.gnome-keyring.enable = true;
+   # security.pam.services.gdm.enableGnomeKeyring = true;
+   # programs.seahorse.enable = true;
    
    systemd.user.services.protonmail-bridge = {          
      description = "Protonmail Bridge";          
