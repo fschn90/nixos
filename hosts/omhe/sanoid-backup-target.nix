@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, options, ... }:
 
 {
 
@@ -15,6 +15,14 @@ services.syncoid = {
       extraArgs = [ "--sshoption=StrictHostKeyChecking=off" ];
     };
   };
+
+  # necesary to prune old snapshots: https://github.com/NixOS/nixpkgs/issues/216614
+  localSourceAllow = options.services.syncoid.localSourceAllow.default ++ [
+    "mount"
+  ];
+  localTargetAllow = options.services.syncoid.localTargetAllow.default ++ [
+    "destroy"
+  ];
 };
 
   services.sanoid = {
