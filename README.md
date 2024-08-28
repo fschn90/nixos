@@ -33,6 +33,15 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 - https://github.com/tailscale/tailscale/tree/main/cmd/nginx-auth
 - restic off-site backup with hetzner storage box or backblaze
 - git archive
+- prometheus exporters and dashboards for:
+  - nginx
+  - snmp
+  - fritzbox_exporter
+  - smokeping
+  - smartctl
+  - nextcloud
+  - node exporter for windows?
+  - restic (once offsite backup is done)
 
 ### Other
 
