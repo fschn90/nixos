@@ -2,6 +2,7 @@
 @@||audioapi.orf.at^$important,client=100.97.117.24
 @@||oe1.orf.at^$important,client=100.97.117.24
 @@||appmeta.orf.at^$important,client=100.97.117.24
+@@||collector.orf.at^$important,client=100.97.117.24
 ||theguardian.com^$important,client=100.97.117.24
 ||zeit.de^$important,client=100.97.117.24
 ||derstandard.at^$important,client=100.97.117.24
