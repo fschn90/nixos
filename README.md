@@ -8,7 +8,6 @@ personal setup with a flake and home-manager, deploying secrets with sops-nix.
 
 - nextcloud cospend error msg: `Failed to get projects: failure 500 Internal Server Error`
 - signal crashed several times since latest update -> check logs
-- wrong permissions for sanoid rainbow-backup
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 
 ### Minor Features

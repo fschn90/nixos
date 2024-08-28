@@ -14,8 +14,10 @@
           https://1.1.1.1/dns-query
           https://1.0.0.1/dns-query
           # https://dns.quad9.net/dns-query
+          https://dns.quad9.net:443/dns-query
           https://dns.adguard.com/dns-query
           https://dns.mullvad.net/dns-query
+          https://dns-unfiltered.adguard.com/dns-query
           tls://dns.adguard.com
           tls://cloudflare-dns.com
           # tls://dns.quad9.net
@@ -30,7 +32,8 @@
         # fallback_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
         fallback_dns = [ "1.1.1.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
         # DNS cache size (in bytes).
-        cache_size = 33554432;
+        # cache_size = 33554432;
+        cache_size = 67108864;
         #The minimum TTL override, in seconds. If the TTL of a response from upstream is below this value, the TTL is replaced with it.
         cache_ttl_min = 2400;
         # The maximum TTL override, in seconds. If the TTL of a response from upstream is above this value, the TTL is replaced with it.
@@ -42,10 +45,12 @@
         enable_dnssec = true;
         # The theme of UI.
         theme = "auto";
-        # DDoS protection, specifies how many queries per second AdGuard Home should handle. Anything above that is silently dropped.
-        ratelimit = 20;
+        # DDoS protection, specifies how many queries per second AdGuard Home should handle. Anything above that is silently dropped. Safe to disable if DNS server is not available from internet.
+        ratelimit = 0;
         # rarely needed, so refusing to serve them mitigates against attackers trying to use your DNS as a reflection. 
         refuse_any = true;
+        # Maximum number of parallel goroutines for processing incoming requests.
+        max_goroutines = 500;
 
   
       };
