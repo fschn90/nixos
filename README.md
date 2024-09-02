@@ -1,6 +1,6 @@
 # My NixOs config
 
-personal setup with a flake and home-manager, deploying secrets with sops-nix.
+personal setup with flakes and home-manager, deploying secrets with sops-nix.
 
 ## TO-DOs:
 
@@ -208,6 +208,8 @@ sudo zfs set mountpoint=/mnt/Nextcloud tank/Nextcloud
 ```
 
 ### Auto unlock gnome keyring <a name="keyring"></a>
+
+---
 
 needed for protonmail-bridge and nextclould-client. First:
 

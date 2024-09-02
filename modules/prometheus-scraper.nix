@@ -16,7 +16,14 @@
             ];
           }];
         }
-
+        {
+          job_name = "zfs";
+          static_configs = [
+            {
+              targets = [ "localhost:${builtins.toString config.services.prometheus.exporters.zfs.port}" ];
+            }
+          ];
+        }
       ];
     };
 }

@@ -13,4 +13,10 @@
     # openFirewall = true;
     # firewallFilter = "-i br0 -p tcp -m tcp --dport 9100";
   };
+
+  services.prometheus.exporters.zfs = {
+    enable = true;
+    # listenAddress = "[::]";
+    # openFirewall = true;
+  };
 }
