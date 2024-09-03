@@ -19,4 +19,8 @@
     # listenAddress = "[::]";
     # openFirewall = true;
   };
+
+  services.scrutiny.enable = true;
+  services.scrutiny.openFirewall = false;
+  services.scrutiny.collector.enable = true;
 }
