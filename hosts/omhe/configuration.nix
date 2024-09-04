@@ -29,6 +29,7 @@
       ../../modules/nginx.nix
       ../../modules/loki.nix
       ./promtail.nix
+      ../../modules/scrutiny.nix
     ];
 
   # Use the GRUB 2 boot loader.

@@ -104,6 +104,14 @@
             domain = "jellyfin.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "scrutiny.omhe.fschn.org";
+            answer = "100.106.245.44";
+          }
+          {
+            domain = "scrutiny.oide.fschn.org";
+            answer = "oide";
+          }
 
         ];
 
