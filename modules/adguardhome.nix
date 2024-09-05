@@ -110,7 +110,7 @@
           }
           {
             domain = "scrutiny.oide.fschn.org";
-            answer = "oide";
+            answer = "100.79.181.86";
           }
 
         ];

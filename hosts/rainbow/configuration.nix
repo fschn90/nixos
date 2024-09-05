@@ -27,6 +27,7 @@
     ../../modules/nameserver.nix
     ../../modules/prometheus-exporters.nix
     ./promtail.nix
+    ../../modules/scrutiny.nix
  ]; 
   
   # necesarry for zfs
