@@ -28,6 +28,8 @@
     ../../modules/prometheus-exporters.nix
     ./promtail.nix
     ../../modules/scrutiny.nix
+    ../../modules/nginx.nix  
+    ../../modules/acme.nix
  ]; 
   
   # necesarry for zfs

@@ -105,12 +105,16 @@
             answer = "100.106.245.44";
           }
           {
-            domain = "scrutiny.omhe.fschn.org";
+            domain = "scrutiny-omhe.fschn.org";
             answer = "100.106.245.44";
           }
           {
-            domain = "scrutiny.oide.fschn.org";
+            domain = "scrutiny-oide.fschn.org";
             answer = "100.79.181.86";
+          }
+          {
+            domain = "scrutiny-rainbow.fschn.org";
+            answer = "100.114.14.104";
           }
 
         ];
