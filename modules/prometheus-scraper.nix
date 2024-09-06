@@ -18,11 +18,33 @@
         }
         {
           job_name = "zfs";
-          static_configs = [
-            {
-              targets = [ "localhost:${builtins.toString config.services.prometheus.exporters.zfs.port}" ];
-            }
-          ];
+          static_configs = [{
+            targets = [ 
+              "omhe:${toString config.services.prometheus.exporters.zfs.port}" 
+              "rainbow:${toString config.services.prometheus.exporters.zfs.port}" 
+              "oide:${toString config.services.prometheus.exporters.zfs.port}" 
+            ];
+          }];
+        }
+        {
+          job_name = "nginx";
+          static_configs = [{
+            targets = [ 
+              "omhe:${toString config.services.prometheus.exporters.nginx.port}" 
+              "rainbow:${toString config.services.prometheus.exporters.nginx.port}" 
+              "oide:${toString config.services.prometheus.exporters.nginx.port}" 
+            ];
+          }];
+        }
+        {
+          job_name = "nginxlog";
+          static_configs = [{
+            targets = [ 
+              "omhe:${toString config.services.prometheus.exporters.nginxlog.port}" 
+              "rainbow:${toString config.services.prometheus.exporters.nginxlog.port}" 
+              "oide:${toString config.services.prometheus.exporters.nginxlog.port}" 
+            ];
+          }];
         }
       ];
     };
