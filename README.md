@@ -229,4 +229,4 @@ Then from [reddit](https://www.reddit.com/r/NixOS/comments/1c225c8/gnome_keyring
 >
 > I can't speak to the security implications of this. I autologin on my laptop, because my "login" is the ZFS passphrase prompt to decrypt the drives, so that isn't really a concern for me.
 
-Changing the keyring password with seahorse to blank, and voilà it works.
+Changing the keyring password with seahorse to blank, and voilà it works. If that doesnt work, creating a new keyring with a blank password (while keeping the old one with all the password) seems to do the trick.

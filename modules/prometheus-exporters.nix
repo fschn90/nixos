@@ -16,7 +16,8 @@
 
   services.prometheus.exporters.zfs.enable = true;
   services.prometheus.exporters.nginx.enable = true;
-  services.prometheus.exporters.nginxlog.enable = true;
+  # services.prometheus.exporters.nginxlog.enable = true;
+  services.prometheus.exporters.smartctl.enable = true;
   
 
 }

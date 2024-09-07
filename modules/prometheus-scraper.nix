@@ -36,13 +36,23 @@
             ];
           }];
         }
+        # {
+        #   job_name = "nginxlog";
+        #   static_configs = [{
+        #     targets = [ 
+        #       "omhe:${toString config.services.prometheus.exporters.nginxlog.port}" 
+        #       "rainbow:${toString config.services.prometheus.exporters.nginxlog.port}" 
+        #       "oide:${toString config.services.prometheus.exporters.nginxlog.port}" 
+        #     ];
+        #   }];
+        # }
         {
-          job_name = "nginxlog";
+          job_name = "smartctl";
           static_configs = [{
             targets = [ 
-              "omhe:${toString config.services.prometheus.exporters.nginxlog.port}" 
-              "rainbow:${toString config.services.prometheus.exporters.nginxlog.port}" 
-              "oide:${toString config.services.prometheus.exporters.nginxlog.port}" 
+              "omhe:${toString config.services.prometheus.exporters.smartctl.port}" 
+              "rainbow:${toString config.services.prometheus.exporters.smartctl.port}" 
+              "oide:${toString config.services.prometheus.exporters.smartctl.port}" 
             ];
           }];
         }
