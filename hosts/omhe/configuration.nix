@@ -28,7 +28,7 @@
       ../../modules/jellyfin.nix
       ../../modules/nginx.nix
       ../../modules/loki.nix
-      ./promtail.nix
+      ../../modules/promtail.nix
       ../../modules/scrutiny.nix
     ];
 

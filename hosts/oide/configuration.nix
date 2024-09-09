@@ -24,7 +24,7 @@
     ../../modules/nix.nix
     ../../modules/nameserver.nix
     ../../modules/prometheus-exporters.nix
-    ./promtail.nix
+    ../../modules/promtail.nix
     ../../modules/scrutiny.nix
     ../../modules/nginx.nix  
     ../../modules/acme.nix
