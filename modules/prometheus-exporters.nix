@@ -5,8 +5,21 @@
     enabledCollectors = [
       "logind"
       "systemd"
+      "ethtool" 
+      "softirqs" 
+      "tcpstat" 
+      "wifi" 
+      "processes"
+      "cpu"
+      "loadavg"
+      "filesystem"
+      "interrupts"
+      "zfs"
+      "drm"
+      "powersupplyclass"
+      # "logind"
     ];
-    extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" ];
+    # extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" "--collector.processes" ];
     disabledCollectors = [
       "textfile"
     ];
