@@ -25,7 +25,7 @@
           max_age = "12h";
           labels = {
             job = "systemd-journal";
-            host = "oide";
+            host = "${builtins.toString config.networking.hostName}";
           };
         };
         relabel_configs = [{
