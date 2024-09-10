@@ -9,14 +9,17 @@
     database.createLocally = true;
     config = {
       dbtype = "pgsql"; # nextcloud is not optimised for sqlite thus pgsql
+      adminuser = "fschn"; 
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true; # for caching
     maxUploadSize = "16G"; # bigger file size for eg movies
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit calendar contacts mail notes onlyoffice tasks 
-        deck bookmarks polls cookbook music maps phonetrack; 
+      inherit calendar contacts notes onlyoffice tasks 
+        deck maps phonetrack polls;
         # cospend throws errors
+        # works but dont use:
+        # mail bookmarks polls cookbook music
         memories = pkgs.fetchNextcloudApp {
           sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
           url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
