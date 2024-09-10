@@ -195,8 +195,8 @@ boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 - prerequesite for `home = "/mnt/Nextcloud-test";` :
 
 ```bash
-sudo zfs create NIXROOT/Nextcloud
-sudo zfs set mountpoint=/mnt/Nextcloud tank/Nextcloud
+sudo zfs create tank/Nextcloud
+sudo zfs set mountpoint=/tank/Nextcloud tank/Nextcloud
 ```
 
 - to avoid `nexcould version is marked insecure` error, specify nextcloud package:
