@@ -56,6 +56,15 @@
             ];
           }];
         }
+        {
+          job_name = "nextcloud";
+          static_configs = [{
+            targets = [ 
+              "localhost:${toString config.services.prometheus.exporters.nextcloud.port}" 
+            ];
+          }];
+        }
+
       ];
     };
 }
