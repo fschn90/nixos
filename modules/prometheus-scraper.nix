@@ -58,10 +58,11 @@
         }
         {
           job_name = "nextcloud";
-          scrape_interval = "90s";
+          # scrape_interval = "90s";
+          scrape_timeout = "60s";
           static_configs = [{
             targets = [ 
-              "localhost:${toString config.services.prometheus.exporters.nextcloud.port}" 
+              "omhe:${toString config.services.prometheus.exporters.nextcloud.port}" 
             ];
           }];
         }
