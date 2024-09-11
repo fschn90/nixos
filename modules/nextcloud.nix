@@ -30,20 +30,22 @@
     autoUpdateApps.enable = true;
     home = "/tank/Nextcloud";
     package = pkgs.nextcloud29; # to avoid build error with nextcloud27 marked as insecure EOL
-    ensureUsers = {
-      nextcloud-exporter = {
-        email = "nextcloud-exporter@localhost";
-        passwordFile = config.sops.secrets."Nextcloud/exporter/Password".path;
-      };
+    settings = {
+      # settings for loki scrape also still WIP on loki end
+      overwriteprotocol = "https";
+      loglevel = 1;
+      log_type = "file";
     };
   };
 
+  # secret depoloyment for nextcloud admin password
   sops.secrets."Nextcloud/admin/Password" = {
     mode = "0400";
     path = "/tank/Nextcloud/Admin-Password";
     owner = "nextcloud";
   };
-
+  
+  # reverse proxy
   services.nginx = {
     virtualHosts.${config.services.nextcloud.hostName} = {
       useACMEHost = "fschn.org";
@@ -51,27 +53,24 @@
     };
   };
  
+  # WIP TODO: add exception for nextcloud-exporter and reset timeout to default 5s   https://github.com/xperimental/nextcloud-exporter/issues/108
   services.prometheus.exporters.nextcloud.enable = true;
-  # services.prometheus.exporters.nextcloud.listenAddress = "localhost";
-  services.prometheus.exporters.nextcloud.passwordFile = config.sops.secrets."Nextcloud/exporter/Password".path;
+  services.prometheus.exporters.nextcloud.tokenFile = config.sops.secrets."Nextcloud/authToken".path;
   services.prometheus.exporters.nextcloud.url = "https://${builtins.toString config.services.nextcloud.hostName}"; 
-  # services.prometheus.exporters.nextcloud.extraFlags = [
-  #   "--tls-skip-verify true"
-  # ];
+  services.prometheus.exporters.nextcloud.timeout = "60s";
+  services.prometheus.exporters.nextcloud.extraFlags = [
+    "--tls-skip-verify true"
+  ];
 
-  sops.secrets."Nextcloud/exporter/Password" = {
-    path = "/tank/Nextcloud/Exporter-Password";
+  # make sure nextcloud-exporter has access to secret
+  users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
+
+  # secret deployment for nextcloud-exporter
+  sops.secrets."Nextcloud/authToken" = {
+    path = "/tank/Nextcloud/authToken";
     owner = "nextcloud";
     mode = "0440";
   };
-
-  imports = [
-    "${fetchTarball {
-    url = "https://github.com/onny/nixos-nextcloud-testumgebung/archive/fa6f062830b4bc3cedb9694c1dbf01d5fdf775ac.tar.gz";
-    sha256 = "0gzd0276b8da3ykapgqks2zhsqdv4jjvbv97dsxg0hgrhb74z0fs";}}/nextcloud-extras.nix"
-  ];
-
-  users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
 
 }
 

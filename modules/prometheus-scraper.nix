@@ -58,6 +58,7 @@
         }
         {
           job_name = "nextcloud";
+          scrape_interval = "90s";
           static_configs = [{
             targets = [ 
               "localhost:${toString config.services.prometheus.exporters.nextcloud.port}" 

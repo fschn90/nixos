@@ -205,6 +205,15 @@ sudo zfs set mountpoint=/tank/Nextcloud tank/Nextcloud
     services.nextcloud.package = pkgs.nextcloud29;
 ```
 
+- prometheus nextcloud-exporter prerequesite:
+
+```bash
+# Generate random value (for example using openssl)
+TOKEN=$(openssl rand -hex 32)
+# Set token (using the occ console application)
+nextcloud-occ config:app:set serverinfo token --value "$TOKEN"
+```
+
 ### Auto unlock gnome keyring <a name="keyring"></a>
 
 ---
