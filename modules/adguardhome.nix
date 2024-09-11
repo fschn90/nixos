@@ -116,6 +116,10 @@
             domain = "scrutiny-rainbow.fschn.org";
             answer = "100.114.14.104";
           }
+          {
+            domain = "prometheus.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 

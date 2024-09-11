@@ -69,4 +69,15 @@
 
       ];
     };
+
+  services.nginx = {
+    virtualHosts."prometheus.fschn.org" = {
+      useACMEHost = "fschn.org";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${builtins.toString config.services.prometheus.port}";
+      };
+    };
+  };
+
 }
