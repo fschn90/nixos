@@ -49,8 +49,9 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 
 1. [Initial partitioning and formating the drive with zfs](#initial)
 2. [Sanoid and Syncoid](#Sanoid)
-3. [Nextcloud](#Nextcloud)
-4. [Auto unlock gnome keyring](#keyring)
+3. [Setup of hdds](#hdds)
+4. [Nextcloud](#Nextcloud)
+5. [Auto unlock gnome keyring](#keyring)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -127,6 +128,13 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
   sudo mkdir /mnt/home
   sudo mount /dev/nvme0n1p1 /mnt/boot
   sudo mount -t zfs NIXROOT/home /mnt/home
+```
+
+### Setup of hdds <a name="hdds"></a>
+
+```bash
+sudo zpool create tank raidz1 sdb sdc sdd -O compression=lz4  -o autotrim=on -O encryp
+tion=aes-256-gcm -O keylocation=prompt  -O keyformat=passphrase
 ```
 
 ### Sanoid and Syncoid <a name="Sanoid"></a>
