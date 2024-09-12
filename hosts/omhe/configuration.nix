@@ -11,7 +11,7 @@
       ../../modules/systemPackages.nix
       ../../modules/wireguard.nix
       ../../modules/ssh.nix
-      ../../modules/boot.nix
+      # ../../modules/boot.nix
       ../../modules/users.nix
       ../../modules/sops.nix
       ../../modules/tailscale.nix
@@ -56,6 +56,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.hostId = "e2990a3c";
   boot.zfs.extraPools = [ "tank" ];
+  boot.loader.systemd-boot.enable = true;
 
   # make sure only NIXROOT credentials are requested, and not other pools as well
   boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];

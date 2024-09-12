@@ -8,7 +8,7 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./t490-nvidia.nix
-    ../../modules/boot.nix
+    # ../../modules/boot.nix
     ../../modules/sound.nix
     ../../modules/bluetooth.nix
     ../../modules/zfs.nix
@@ -36,6 +36,7 @@
   networking.hostName = "oide"; # Define your hostname.
   
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  boot.loader.systemd-boot.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Vienna";
