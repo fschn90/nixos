@@ -52,6 +52,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 3. [Setup of hdds](#hdds)
 4. [Nextcloud](#Nextcloud)
 5. [Auto unlock gnome keyring](#keyring)
+6. [Troubleshooting](#trouble)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -131,6 +132,8 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ```
 
 ### Setup of hdds <a name="hdds"></a>
+
+---
 
 ```bash
 sudo zpool create tank raidz1 sdb sdc sdd -O compression=lz4  -o autotrim=on -O encryp
@@ -245,3 +248,24 @@ Then from [reddit](https://www.reddit.com/r/NixOS/comments/1c225c8/gnome_keyring
 > I can't speak to the security implications of this. I autologin on my laptop, because my "login" is the ZFS passphrase prompt to decrypt the drives, so that isn't really a concern for me.
 
 Changing the keyring password with seahorse to blank, and voilà it works. If that doesnt work, creating a new keyring with a blank password (while keeping the old one with all the password) seems to do the trick.
+
+### Troubleshooting <a name="trouble"></a>
+
+---
+
+#### Switching bootloader from grub to systemd-boot
+
+> could not find any previously installed systemd-boot
+
+run `sudo bootctl install`
+
+> not enough space on /boot
+
+based on https://discourse.nixos.org/t/what-to-do-with-a-full-boot-partition/2049/10
+
+> 1.  Do a sudo nixos-rebuild build so that you’re sure that the build of your current configuration can be carried out
+> 2.  Do a garbage collection to remove old system generations with sudo nix-collect-garbage -d
+> 3.  Manually make some space in boot. Find your kernels and rm them.
+> 4.  Run sudo nixos-rebuild switch or sudo nixos-rebuild boot. This time your bootloader will be installed correctly along with the new kernel and initrd
+> 5.  Make sure point 4 was executed correctly by looking at the output and reboot
+> 6.  [optional] remove the result directory created by point 1
