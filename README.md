@@ -12,9 +12,10 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 
 ### Minor Features
 
-- systemd-boot for non dual boot devices
 - zfs backup for laptop via tailscale
+- zfs snapshots for nextcloud file system
 - better structure for monitoring files
+- nextcloud logs for loki with dashboard
 
 ### Major Features
 
@@ -38,7 +39,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
   - fritzbox_exporter
   - smokeping
   - nextcloud
-  - node exporter for windows?
   - restic (once offsite backup is done)
 
 ### Other
@@ -239,7 +239,7 @@ needed for protonmail-bridge and nextclould-client. First:
   programs.seahorse.enable = true; # installing gui
 ```
 
-Then from [reddit](https://www.reddit.com/r/NixOS/comments/1c225c8/gnome_keyring_is_not_unlocked_upon_boot/?rdt=40009):
+Then based on this [reddit.com reply](https://www.reddit.com/r/NixOS/comments/1c225c8/gnome_keyring_is_not_unlocked_upon_boot/?rdt=40009):
 
 > This is extremely non obvious, but if you want to have autologin unlock your gnome keyring on startup, the keyring needs to have a blank password.
 >
@@ -247,21 +247,25 @@ Then from [reddit](https://www.reddit.com/r/NixOS/comments/1c225c8/gnome_keyring
 >
 > I can't speak to the security implications of this. I autologin on my laptop, because my "login" is the ZFS passphrase prompt to decrypt the drives, so that isn't really a concern for me.
 
-Changing the keyring password with seahorse to blank, and voilà it works. If that doesnt work, creating a new keyring with a blank password (while keeping the old one with all the password) seems to do the trick.
+Changing the keyring password with seahorse to blank, and voilà it works.
 
 ### Troubleshooting <a name="trouble"></a>
 
 ---
 
-#### Switching bootloader from grub to systemd-boot
+#### Auto unlocking gnome keyring
 
-> could not find any previously installed systemd-boot
+If changing to a blank password of the current keyring doesnt work, creating a new keyring with a blank password (while keeping the old one with all entries) seems to do the trick.
+
+#### Switching bootloader from Grub to systemd-boot
+
+- could not find any previously installed systemd-boot
 
 run `sudo bootctl install`
 
-> not enough space on /boot
+- not enough space on /boot
 
-based on https://discourse.nixos.org/t/what-to-do-with-a-full-boot-partition/2049/10
+based on this [discourse.nixos.org repy](https://discourse.nixos.org/t/what-to-do-with-a-full-boot-partition/2049/11?u=fschn90):
 
 > 1.  Do a sudo nixos-rebuild build so that you’re sure that the build of your current configuration can be carried out
 > 2.  Do a garbage collection to remove old system generations with sudo nix-collect-garbage -d
