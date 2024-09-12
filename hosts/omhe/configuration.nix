@@ -59,7 +59,7 @@
   boot.loader.systemd-boot.enable = true;
 
   # make sure only NIXROOT credentials are requested, and not other pools as well
-  boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
+  # boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
 
   # wifi card driver settings to ensure stable connection
   boot.extraModprobeConfig = ''
