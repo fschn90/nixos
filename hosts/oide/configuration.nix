@@ -22,7 +22,7 @@
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
     ../../modules/nix.nix
-    ../../modules/nameserver.nix
+    # ../../modules/nameserver.nix
     ../../modules/prometheus-exporters.nix
     ../../modules/promtail.nix
     ../../modules/scrutiny.nix
