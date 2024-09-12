@@ -57,6 +57,7 @@
   services.prometheus.exporters.nextcloud.enable = true;
   services.prometheus.exporters.nextcloud.tokenFile = config.sops.secrets."Nextcloud/authToken".path;
   services.prometheus.exporters.nextcloud.url = "https://${builtins.toString config.services.nextcloud.hostName}"; 
+  # to avoid time out errors in the beginning, seems to be running much faster now, maybe not needed anymore, ie default value enough
   services.prometheus.exporters.nextcloud.timeout = "60s";
   services.prometheus.exporters.nextcloud.extraFlags = [
     "--tls-skip-verify true"

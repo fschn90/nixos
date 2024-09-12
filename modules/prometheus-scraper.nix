@@ -58,7 +58,7 @@
         }
         {
           job_name = "nextcloud";
-          # scrape_interval = "90s";
+          # to avoid time out errors in the beginning, seems to be running much faster now, maybe not needed anymore, ie default value enough
           scrape_timeout = "60s";
           static_configs = [{
             targets = [ 

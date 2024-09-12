@@ -273,3 +273,17 @@ based on this [discourse.nixos.org repy](https://discourse.nixos.org/t/what-to-d
 > 4.  Run sudo nixos-rebuild switch or sudo nixos-rebuild boot. This time your bootloader will be installed correctly along with the new kernel and initrd
 > 5.  Make sure point 4 was executed correctly by looking at the output and reboot
 > 6.  [optional] remove the result directory created by point 1
+
+#### Nextcloud reinstallation
+
+After manually removing nextcloud data and rebuilding, with e.g.:
+
+```bash
+zfs destroy tank/Nextcloud
+zfs create tank/Nextcloud
+nixos-rebuild switch
+```
+
+- the user already exisits error
+
+renaming the admin user with `services.nextcloud.config.adminuser` to another value does work. probably the previous user is kept in the cache despite delete the whole filesystem. also deleteing the old users in the nextcloud interface ensures not running out of names eventually.
