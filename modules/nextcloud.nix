@@ -9,7 +9,7 @@
     database.createLocally = true;
     config = {
       dbtype = "pgsql"; # nextcloud is not optimised for sqlite thus pgsql
-      adminuser = "fschn"; 
+      # adminuser = "admin"; 
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true; # for caching
