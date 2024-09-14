@@ -191,8 +191,8 @@ sudo zfs allow backup compression,hold,send,snapshot,mount,destroy NIXROOT/home
 ```nix
 # hosts/omhe/configuration.nix
 
-# dont ask for "tank/rainbow-backup" credentials at boot
-boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" ];
+# dont ask for "tank/rainbow-backup" credentials at boot, but have tank pool key loaded
+boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" "tank"];
 ```
 
 - Finally on the target system(omhe) configure a `services.syncoid` to pull from the source system dataset `NIXROOT/home` in `hosts/omhe/sanoid-backup-target.nix`, and a 'services.sanoid' to keep around historical snapshots. The dataset I'm backing up to is 'tank/rainbow-backup' and this can not exist before syncoid and sanoid services inital run as they create it automatically and throw an error otherwise.
