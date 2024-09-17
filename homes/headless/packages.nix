@@ -4,6 +4,7 @@
 
   home.packages = with pkgs; [
     fishPlugins.bobthefish
+    helix
   ];
 
   programs.fish = {
