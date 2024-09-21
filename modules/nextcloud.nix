@@ -16,10 +16,7 @@
     maxUploadSize = "16G"; # bigger file size for eg movies
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit calendar contacts notes onlyoffice tasks 
-        deck maps phonetrack polls;
-        # cospend throws errors
-        # works but dont use:
-        # mail bookmarks polls cookbook music
+        deck maps phonetrack polls cospend;
         memories = pkgs.fetchNextcloudApp {
           sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
           url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
