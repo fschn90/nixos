@@ -5,9 +5,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ## TO-DOs:
 
 ### Bugs
-
-- nextcloud cospend error msg: `Failed to get projects: failure 500 Internal Server Error`
-- signal crashed several times since latest update -> check logs
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 
 ### Minor Features
@@ -16,16 +13,14 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - zfs snapshots for nextcloud file system
 - better structure for monitoring files
 - nextcloud logs for loki with dashboard
+- helix config, via home manager??
 
 ### Major Features
-
-- zed as nvim replacement ?????????
 - NH the nix helper (vimjoyer)
 - better modularization like vimjoyer
 - disko
 
 ### Home lap
-
 - sync firefox tabs
 - fritz.home reverse proxy
 - deluge, paperless
@@ -35,10 +30,8 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - restic off-site backup with hetzner storage box or backblaze
 - git archive
 - prometheus exporters and dashboards for:
-  - snmp
-  - fritzbox_exporter
-  - smokeping
-  - nextcloud
+  - dasboard monitoring sanoid and syncoid
+  - improve logging dashboard
   - restic (once offsite backup is done)
 
 ### Other
