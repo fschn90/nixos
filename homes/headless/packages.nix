@@ -2,10 +2,7 @@
 
 {
 
-  home.packages = with pkgs; [
-    fishPlugins.bobthefish
-    helix
-  ];
+  home.packages = with pkgs; [ fishPlugins.bobthefish ];
 
   programs.fish = {
     enable = true;

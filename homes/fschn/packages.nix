@@ -10,7 +10,7 @@
     vscode
     google-chrome
     spotify
-    signal-desktop 
+    signal-desktop
     libreoffice
     mumble
     digikam
@@ -32,7 +32,7 @@
     gimp-with-plugins
     zellij
     nextcloud-client
-    helix
+    # helix
   ];
 
 }

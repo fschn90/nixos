@@ -8,6 +8,7 @@
    ../home-modules/fish.nix
    ../home-modules/git.nix
    ../home-modules/zoxide.nix
+   ../home-modules/helix.nix
   ];
 
   home.username = "fschn";
