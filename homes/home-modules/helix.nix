@@ -4,6 +4,12 @@
 
   programs.helix = {
     enable = true;
+    extraPackages = with pkgs; [
+      nil
+      yazi # terminal file manager
+      lazygit
+      nixpkgs-fmt
+    ];
     settings = {
       theme = "autumn_night_transparent";
       editor = {
@@ -28,7 +34,5 @@
       };
     };
   };
-
-  home.packages = with pkgs; [ yazi ];
 
 }
