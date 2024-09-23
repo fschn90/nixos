@@ -16,6 +16,7 @@
       editor = {
         line-number = "relative";
         lsp.display-messages = true;
+        lsp.display-inlay-hints = true;
       };
       editor.cursor-shape = {
         normal = "block";
@@ -25,8 +26,9 @@
     };
     languages.language = [{
       name = "nix";
+      language-servers = [ "nil" ];
       auto-format = true;
-      formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
+      formatter.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
     }];
   };
 
