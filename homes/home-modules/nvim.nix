@@ -5,10 +5,10 @@
   # astronvim dependency
   home.packages = with pkgs; [
     lazygit
-    nerdfonts 
-    gcc 
+    nerdfonts
+    gcc
     unzip # for mason
-    wl-clipboard  
+    wl-clipboard
     ripgrep
     gdu
     bottom
@@ -16,14 +16,14 @@
     fd
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
-  
+
   fonts.fontconfig.enable = true;
 
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
