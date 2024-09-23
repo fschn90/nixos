@@ -5,38 +5,40 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./amd.nix
     ../../modules/boot.nix
     ../../modules/sound.nix
     ../../modules/bluetooth.nix
     ../../modules/zfs.nix
-    ../../modules/gnome.nix 
+    ../../modules/gnome.nix
     ../../modules/users.nix
     ../../modules/systemPackages.nix
     ../../modules/wireguard.nix
     ../../modules/steam.nix
-    ../../modules/gnupg.nix 
-    ../../modules/sops.nix 
-    ../../modules/ssh.nix 
+    ../../modules/gnupg.nix
+    ../../modules/sops.nix
+    ../../modules/ssh.nix
     ../../modules/tailscale.nix
-    ../../modules/protonmail-bridge.nix 
+    ../../modules/protonmail-bridge.nix
     ./sanoid-backup-source.nix
     ../../modules/nix.nix
-    ../../modules/nameserver.nix
-    ../../modules/prometheus-exporters.nix
-    ../../modules/promtail.nix
-    ../../modules/scrutiny.nix
-    ../../modules/nginx.nix  
+    # ../../modules/nameserver.nix
+    # ../../modules/prometheus-exporters.nix
+    # ../../modules/promtail.nix
+    # ../../modules/scrutiny.nix
+    ../../modules/nginx.nix
     ../../modules/acme.nix
- ]; 
-  
+    ../../modules/monitoring/defailt-workspace.nix
+  ];
+
   # necesarry for zfs
   networking.hostId = "b3d58883";
 
   networking.hostName = "rainbow"; # Define your hostname.
-  
+
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.

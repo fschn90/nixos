@@ -5,14 +5,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./t490-nvidia.nix
     # ../../modules/boot.nix
     ../../modules/sound.nix
     ../../modules/bluetooth.nix
     ../../modules/zfs.nix
-    ../../modules/gnome.nix 
+    ../../modules/gnome.nix
     ../../modules/users.nix
     ../../modules/systemPackages.nix
     ../../modules/wireguard.nix
@@ -22,19 +23,19 @@
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
     ../../modules/nix.nix
-    # ../../modules/nameserver.nix
-    ../../modules/prometheus-exporters.nix
-    ../../modules/promtail.nix
-    ../../modules/scrutiny.nix
-    ../../modules/nginx.nix  
+    # ../../modules/prometheus-exporters.nix
+    # ../../modules/promtail.nix
+    # ../../modules/scrutiny.nix
+    ../../modules/nginx.nix
     ../../modules/acme.nix
+    ../../modules/monitoring/default-workstation.nix
   ];
 
   # necessary for zfs
   networking.hostId = "8425e349";
 
   networking.hostName = "oide"; # Define your hostname.
-  
+
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   boot.loader.systemd-boot.enable = true;
 
@@ -43,13 +44,13 @@
 
   # 20.09.2024 to avoid https://discourse.nixos.org/t/unable-to-build-nix-due-to-nvidia-drivers-due-or-kernel-6-10/49266/1
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-  version = "555.58.02";
-  sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
-  sha256_aarch64 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
-  openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
-  settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
-  persistencedSha256 = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
-};
+    version = "555.58.02";
+    sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+    sha256_aarch64 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
+    openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
+    settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
+    persistencedSha256 = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -74,7 +75,7 @@
 
   # auto upgrade but not auto reboot
   system.autoUpgrade.enable = true;
-  
+
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";

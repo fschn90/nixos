@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/systemPackages.nix
       ../../modules/wireguard.nix
@@ -22,14 +23,15 @@
       ../../modules/nextcloud.nix
       ../../modules/adguardhome.nix
       ../../modules/acme.nix
-      ../../modules/grafana.nix
-      ../../modules/prometheus-exporters.nix
-      ../../modules/prometheus-scraper.nix
+      # ../../modules/grafana.nix
+      # ../../modules/prometheus-exporters.nix
+      # ../../modules/prometheus-scraper.nix
       ../../modules/jellyfin.nix
       ../../modules/nginx.nix
-      ../../modules/loki.nix
-      ../../modules/promtail.nix
-      ../../modules/scrutiny.nix
+      # ../../modules/loki.nix
+      # ../../modules/promtail.nix
+      # ../../modules/scrutiny.nix
+      ../../modules/monitoring/default-server.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -53,7 +55,7 @@
   networking.hostName = "omhe"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   networking.hostId = "e2990a3c";
   boot.zfs.extraPools = [ "tank" ];
   boot.loader.systemd-boot.enable = true;
@@ -86,7 +88,7 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-   # allow unfree
+  # allow unfree
   nixpkgs.config.allowUnfree = true;
 
   # home-manager
@@ -97,7 +99,7 @@
 
   # auto upgrade but not auto reboot
   system.autoUpgrade.enable = true;
-  
+
   # fishshell, necessary
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
