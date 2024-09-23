@@ -12,7 +12,7 @@
       nixpkgs-fmt
     ];
     settings = {
-      theme = "autumn_night_transparent";
+      theme = "doom_acario_dark";
       editor = {
         line-number = "relative";
         lsp.display-messages = true;
@@ -28,12 +28,6 @@
       auto-format = true;
       formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
     }];
-    themes = {
-      autumn_night_transparent = {
-        "inherits" = "autumn_night";
-        "ui.background" = { };
-      };
-    };
   };
 
 }
