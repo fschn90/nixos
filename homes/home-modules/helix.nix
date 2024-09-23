@@ -7,8 +7,6 @@
     defaultEditor = true;
     extraPackages = with pkgs; [
       nil
-      yazi # terminal file manager
-      lazygit
       nixpkgs-fmt
     ];
     settings = {
@@ -53,5 +51,9 @@
     }];
   };
 
+  home.packages = with pkgs; [
+    lazygit
+    yazi # terminal file manager
+  ];
 }
 
