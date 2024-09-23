@@ -19,7 +19,7 @@
     languages.language = [{
       name = "nix";
       auto-format = true;
-      formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+      formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt-classic";
     }];
     themes = {
       autumn_night_transparent = {
@@ -29,9 +29,6 @@
     };
   };
 
+  home.packages = with pkgs; [ yazi ];
 
-  home.packages = with pkgs; [
-    yazi
-  ];
-  
 }
