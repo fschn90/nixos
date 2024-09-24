@@ -6,14 +6,15 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 
 ### Bugs
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
+- sanoid backup permission issues again?
+- smartctl_exporter and scrutiny error logs
 
 ### Minor Features
 
 - zfs backup for laptop via tailscale
 - zfs snapshots for nextcloud file system
-- better structure for monitoring files
-- nextcloud logs for loki with dashboard
-- helix config, via home manager??
+- prometheus data on extra zfs dataset?
+- index for troubleshooting section
 
 ### Major Features
 - NH the nix helper (vimjoyer)
@@ -23,15 +24,15 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ### Home lap
 - sync firefox tabs
 - fritz.home reverse proxy
-- deluge, paperless
+- deluge (and vpn setup]), paperless
 - maybes: sonarr, homeassistant, arr suit, navidrome, immich, photoprism?
 - HEADSCALE!!
 - https://github.com/tailscale/tailscale/tree/main/cmd/nginx-auth
 - restic off-site backup with hetzner storage box or backblaze
 - git archive
 - prometheus exporters and dashboards for:
-  - dasboard monitoring sanoid and syncoid
-  - improve logging dashboard
+  - dashboard monitoring sanoid and syncoid
+  - alerting
   - restic (once offsite backup is done)
 
 ### Other
