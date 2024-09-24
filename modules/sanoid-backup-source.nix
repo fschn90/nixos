@@ -1,5 +1,7 @@
 { pkgs, ... }:
 
+# currently rainbow and oide
+
 {
 
   services.sanoid = {
@@ -31,13 +33,13 @@
     };
   };
 
-  
-environment.systemPackages = with pkgs; [
-  # used by zfs send/receive
-  pv
-  mbuffer
-  lzop
-  zstd
-];
+
+  environment.systemPackages = with pkgs; [
+    # used by zfs send/receive
+    pv
+    mbuffer
+    lzop
+    zstd
+  ];
 
 }

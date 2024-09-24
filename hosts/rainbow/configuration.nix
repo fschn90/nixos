@@ -23,7 +23,7 @@
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
     ../../modules/protonmail-bridge.nix
-    ./sanoid-backup-source.nix
+    ../../modules/sanoid-backup-source.nix
     ../../modules/nix.nix
     # ../../modules/nameserver.nix
     # ../../modules/prometheus-exporters.nix

@@ -29,6 +29,7 @@
     ../../modules/nginx.nix
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
+    ../../modules/sanoid-backup-source.nix
   ];
 
   # necessary for zfs

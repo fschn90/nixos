@@ -16,7 +16,7 @@
       ../../modules/users.nix
       ../../modules/sops.nix
       ../../modules/tailscale.nix
-      ./sanoid-backup-target.nix
+      ../../modules/sanoid-backup-target.nix
       ../../modules/nix.nix
       # ../../modules/coredns.nix
       ../../modules/nameserver.nix
