@@ -1,47 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_LOCAL",
-      "label": "Prometheus",
-      "description": "Prometheus instance containing nextcloud-exporter metrics",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "10.2.3"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -65,10 +22,12 @@
       }
     ]
   },
+  "description": "Dashboard showing metrics gathered by nextcloud-exporter from an Nextcloud instance.",
   "editable": true,
   "fiscalYearStartMonth": 0,
+  "gnetId": 20716,
   "graphTooltip": 2,
-  "id": null,
+  "id": 21,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -88,7 +47,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -129,15 +88,16 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.4.8",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_active_users_daily_total{instance=\"$instance\"})",
@@ -153,7 +113,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -215,7 +175,6 @@
         "y": 1
       },
       "id": 1,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [],
@@ -233,7 +192,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_users_total{instance=\"$instance\"})",
@@ -247,7 +206,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_active_users_total{instance=\"$instance\"})",
@@ -266,7 +225,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -328,7 +287,6 @@
         "y": 1
       },
       "id": 11,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [],
@@ -346,7 +304,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_files_total{instance=\"$instance\"})",
@@ -377,7 +335,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -439,7 +397,6 @@
         "y": 9
       },
       "id": 2,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [],
@@ -457,7 +414,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(type) (nextcloud_shares_total{instance=\"$instance\"})",
@@ -475,7 +432,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -537,7 +494,6 @@
         "y": 9
       },
       "id": 3,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [],
@@ -555,7 +511,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(direction) (nextcloud_shares_federated_total{instance=\"$instance\"})",
@@ -586,7 +542,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -627,15 +583,16 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.4.8",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_apps_installed_total{instance=\"$instance\"})",
@@ -651,7 +608,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -696,15 +653,16 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "10.4.8",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_apps_updates_available_total{instance=\"$instance\"})",
@@ -733,7 +691,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -779,7 +737,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -794,7 +753,6 @@
         "y": 25
       },
       "id": 4,
-      "links": [],
       "options": {
         "legend": {
           "calcs": [],
@@ -812,7 +770,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by(instance) (nextcloud_free_space_bytes{instance=\"$instance\"})",
@@ -831,7 +789,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -882,7 +840,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -899,7 +857,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -950,7 +908,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -980,7 +938,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1031,7 +989,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1048,7 +1006,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -1099,7 +1057,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1123,10 +1081,14 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "localhost:9205",
+          "value": "localhost:9205"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_LOCAL}"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "",
         "hide": 0,
@@ -1176,8 +1138,6 @@
   "timezone": "browser",
   "title": "Nextcloud",
   "uid": "cdae9143-9a17-4d37-87da-d34fb9cfd92f",
-  "version": 4,
-  "weekStart": "",
-  "gnetId": 20716,
-  "description": "Dashboard showing metrics gathered by nextcloud-exporter from an Nextcloud instance."
+  "version": 1,
+  "weekStart": ""
 }
