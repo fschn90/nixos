@@ -73,7 +73,7 @@
 
   environment.etc = {
     "grafana-dashboards/node-exporter-full_rev37.json" = {
-      source = ../node-exporter-full_rev37.json;
+      source = ./dashboards/node-exporter-full_rev37.json;
       group = "grafana";
       user = "grafana";
     };
