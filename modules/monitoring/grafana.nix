@@ -77,8 +77,8 @@
       group = "grafana";
       user = "grafana";
     };
-    "grafana-dashboards/logs-1.json" = {
-      source = ../logs-1.json;
+    "grafana-dashboards/logs.json" = {
+      source = ./dashboards/logs.json;
       group = "grafana";
       user = "grafana";
     };
