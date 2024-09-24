@@ -98,8 +98,8 @@
     addSSL = true; # important: addSSL not foreSSL
     useACMEHost = "fschn.org";
     locations."/" = {
-        proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
-        proxyWebsockets = true;
+      proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
+      proxyWebsockets = true;
     };
   };
 

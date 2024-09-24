@@ -31,7 +31,7 @@
     # ../../modules/scrutiny.nix
     ../../modules/nginx.nix
     ../../modules/acme.nix
-    ../../modules/monitoring/defailt-workspace.nix
+    ../../modules/monitoring/default-workstation.nix
   ];
 
   # necesarry for zfs
