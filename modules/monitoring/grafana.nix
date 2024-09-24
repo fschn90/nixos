@@ -82,6 +82,11 @@
       group = "grafana";
       user = "grafana";
     };
+    "grafana-dashboards/smartctl_exporter_rev1.json" = {
+      source = ./dashboards/smartctl_exporter_rev1.json;
+      group = "grafana";
+      user = "grafana";
+    };
   };
 
   services.nginx.virtualHosts."grafana.fschn.org" = {
