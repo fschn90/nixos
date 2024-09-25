@@ -36,7 +36,7 @@
 
   services.sanoid = {
     enable = true;
-    interval = "daily"; # run this hourly, run syncoid daily to prune ok
+    interval = "hourly"; # run this hourly, run syncoid daily to prune ok
     datasets = {
       "tank/rainbow-backup" = {
         autoprune = true;
