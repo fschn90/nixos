@@ -8,6 +8,8 @@
     extraPackages = with pkgs; [
       nil
       nixpkgs-fmt
+      marksman
+      dprint
     ];
     settings = {
       theme = "doom_acario_dark";
@@ -43,12 +45,21 @@
         esc = [ "collapse_selection" "keep_primary_selection" ];
       };
     };
-    languages.language = [{
-      name = "nix";
-      language-servers = [ "nil" ];
-      auto-format = true;
-      formatter.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-    }];
+    languages.language = [
+      {
+        name = "nix";
+        language-servers = [ "nil" ];
+        auto-format = true;
+        formatter.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+      }
+      {
+        name = "markdown";
+        language-servers = [ "marksman" ];
+        auto-format = true;
+        formatter.command = "${pkgs.dprint}/bin/dprint";
+        formatter.args = [ "fmt" "--stdin" "md" ];
+      }
+    ];
   };
 
   home.packages = with pkgs; [
