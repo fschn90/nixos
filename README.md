@@ -6,13 +6,10 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 
 ### Bugs
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
-- sanoid backup permission issues again?
 - smartctl_exporter and scrutiny error logs
 
 ### Minor Features
 
-- zfs backup for laptop via tailscale
-- zfs snapshots for nextcloud file system
 - prometheus data on extra zfs dataset?
 - index for troubleshooting section
 
@@ -46,7 +43,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 3. [Setup of hdds](#hdds)
 4. [Nextcloud](#Nextcloud)
 5. [Auto unlock gnome keyring](#keyring)
-6. [Troubleshooting](#trouble)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -243,15 +239,27 @@ Then based on this [reddit.com reply](https://www.reddit.com/r/NixOS/comments/1c
 
 Changing the keyring password with seahorse to blank, and voilà it works.
 
-### Troubleshooting <a name="trouble"></a>
 
 ---
 
-#### Auto unlocking gnome keyring
+## Troubleshooting <a name="trouble"></a>
+
+1. [Auto unlocking gnome keyring](#keyring)
+2. [Switching bootloader from Grub to systemd-boot](#bootloader)
+3. [Nextcloud reinstallation](#nextcloud)
+4. [Grafana adding or removing dashboard ](#grafana)
+
+### Auto unlocking gnome keyring <a name="keyring"></a>
+
+---
+
 
 If changing to a blank password of the current keyring doesnt work, creating a new keyring with a blank password (while keeping the old one with all entries) seems to do the trick.
 
-#### Switching bootloader from Grub to systemd-boot
+### Switching bootloader from Grub to systemd-boot <a name="bootloader"></a> 
+
+---
+
 
 - could not find any previously installed systemd-boot
 
@@ -268,7 +276,10 @@ based on this [discourse.nixos.org repy](https://discourse.nixos.org/t/what-to-d
 > 5.  Make sure point 4 was executed correctly by looking at the output and reboot
 > 6.  [optional] remove the result directory created by point 1
 
-#### Nextcloud reinstallation
+### Nextcloud reinstallation <a name="nextcloud"></a>
+
+---
+
 
 After manually removing nextcloud data and rebuilding, with e.g.:
 
@@ -281,3 +292,24 @@ nixos-rebuild switch
 - the user already exisits error
 
 renaming the admin user with `services.nextcloud.config.adminuser` to another value does work. probably the previous user is kept in the cache despite delete the whole filesystem. also deleteing the old users in the nextcloud interface ensures not running out of names eventually.
+
+
+### Grafana adding or removing dashboard <a name="grafana"></a>
+
+---
+
+
+to avoid `provisioned dashboard cannot be deleted / saved`, the followgin needs to be edited:
+
+```nix
+
+  environment.etc = {
+    "grafana-dashboards/node-exporter-full_rev37.json" = {
+      source = ./dashboards/node-exporter-full_rev37.json;
+      group = "grafana";
+      user = "grafana";
+    };
+  };
+```
+
+but also, when adding a new dashboard it needs to be imported manually with the grafana web interface and then exported as json first, and only then to be added to the config via the above code. this adds the specific datasource uid to the json.
