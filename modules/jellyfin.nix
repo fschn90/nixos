@@ -3,6 +3,7 @@
 {
 
   services.jellyfin.enable = true;
+  services.jellyfin.dataDir = "/tank/Jellygin";
   environment.systemPackages = [
     pkgs.jellyfin
     pkgs.jellyfin-web
@@ -13,7 +14,7 @@
     forceSSL = true;
     useACMEHost = "fschn.org";
     locations."/" = {
-        proxyPass = "http://localhost:8096";
+      proxyPass = "http://localhost:8096";
     };
   };
 }
