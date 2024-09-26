@@ -32,6 +32,7 @@
       # ../../modules/promtail.nix
       # ../../modules/scrutiny.nix
       ../../modules/monitoring/default-server.nix
+      ../../modules/deluge.nix
     ];
 
   # Use the GRUB 2 boot loader.

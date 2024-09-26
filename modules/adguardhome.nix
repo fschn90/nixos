@@ -52,7 +52,7 @@
         # Maximum number of parallel goroutines for processing incoming requests.
         max_goroutines = 500;
 
-  
+
       };
       statistics = {
         enable = true;
@@ -120,6 +120,10 @@
             domain = "prometheus.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "deluge.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 
@@ -160,16 +164,16 @@
           };
         };
         # Parental control-based DNS requests filtering.
-        parental_enabled = false;  
+        parental_enabled = false;
         # Enforcing "Safe search" option for search engines, when possible.
         safe_search = {
-          enabled = false;      
-          };
+          enabled = false;
+        };
       };
       # The following notation uses map
       # to not have to manually create {enabled = true; url = "";} for every filter
       # This is, however, fully optional
-      filters = map(url: { enabled = true; url = url; }) [
+      filters = map (url: { enabled = true; url = url; }) [
         #other
         https://big.oisd.nl
         https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt
@@ -249,8 +253,8 @@
       useACMEHost = "fschn.org";
       forceSSL = true;
       locations = {
-         "/" = {
-           proxyPass = "http://100.106.245.44:3000";
+        "/" = {
+          proxyPass = "http://100.106.245.44:3000";
         };
       };
     };
