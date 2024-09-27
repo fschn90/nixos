@@ -8,6 +8,8 @@
     extraPackages = with pkgs; [
       nil
       nixpkgs-fmt
+      nodePackages.prettier
+      yaml-language-server
       marksman
       dprint
     ];
@@ -58,6 +60,15 @@
         auto-format = true;
         formatter.command = "${pkgs.dprint}/bin/dprint";
         formatter.args = [ "fmt" "--stdin" "md" ];
+      }
+      {
+        name = "yaml";
+        language-servers = [ "yaml-language-server" ];
+        formatter = {
+          command = "prettier";
+          args = [ "--stdin-filepath" "file.yaml" ];
+        };
+        auto-format = true;
       }
     ];
   };
