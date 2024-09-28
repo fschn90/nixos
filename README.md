@@ -7,6 +7,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ### Bugs
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 - smartctl_exporter and scrutiny error logs
+- spotify keeps redownloading saved songs when starting application every time
 
 ### Minor Features
 
@@ -43,6 +44,8 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 3. [Setup of hdds](#hdds)
 4. [Nextcloud](#Nextcloud)
 5. [Auto unlock gnome keyring](#keyring)
+6. [Jellyfin](#jellyfin)
+7. [Deluge](#deluge)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -239,6 +242,31 @@ Then based on this [reddit.com reply](https://www.reddit.com/r/NixOS/comments/1c
 
 Changing the keyring password with seahorse to blank, and voilà it works.
 
+### Jellyfin <a name="jellyfin"></a>
+
+---
+
+prerequiste for `jellyfin.dataDir`:
+```bash
+sudo zfs create /tank/Jellyfin
+sudo chown jellyfin:jellyfin /tank/Jellyfin
+```
+
+adding a plugin, via jellyfin web-ui: 
+
+```bash
+# admin-dashboard > plugins > repositories
+https://raw.githubusercontent.com/intro-skipper/intro-skipper/master/manifest.json
+
+```
+### Deluge <a name="deluge"></a>
+
+---
+
+prerequiste for `deluge.dataDir`:
+```bash
+sudo zfs create /tank/Deluge
+```
 
 ---
 
