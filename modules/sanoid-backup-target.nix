@@ -65,6 +65,15 @@
         monthly = 12;
         yearly = 2;
       };
+      "tank/Jellyfin" = {
+        autoprune = true;
+        autosnap = true;
+        hourly = 24;
+        daily = 31;
+        weekly = 7;
+        monthly = 12;
+        yearly = 2;
+      };
     };
     extraArgs = [ "--debug" ];
   };
