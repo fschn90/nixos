@@ -257,7 +257,6 @@ adding a plugin, via jellyfin web-ui:
 ```bash
 # admin-dashboard > plugins > repositories
 https://raw.githubusercontent.com/intro-skipper/intro-skipper/master/manifest.json
-
 ```
 ### Deluge <a name="deluge"></a>
 
@@ -276,6 +275,8 @@ sudo zfs create /tank/Deluge
 2. [Switching bootloader from Grub to systemd-boot](#bootloader)
 3. [Nextcloud reinstallation](#nextcloud)
 4. [Grafana adding or removing dashboard ](#grafana)
+5. [Firefox-syncserver](#syncserver)
+
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
 
@@ -283,6 +284,7 @@ sudo zfs create /tank/Deluge
 
 
 If changing to a blank password of the current keyring doesnt work, creating a new keyring with a blank password (while keeping the old one with all entries) seems to do the trick.
+
 
 ### Switching bootloader from Grub to systemd-boot <a name="bootloader"></a> 
 
@@ -303,6 +305,7 @@ based on this [discourse.nixos.org repy](https://discourse.nixos.org/t/what-to-d
 > 4.  Run sudo nixos-rebuild switch or sudo nixos-rebuild boot. This time your bootloader will be installed correctly along with the new kernel and initrd
 > 5.  Make sure point 4 was executed correctly by looking at the output and reboot
 > 6.  [optional] remove the result directory created by point 1
+
 
 ### Nextcloud reinstallation <a name="nextcloud"></a>
 
@@ -341,3 +344,33 @@ to avoid `provisioned dashboard cannot be deleted / saved`, the followgin needs 
 ```
 
 but also, when adding a new dashboard it needs to be imported manually with the grafana web interface and then exported as json first, and only then to be added to the config via the above code. this adds the specific datasource uid to the json.
+
+
+### Firefox-syncserver <a name="syncserver"></a>
+
+---
+
+
+To view logs, type `about:sync-logs` into firefox address bar.
+
+Logging out of mozilla account in firefox seemed to sometimes solve connection errors.
+Especially when rebuilding firefox-syncserver with a new hostname it seemed to be necesarry.
+
+To avoid error `findCluster has a pre-existing clusterURL, so fetching new token`.
+In the firefox address bar type about:profiles.
+Then in the profile dir, delete `weave` dir, firefox-sync used to be formerly named Weave.
+
+To avoid error `The option services.nginx.virtualHosts."firefox-sync.fschn.org".forceSSL has conflicting definition values`,  use lib.mkForce value:
+
+```nix
+  services.nginx = {
+    virtualHosts."firefox-sync.fschn.org" = {
+      forceSSL = lib.mkForce true;
+    };
+  };
+ ```
+
+From [HackerNews](https://news.ycombinator.com/item?id=34674569), even though not relevant yet:
+> sometimes the first sync times out when you have a larger data set, and you need to manually enable each sync type to reduce the size. But once it's up and running, I don't really have any issues.
+
+
