@@ -46,6 +46,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 5. [Auto unlock gnome keyring](#keyring)
 6. [Jellyfin](#jellyfin)
 7. [Deluge](#deluge)
+8. [Firefox-syncserver](#firefox-syncserver)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -266,6 +267,10 @@ prerequiste for `deluge.dataDir`:
 ```bash
 sudo zfs create /tank/Deluge
 ```
+
+### Firefox-syncserver <a name="firefox-syncserver"></a>
+
+Navigate to **about:config** in your Firefox address bar and set **identity.sync.tokenserver.uri** to **http://firefox-sync.fschn.org/1.0/sync/1.5**.
 
 ---
 
