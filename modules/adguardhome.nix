@@ -128,6 +128,10 @@
             domain = "firefox-sync.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "firefox.sync";
+            answer = "100.106.245.44";
+          }
 
         ];
 

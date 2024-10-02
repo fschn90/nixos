@@ -1,34 +1,28 @@
-{ pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   services.mysql.package = pkgs.mariadb;
 
   services.firefox-syncserver = {
     enable = true;
-    # secrets = builtins.toFile "sync-secrets" ''
-    #   SYNC_MASTER_SECRET=this-secret-is-actually-leaked-to-/nix/store
-    # '';
     secrets = config.sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET".path;
     singleNode = {
       enable = true;
-      hostname = "localhost";
-      url = "http://localhost:5000";
+      hostname = "firefox-sync.fschn.org";
+      # hostname = "localhost";
+      # url = "http://localhost:5000";
+      enableNginx = true;
     };
   };
 
 
-  sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET" = {
-    # mode = "0600";
-    # path = "/etc/NetworkManager/system-connections/wg-flocoding.nmconnection";
-  };
+  sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET" = { };
 
   services.nginx = {
     virtualHosts."firefox-sync.fschn.org" = {
       useACMEHost = "fschn.org";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:${toString config.services.firefox-syncserver.settings.port}";
-      };
+      # avoiding error `The option has conflicting definition values` with lib.mkForce
+      forceSSL = lib.mkForce true;
     };
   };
 }
