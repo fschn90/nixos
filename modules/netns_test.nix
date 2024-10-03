@@ -27,14 +27,10 @@
         set -e
         ${iproute}/bin/ip link add mywg1 type wireguard
         ${iproute}/bin/ip link set mywg1 netns wg
-        ${iproute}/bin/ip -n wg address add 91.90.123.178/32 dev mywg1
-        # TODO change 10.2.0.2/32
+        ${iproute}/bin/ip -n wg address add 10.2.0.2/32 dev mywg1
         # ${iproute}/bin/ip -n wg -6 address add <ipv6 VPN addr/cidr> dev wg0
         ${iproute}/bin/ip netns exec wg \
           ${wireguard-tools}/bin/wg setconf mywg1 ${toString config.sops.secrets."networking/system-connections/wg-BE-44-P2P.conf".path}
-         ${iproute}/bin/ip netns exec wg \
-          # WIP TODO
-          # ${resolvconf} -a mywg1 
         ${iproute}/bin/ip -n wg link set mywg1 up
         ${iproute}/bin/ip -n wg route add default dev mywg1
         # ${iproute}/bin/ip -n wg -6 route add default dev wg0
