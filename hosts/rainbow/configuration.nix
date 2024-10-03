@@ -32,6 +32,8 @@
     ../../modules/nginx.nix
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
+    ../../modules/netns_test.nix
+    ../../modules/deluge.nix
   ];
 
   # necesarry for zfs
