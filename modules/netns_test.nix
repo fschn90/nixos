@@ -42,4 +42,11 @@
       '';
     };
   };
+
+
+  systemd.services.deluged.bindsTo = [ "netns@wg.service" ];
+  systemd.services.deluged.requires = [ "network-online.target" ];
+  systemd.services.deluged.after = [ "wg.service" ];
+  systemd.services.deluged.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+
 }
