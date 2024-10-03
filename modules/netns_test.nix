@@ -2,11 +2,7 @@
 
 {
 
-  sops.secrets."networking/system-connections/wg-BE-44-P2P.conf" = {
-    # mode = "0600";
-    mode = "0777";
-    # path = "/etc/NetworkManager/system-connections/wg-BE-44-P2P.conf";
-  };
+  sops.secrets."networking/system-connections/wg-BE-44-P2P.conf" = { };
 
   systemd.services."netns@" = {
     description = "%I network namespace";
