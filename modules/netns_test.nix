@@ -55,4 +55,18 @@
     listenStreams = [ "58846" ];
     wantedBy = [ "sockets.target" ];
   };
+
+  systemd.services."proxy-to-deluged" = {
+    enable = true;
+    description = "Proxy to Deluge Daemon in Network Namespace";
+    requires = [ "deluged.service" "proxy-to-deluged.socket" ];
+    after = [ "deluged.service" "proxy-to-deluged.socket" ];
+    unitConfig = { JoinsNamespaceOf = "deluged.service"; };
+    serviceConfig = {
+      User = "deluge";
+      Group = "deluge";
+      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:58846";
+      PrivateNetwork = "yes";
+    };
+  };
 }
