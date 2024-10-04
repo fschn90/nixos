@@ -49,4 +49,10 @@
   systemd.services.deluged.after = [ "wg.service" ];
   systemd.services.deluged.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
 
+  systemd.sockets."proxy-to-deluged" = {
+    enable = true;
+    description = "Socket for Proxy to Deluge Daemon";
+    listenStreams = [ "58846" ];
+    wantedBy = [ "sockets.target" ];
+  };
 }
