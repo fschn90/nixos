@@ -4,8 +4,8 @@
 
   services.deluge = {
     enable = true;
-    dataDir = "/tank/Deluge";
-    authFile = config.sops.secrets."Deluge/Admin".path;
+    # dataDir = "/tank/Deluge";
+    # authFile = config.sops.secrets."Deluge/Admin".path;
     # declarative = true;
     # config = 
     #   {
@@ -19,27 +19,27 @@
     web.enable = true;
   };
 
-  sops.secrets."Deluge/Admin" = {
-    path = "/tank/Deluge/authFile";
-    owner = "deluge";
-    mode = "0440";
-  };
+  # sops.secrets."Deluge/Admin" = {
+  #   path = "/tank/Deluge/authFile";
+  #   owner = "deluge";
+  #   mode = "0440";
+  # };
 
-  services.nginx = {
-    virtualHosts."deluge.fschn.org" = {
-      useACMEHost = "fschn.org";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:${toString config.services.deluge.web.port}";
-      };
-    };
-  };
+  # services.nginx = {
+  #   virtualHosts."deluge.fschn.org" = {
+  #     useACMEHost = "fschn.org";
+  #     forceSSL = true;
+  #     locations."/" = {
+  #       proxyPass = "http://localhost:${toString config.services.deluge.web.port}";
+  #     };
+  #   };
+  # };
 
 
-  sops.secrets."networking/system-connections/wg-BE-44-P2P.conf" = {
-    mode = "0600";
-    path = "/etc/NetworkManager/system-connections/wg-BE-44-P2P.conf";
-  };
+  # sops.secrets."networking/system-connections/wg-BE-44-P2P.conf" = {
+  #   mode = "0600";
+  #   path = "/etc/NetworkManager/system-connections/wg-BE-44-P2P.conf";
+  # };
 
   # systemd.services."netns@" = {
   #   description = "%I network namespace";
