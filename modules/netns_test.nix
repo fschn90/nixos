@@ -32,6 +32,7 @@
         ${iproute}/bin/ip netns exec wg \
           ${wireguard-tools}/bin/wg setconf mywg1 ${toString config.sops.secrets."networking/system-connections/wg-BE-44-P2P.conf".path}
         ${iproute}/bin/ip -n wg link set mywg1 up
+        ${iproute}/bin/ip -n wg link set lo up
         ${iproute}/bin/ip -n wg route add default dev mywg1
         # ${iproute}/bin/ip -n wg -6 route add default dev wg0
       '';
