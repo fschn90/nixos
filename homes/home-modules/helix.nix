@@ -76,6 +76,7 @@
   home.packages = with pkgs; [
     lazygit
     yazi # terminal file manager
+    wl-clipboard
   ];
 }
 
