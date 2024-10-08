@@ -65,7 +65,7 @@
         see -e
         ${iproute}/bin/ip link add wg0 type wireguard
         ${iproute}/bin/ip link set wg0 netns wg
-        ${iproute}/bin/ip -n wg address add ${toString config.sops.secrets."Deluge/vpn-ip4addr-cidr".path} dev wg0
+        ${iproute}/bin/ip -n wg address add $(cat ${toString config.sops.secrets."Deluge/vpn-ip4addr-cidr".path}) dev wg0
         # ${iproute}/bin/ip -n wg -6 address add <ipv6 VPN addr/cidr> dev wg0
         ${iproute}/bin/ip netns exec wg \
           ${wireguard-tools}/bin/wg setconf wg0 ${toString config.sops.secrets."Deluge/vpn.conf".path}
