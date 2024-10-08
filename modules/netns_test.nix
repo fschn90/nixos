@@ -49,13 +49,12 @@
     };
   };
 
-
   # binding deluged to network namespace
   systemd.services.deluged.bindsTo = [ "netns@wg.service" ];
-  systemd.services.deluged.after = [ "wg.service" ];
   systemd.services.deluged.requires = [ "network-online.target" "wg.service" ];
   systemd.services.deluged.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
 
+  # allowing delugeweb to access deluged in network namespace, a socket is necesarry 
   systemd.sockets."proxy-to-deluged" = {
     enable = true;
     description = "Socket for Proxy to Deluge Daemon";
