@@ -3,6 +3,8 @@
 {
 
   sops.secrets."networking/system-connections/wg-BE-44-P2P.conf" = { };
+  sops.secrets."Deluge/vpn.conf" = { };
+  sops.secrets."Deluge/vpn-ip4addr-cidr" = { };
 
   systemd.services."netns@" = {
     description = "%I network namespace";
@@ -27,11 +29,11 @@
         set -e
         ${iproute}/bin/ip link add mywg1 type wireguard
         ${iproute}/bin/ip link set mywg1 netns wg
-        ${iproute}/bin/ip -n wg address add 10.2.0.2/32 dev mywg1
+        ${iproute}/bin/ip -n wg address add ${toString config.sops.secrets."Deluge/vpn-ip4addr-cidr".path} dev wg0
         # ${iproute}/bin/ip -n wg -6 address add <ipv6 VPN addr/cidr> dev wg0
         ${iproute}/bin/ip netns exec wg \
-          ${wireguard-tools}/bin/wg setconf mywg1 ${toString config.sops.secrets."networking/system-connections/wg-BE-44-P2P.conf".path}
-        ${iproute}/bin/ip -n wg link set mywg1 up
+          ${wireguard-tools}/bin/wg setconf wg0 ${toString config.sops.secrets."Deluge/vpn.conf".path}
+        ${iproute}/bin/ip -n wg link set wg0 up
         ${iproute}/bin/ip -n wg link set lo up
         ${iproute}/bin/ip -n wg route add default dev mywg1
         # ${iproute}/bin/ip -n wg -6 route add default dev wg0
