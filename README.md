@@ -468,4 +468,16 @@ To avoid error `The option services.nginx.virtualHosts."firefox-sync.fschn.org".
 From [HackerNews](https://news.ycombinator.com/item?id=34674569), even though not relevant yet:
 > sometimes the first sync times out when you have a larger data set, and you need to manually enable each sync type to reduce the size. But once it's up and running, I don't really have any issues.
 
+### Deluge network namespace with wireguard vpn
 
+first rebuild switch failed with `Failed to open network namespace path /var/run/netns/wg: No such file or directory`, solved then with:
+
+```bash
+sudo systemctl restart deluged
+```
+
+also delugeweb failed with `Dependency failed for Deluge BitTorrent WebUI.`, solved then with:
+
+```bash
+sudo systemctl restart delugeweb
+```
