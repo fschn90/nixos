@@ -28,9 +28,9 @@
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = with pkgs; writers.writeBash "wg-up" ''
-        set -e
-        ${iproute}/bin/ip link add mywg1 type wireguard
-        ${iproute}/bin/ip link set mywg1 netns wg
+        see -e
+        ${iproute}/bin/ip link add wg0 type wireguard
+        ${iproute}/bin/ip link set wg0 netns wg
         ${iproute}/bin/ip -n wg address add ${toString config.sops.secrets."Deluge/vpn-ip4addr-cidr".path} dev wg0
         # ${iproute}/bin/ip -n wg -6 address add <ipv6 VPN addr/cidr> dev wg0
         ${iproute}/bin/ip netns exec wg \
@@ -38,13 +38,13 @@
         ${iproute}/bin/ip -n wg link set wg0 up
         # need to set lo up as network namespace is started with lo down
         ${iproute}/bin/ip -n wg link set lo up
-        ${iproute}/bin/ip -n wg route add default dev mywg1
+        ${iproute}/bin/ip -n wg route add default dev wg0
         # ${iproute}/bin/ip -n wg -6 route add default dev wg0
       '';
       ExecStop = with pkgs; writers.writeBash "wg-down" ''
-        ${iproute}/bin/ip -n wg route del default dev mywg1
+        ${iproute}/bin/ip -n wg route del default dev wg0
         # ${iproute}/bin/ip -n wg -6 route del default dev wg0
-        ${iproute}/bin/ip -n wg link del mywg1
+        ${iproute}/bin/ip -n wg link del wg0
       '';
     };
   };
