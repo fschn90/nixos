@@ -30,6 +30,7 @@
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
     ../../modules/sanoid-backup-source.nix
+    ../../modules/netns_test.nix
   ];
 
   # necessary for zfs

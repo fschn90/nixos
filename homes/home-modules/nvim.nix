@@ -8,7 +8,7 @@
     nerdfonts
     gcc
     unzip # for mason
-    wl-clipboard
+    # wl-clipboard
     ripgrep
     gdu
     bottom
