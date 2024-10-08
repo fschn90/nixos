@@ -2,10 +2,11 @@
 
 {
 
-  sops.secrets."networking/system-connections/wg-BE-44-P2P.conf" = { };
+  # VPN wireguard conf file
   sops.secrets."Deluge/vpn.conf" = { };
   sops.secrets."Deluge/vpn-ip4addr-cidr" = { };
 
+  # creating network namespace
   systemd.services."netns@" = {
     description = "%I network namespace";
     before = [ "network.target" ];
@@ -17,6 +18,7 @@
     };
   };
 
+  # setting up wireguard interafe within network namespace
   systemd.services.wg = {
     description = "wg network interface";
     bindsTo = [ "netns@wg.service" ];
@@ -34,6 +36,7 @@
         ${iproute}/bin/ip netns exec wg \
           ${wireguard-tools}/bin/wg setconf wg0 ${toString config.sops.secrets."Deluge/vpn.conf".path}
         ${iproute}/bin/ip -n wg link set wg0 up
+        # need to set lo up as network namespace is started with lo down
         ${iproute}/bin/ip -n wg link set lo up
         ${iproute}/bin/ip -n wg route add default dev mywg1
         # ${iproute}/bin/ip -n wg -6 route add default dev wg0
@@ -47,6 +50,7 @@
   };
 
 
+  # binding deluged to network namespace
   systemd.services.deluged.bindsTo = [ "netns@wg.service" ];
   systemd.services.deluged.requires = [ "network-online.target" ];
   systemd.services.deluged.after = [ "wg.service" ];
@@ -59,6 +63,7 @@
     wantedBy = [ "sockets.target" ];
   };
 
+  # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
   systemd.services."proxy-to-deluged" = {
     enable = true;
     description = "Proxy to Deluge Daemon in Network Namespace";
