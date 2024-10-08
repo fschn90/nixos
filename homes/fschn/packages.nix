@@ -32,7 +32,6 @@
     gimp-with-plugins
     zellij
     nextcloud-client
-    # helix
   ];
 
 }

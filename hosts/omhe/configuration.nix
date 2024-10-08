@@ -12,25 +12,16 @@
       ../../modules/systemPackages.nix
       ../../modules/wireguard.nix
       ../../modules/ssh.nix
-      # ../../modules/boot.nix
       ../../modules/users.nix
       ../../modules/sops.nix
       ../../modules/tailscale.nix
       ../../modules/sanoid-backup-target.nix
       ../../modules/nix.nix
-      # ../../modules/coredns.nix
-      ../../modules/nameserver.nix
       ../../modules/nextcloud.nix
       ../../modules/adguardhome.nix
       ../../modules/acme.nix
-      # ../../modules/grafana.nix
-      # ../../modules/prometheus-exporters.nix
-      # ../../modules/prometheus-scraper.nix
       ../../modules/jellyfin.nix
       ../../modules/nginx.nix
-      # ../../modules/loki.nix
-      # ../../modules/promtail.nix
-      # ../../modules/scrutiny.nix
       ../../modules/monitoring/default-server.nix
       ../../modules/deluge.nix
       ../../modules/firefox-sync.nix

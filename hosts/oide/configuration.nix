@@ -9,7 +9,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./t490-nvidia.nix
-    # ../../modules/boot.nix
     ../../modules/sound.nix
     ../../modules/bluetooth.nix
     ../../modules/zfs.nix
@@ -23,14 +22,10 @@
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
     ../../modules/nix.nix
-    # ../../modules/prometheus-exporters.nix
-    # ../../modules/promtail.nix
-    # ../../modules/scrutiny.nix
     ../../modules/nginx.nix
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
     ../../modules/sanoid-backup-source.nix
-    ../../modules/netns_test.nix
   ];
 
   # necessary for zfs

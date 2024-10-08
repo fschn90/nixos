@@ -9,7 +9,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./amd.nix
-    ../../modules/boot.nix
+    ../../modules/dual-boot.nix
     ../../modules/sound.nix
     ../../modules/bluetooth.nix
     ../../modules/zfs.nix
@@ -25,10 +25,6 @@
     ../../modules/protonmail-bridge.nix
     ../../modules/sanoid-backup-source.nix
     ../../modules/nix.nix
-    # ../../modules/nameserver.nix
-    # ../../modules/prometheus-exporters.nix
-    # ../../modules/promtail.nix
-    # ../../modules/scrutiny.nix
     ../../modules/nginx.nix
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
