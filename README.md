@@ -9,6 +9,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - smartctl_exporter and scrutiny error logs
 - spotify keeps redownloading saved songs when starting application every time
 - deluged delaying shut down by 1.5 minutes
+- helix does not yank into system clipboard
 
 ### Minor Features
 - prometheus data on extra zfs dataset?
@@ -32,6 +33,9 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
   - dashboard monitoring sanoid and syncoid
   - alerting
   - restic (once offsite backup is done)
+
+### Other
+- write wiki page for running deluge in jjka
 
 
 ## Documentation
