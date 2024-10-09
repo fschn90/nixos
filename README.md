@@ -481,3 +481,6 @@ also delugeweb failed with `Dependency failed for Deluge BitTorrent WebUI.`, sol
 ```bash
 sudo systemctl restart delugeweb
 ```
+
+
+How to get magnet links into deluge web client: use the firefox extention `Torrent to Web`.
