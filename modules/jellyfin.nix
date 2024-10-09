@@ -18,6 +18,9 @@
     };
   };
 
+  # making sure jellyfin has access to deluge download dir
+  users.users.jellyfin.extraGroups = [ "deluge" ];
+
   nixpkgs.overlays = with pkgs; [
     (
       final: prev:
