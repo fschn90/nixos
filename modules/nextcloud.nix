@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, ... }:
 
 {
 
@@ -15,13 +15,13 @@
     configureRedis = true; # for caching
     maxUploadSize = "16G"; # bigger file size for eg movies
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit calendar contacts notes onlyoffice tasks 
+      inherit calendar contacts notes onlyoffice tasks
         deck maps phonetrack polls cospend;
-        memories = pkgs.fetchNextcloudApp {
-          sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
-          url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
-          license = "agpl3Only";
-        };
+      memories = pkgs.fetchNextcloudApp {
+        sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
+        url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
+        license = "agpl3Only";
+      };
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
@@ -41,7 +41,7 @@
     path = "/tank/Nextcloud/Admin-Password";
     owner = "nextcloud";
   };
-  
+
   # reverse proxy
   services.nginx = {
     virtualHosts.${config.services.nextcloud.hostName} = {
@@ -49,11 +49,11 @@
       forceSSL = true;
     };
   };
- 
+
   # WIP TODO: add exception for nextcloud-exporter and reset timeout to default 5s   https://github.com/xperimental/nextcloud-exporter/issues/108
   services.prometheus.exporters.nextcloud.enable = true;
   services.prometheus.exporters.nextcloud.tokenFile = config.sops.secrets."Nextcloud/authToken".path;
-  services.prometheus.exporters.nextcloud.url = "https://${builtins.toString config.services.nextcloud.hostName}"; 
+  services.prometheus.exporters.nextcloud.url = "https://${builtins.toString config.services.nextcloud.hostName}";
   # to avoid time out errors in the beginning, seems to be running much faster now, maybe not needed anymore, ie default value enough
   services.prometheus.exporters.nextcloud.timeout = "60s";
   services.prometheus.exporters.nextcloud.extraFlags = [
