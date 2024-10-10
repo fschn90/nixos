@@ -13,7 +13,7 @@
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true; # for caching
-    maxUploadSize = "16G"; # bigger file size for eg movies
+    maxUploadSize = "50G"; # bigger file size for eg movies
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit calendar contacts notes onlyoffice tasks
         deck maps phonetrack polls cospend;
@@ -21,6 +21,7 @@
       #   sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
       #   url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
       #   license = "agpl3Only";
+      # };
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
