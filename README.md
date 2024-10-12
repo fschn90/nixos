@@ -8,12 +8,15 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 - smartctl_exporter and scrutiny error logs
 - spotify keeps redownloading saved songs when starting application every time
-- deluged delaying shut down by 1.5 minutes
 - helix does not yank into system clipboard
 
 ### Minor Features
 - prometheus data on extra zfs dataset?
 - index for troubleshooting section
+- persist deluge config
+- document node exporter solution for broken graphes with Scrape interval = 1m, if it works -> https://github.com/grafana/grafana/issues/29858#issuecomment-2120235388
+- adapt adgaurd custom blocklist
+- remove neovim
 
 ### Major Features
 - NH the nix helper (vimjoyer)
@@ -360,7 +363,7 @@ Second, binding deluged to newly created network namespace and enabling connecti
 
 Navigate to **about:config** in your Firefox address bar and set **identity.sync.tokenserver.uri** to **https://firefox-sync.fschn.org/1.0/sync/1.5**.
 
-On Firefox android go to Settings > About Firefox and tap the logo a bunch, it will enable a few hidden options back on the main Settings page. One of which should be custom Sync and Firefox Accound settimgs.""
+On Firefox android go to Settings > About Firefox and tap the logo a bunch, it will enable a few hidden options back on the main Settings page. One of which should be custom Sync and Firefox Accound settings.
 
 ---
 
@@ -371,6 +374,7 @@ On Firefox android go to Settings > About Firefox and tap the logo a bunch, it w
 3. [Nextcloud reinstallation](#nextcloud)
 4. [Grafana adding or removing dashboard ](#grafana)
 5. [Firefox-syncserver](#syncserver)
+6. [Deluge in network namespace with wireguard vpn](#deluge-netns)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -468,7 +472,7 @@ To avoid error `The option services.nginx.virtualHosts."firefox-sync.fschn.org".
 From [HackerNews](https://news.ycombinator.com/item?id=34674569), even though not relevant yet:
 > sometimes the first sync times out when you have a larger data set, and you need to manually enable each sync type to reduce the size. But once it's up and running, I don't really have any issues.
 
-### Deluge network namespace with wireguard vpn
+### Deluge in network namespace with wireguard vpn <a name="deluge-netns"></a>
 
 first rebuild switch failed with `Failed to open network namespace path /var/run/netns/wg: No such file or directory`, solved then with:
 
