@@ -8,6 +8,7 @@
     scrapeConfigs = [
       {
         job_name = "node";
+        scrape_interval = "1m";
         static_configs = [{
           targets = [
             "omhe:${toString config.services.prometheus.exporters.node.port}"
