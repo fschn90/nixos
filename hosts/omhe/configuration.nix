@@ -17,14 +17,14 @@
       ../../modules/tailscale.nix
       ../../modules/sanoid-backup-target.nix
       ../../modules/nix.nix
-      ../../modules/nextcloud.nix
-      ../../modules/adguardhome.nix
+      ../../modules/home-lab/nextcloud.nix
+      ../../modules/home-lab/adguardhome.nix
       ../../modules/acme.nix
-      ../../modules/jellyfin.nix
+      ../../modules/home-lab/jellyfin.nix
       ../../modules/nginx.nix
       ../../modules/monitoring/default-server.nix
-      ../../modules/deluge.nix
-      ../../modules/firefox-sync.nix
+      ../../modules/home-lab/deluge.nix
+      ../../modules/home-lab/firefox-sync.nix
     ];
 
   # Use the GRUB 2 boot loader.
