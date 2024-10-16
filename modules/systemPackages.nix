@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -8,13 +8,13 @@
     wget
     lshw
     htop
-    nixfmt-classic
-    tree
-    lua
-    python3
-    bash
-    docker
-    postgresql
+    # nixfmt-classic
+    # tree
+    # lua
+    # python3
+    # bash
+    # docker
+    # postgresql
   ];
 
 }

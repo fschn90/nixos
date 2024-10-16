@@ -2,7 +2,7 @@
 {
   imports = [
     ./packages.nix
-    ../home-modules/nvim.nix
+    # ../home-modules/nvim.nix
     ../home-modules/alacritty.nix
     ../home-modules/dconf.nix
     ../home-modules/fish.nix
