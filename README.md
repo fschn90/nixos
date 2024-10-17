@@ -373,6 +373,7 @@ On Firefox android go to Settings > About Firefox and tap the logo a bunch, it w
 4. [Grafana adding or removing dashboard ](#grafana)
 5. [Firefox-syncserver](#syncserver)
 6. [Deluge in network namespace with wireguard vpn](#deluge-netns)
+7. [Jellyfin](#jellerror)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -486,3 +487,12 @@ sudo systemctl restart delugeweb
 
 
 How to get magnet links into deluge web client: use the firefox extention `Torrent to Web`.
+
+### Jellyfin <a name="jellerror"></a>
+
+`Error displaying media content` for all media files, then this helped:
+```bash
+mv /var/cache/jellyfin /var/cache/jellyfin-bak
+mv /tank/Jellyfin/config /tank/Jellyfin/config-bak
+sudo systemctl restart jellyfin
+```
