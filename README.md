@@ -9,14 +9,12 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - smartctl_exporter and scrutiny error logs
 - spotify keeps redownloading saved songs when starting application every time
 - helix does not yank into system clipboard
+- remove /var/cache/jellyfin-bak and /tank/Jellyfin/config-bak
 
 ### Minor Features
 - prometheus data on extra zfs dataset?
-- index for troubleshooting section
 - persist deluge config
 - document node exporter solution for broken graphes with Scrape interval = 1m, if it works -> https://github.com/grafana/grafana/issues/29858#issuecomment-2120235388
-- adapt adgaurd custom blocklist
-- remove neovim
 
 ### Major Features
 - NH the nix helper (vimjoyer)
