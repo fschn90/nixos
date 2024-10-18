@@ -14,7 +14,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ### Minor Features
 - prometheus data on extra zfs dataset?
 - persist deluge config
-- document node exporter solution for broken graphes with Scrape interval = 1m, if it works -> https://github.com/grafana/grafana/issues/29858#issuecomment-2120235388
 
 ### Major Features
 - NH the nix helper (vimjoyer)
@@ -370,7 +369,7 @@ On Firefox android go to Settings > About Firefox and tap the logo a bunch, it w
 1. [Auto unlocking gnome keyring](#keyring)
 2. [Switching bootloader from Grub to systemd-boot](#bootloader)
 3. [Nextcloud reinstallation](#nextcloud)
-4. [Grafana adding or removing dashboard ](#grafana)
+4. [Grafana](#grafana-trouble)
 5. [Firefox-syncserver](#syncserver)
 6. [Deluge in network namespace with wireguard vpn](#deluge-netns)
 7. [Jellyfin](#jellerror)
@@ -423,12 +422,12 @@ nixos-rebuild switch
 renaming the admin user with `services.nextcloud.config.adminuser` to another value does work. probably the previous user is kept in the cache despite delete the whole filesystem. also deleteing the old users in the nextcloud interface ensures not running out of names eventually.
 
 
-### Grafana adding or removing dashboard <a name="grafana"></a>
+### Grafana <a name="grafana-trouble"></a>
 
 ---
 
 
-to avoid `provisioned dashboard cannot be deleted / saved`, the followgin needs to be edited:
+1. to avoid `provisioned dashboard cannot be deleted / saved`, the followgin needs to be edited:
 
 ```nix
 
@@ -443,6 +442,8 @@ to avoid `provisioned dashboard cannot be deleted / saved`, the followgin needs 
 
 but also, when adding a new dashboard it needs to be imported manually with the grafana web interface and then exported as json first, and only then to be added to the config via the above code. this adds the specific datasource uid to the json.
 
+2. Node Exporter Dashboard graphs, displaying `no data` when selecting time range smaller than 24h. 
+Because the dashboard is expecting prometheus to scrape every 15s.
 
 ### Firefox-syncserver <a name="syncserver"></a>
 

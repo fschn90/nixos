@@ -8,7 +8,7 @@
     scrapeConfigs = [
       {
         job_name = "node";
-        scrape_interval = "1m";
+        scrape_interval = "15s"; # Necessary for the Node Exporter Dashbaord to fully work, not showing no data in some graphs when time selected is smaller than 24h 
         static_configs = [{
           targets = [
             "omhe:${toString config.services.prometheus.exporters.node.port}"
