@@ -9,7 +9,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - smartctl_exporter and scrutiny error logs
 - spotify keeps redownloading saved songs when starting application every time
 - helix does not yank into system clipboard
-- remove /var/cache/jellyfin-bak and /tank/Jellyfin/config-bak
 
 ### Minor Features
 - prometheus data on extra zfs dataset?
@@ -35,7 +34,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
   - restic (once offsite backup is done)
 
 ### Other
-- write wiki page for running deluge in jjka
+- write wiki page for running deluge in network namespace with wireguard vpn
 
 
 ## Documentation
@@ -497,3 +496,5 @@ mv /var/cache/jellyfin /var/cache/jellyfin-bak
 mv /tank/Jellyfin/config /tank/Jellyfin/config-bak
 sudo systemctl restart jellyfin
 ```
+
+didnt remove metadata in fact.
