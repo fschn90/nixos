@@ -13,6 +13,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ### Minor Features
 - prometheus data on extra zfs dataset?
 - persist deluge config
+- update nextcloud
 
 ### Major Features
 - NH the nix helper (vimjoyer)
