@@ -16,7 +16,8 @@
     maxUploadSize = "50G"; # bigger file size for eg movies
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit calendar contacts notes onlyoffice tasks
-        deck maps phonetrack polls cospend;
+        deck phonetrack polls cospend;
+      # error with pkgs.nextcloud30: maps
       # memories = pkgs.fetchNextcloudApp {
       #   sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
       #   url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
@@ -26,7 +27,8 @@
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
     home = "/tank/Nextcloud";
-    package = pkgs.nextcloud29; # to avoid build error with nextcloud27 marked as insecure EOL
+    # package = pkgs.nextcloud29; # to avoid build error with nextcloud27 marked as insecure EOL
+    package = pkgs.nextcloud30;
     settings = {
       # settings for loki scrape also still WIP on loki end
       overwriteprotocol = "https";
