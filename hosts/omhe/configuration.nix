@@ -25,6 +25,7 @@
       ../../modules/monitoring/default-server.nix
       ../../modules/home-lab/deluge.nix
       ../../modules/home-lab/firefox-sync.nix
+      ../../modules/home-lab/immich.nix
     ];
 
   # Use the GRUB 2 boot loader.

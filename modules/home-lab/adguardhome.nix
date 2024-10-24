@@ -129,7 +129,7 @@
             answer = "100.106.245.44";
           }
           {
-            domain = "firefox.sync";
+            domain = "photos.fschn.org";
             answer = "100.106.245.44";
           }
 
