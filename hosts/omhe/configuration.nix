@@ -26,6 +26,7 @@
       ../../modules/home-lab/deluge.nix
       ../../modules/home-lab/firefox-sync.nix
       ../../modules/home-lab/immich.nix
+      ../../modules/home-lab/paperless.nix
     ];
 
   # Use the GRUB 2 boot loader.

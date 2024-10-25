@@ -132,6 +132,10 @@
             domain = "photos.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "paperless.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 
