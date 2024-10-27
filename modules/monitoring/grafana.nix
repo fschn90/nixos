@@ -19,8 +19,8 @@
         # and Port
         http_port = 3001;
         # Grafana needs to know on which domain and URL it's running
-        domain = "grafana.fschn.org";
-        root_url = "https://grafana.fschn.org/"; # Not needed if it is `https://your.domain/`
+        domain = "monitor.fschn.org";
+        root_url = "https://monitor.fschn.org/"; # Not needed if it is `https://your.domain/`
         serve_from_sub_path = true;
         enable_gzip = true;
         enforce_domain = true;
@@ -94,7 +94,7 @@
     };
   };
 
-  services.nginx.virtualHosts."grafana.fschn.org" = {
+  services.nginx.virtualHosts."monitor.fschn.org" = {
     addSSL = true; # important: addSSL not foreSSL
     useACMEHost = "fschn.org";
     locations."/" = {

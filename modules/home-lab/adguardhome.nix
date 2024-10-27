@@ -97,7 +97,7 @@
             answer = "100.106.245.44";
           }
           {
-            domain = "grafana.fschn.org";
+            domain = "monitor.fschn.org";
             answer = "100.106.245.44";
           }
           {
