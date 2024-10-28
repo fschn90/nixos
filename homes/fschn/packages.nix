@@ -7,7 +7,7 @@
     thunderbird
     vlc
     transmission-gtk
-    vscode
+    # vscode
     google-chrome
     spotify
     signal-desktop
