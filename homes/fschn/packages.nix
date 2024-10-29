@@ -8,7 +8,7 @@
     vlc
     transmission-gtk
     # vscode
-    google-chrome
+    # google-chrome
     spotify
     signal-desktop
     libreoffice
