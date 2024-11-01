@@ -16,8 +16,9 @@
     maxUploadSize = "50G"; # bigger file size for eg movies
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit calendar contacts notes onlyoffice tasks
-        deck phonetrack polls cospend;
-      # error with pkgs.nextcloud30: maps
+        deck phonetrack polls cospend
+        music gpoddersync;
+      # error with pkgs.nextcloud30: maps news integration_paperless 
       # memories = pkgs.fetchNextcloudApp {
       #   sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
       #   url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
