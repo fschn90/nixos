@@ -2,14 +2,14 @@
 
 {
 
- # Enable the X11 windowing system.
+  # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager = {
     gdm.wayland = true;
     gdm.enable = true;
-   };
+  };
 
   # auto login user at boot up
   services.displayManager.autoLogin.enable = true;
@@ -20,7 +20,7 @@
   # tweaks 
   services.gnome.core-utilities.enable = false;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = false;
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]);
