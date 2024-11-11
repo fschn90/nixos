@@ -4,6 +4,8 @@
 
   services.syncthing = {
     enable = true;
+    # guiAddress = "omhe:8384";
+    guiAddress = "100.106.245.44:8384";
     openDefaultPorts = true;
     settings.gui = {
       user = "myuser";
