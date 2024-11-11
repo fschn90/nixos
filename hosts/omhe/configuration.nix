@@ -27,6 +27,7 @@
       ../../modules/home-lab/firefox-sync.nix
       ../../modules/home-lab/immich.nix
       ../../modules/home-lab/paperless.nix
+      ../../modules/home-lab/syncthing.nix
     ];
 
   # Use the GRUB 2 boot loader.
