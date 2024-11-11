@@ -136,6 +136,10 @@
             domain = "paperless.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "syncthing-omhe.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 
