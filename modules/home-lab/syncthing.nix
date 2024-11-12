@@ -7,6 +7,7 @@
     # guiAddress = "omhe:8384";
     guiAddress = "100.106.245.44:8384";
     openDefaultPorts = true;
+    user = config.users.users.fschn.name;
     settings.gui = {
       user = "myuser";
       password = "mypassword";
@@ -26,8 +27,10 @@
     };
   };
 
-  users.users.syncthing.extraGroups = [ "users" ];
-  users.users.fschn.extraGroups = [ "syncthing" ];
+  # users.users.syncthing.extraGroups = [ "users" ];
+  # users.users.fschn.extraGroups = [ "syncthing" ];
+  # systemd.services.syncthing.serviceConfig.UMask = "0007";
+
 
 }
 
