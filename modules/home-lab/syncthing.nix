@@ -26,5 +26,8 @@
     };
   };
 
+  users.users.syncthing.extraGroups = [ "users" ];
+  users.users.fschn.extraGroups = [ "syncthing" ];
+
 }
 
