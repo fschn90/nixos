@@ -28,6 +28,7 @@
     ../../modules/nginx.nix
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
+    ./syncthing.nix
   ];
 
   # necesarry for zfs
