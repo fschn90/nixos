@@ -8,6 +8,8 @@
     guiAddress = "100.114.14.104:8384";
     # user = config.users.users.fschn.name;
     user = "fschn";
+    group = "users";
+    dataDir = "/home/fschn";
     openDefaultPorts = true;
     settings.gui = {
       user = "myuser";

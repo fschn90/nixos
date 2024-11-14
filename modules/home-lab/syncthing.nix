@@ -7,7 +7,10 @@
     # guiAddress = "omhe:8384";
     guiAddress = "100.106.245.44:8384";
     openDefaultPorts = true;
-    user = config.users.users.fschn.name;
+    # user = config.users.users.fschn.name;
+    user = "fschn";
+    group = "users";
+    dataDir = "/tank/Paperless";
     settings.gui = {
       user = "myuser";
       password = "mypassword";
