@@ -25,7 +25,8 @@
       locations."/" = {
         # proxyPass = "http://localhost:${builtins.toString config.services.scrutiny.settings.web.listen.port}";
         # proxyPass = "http://localhost:8384;
-        proxyPass = "http://127.0.0.1:8384/";
+        # proxyPass = "http://127.0.0.1:8384/";
+        proxyPass = "http://100.114.14.104:8384";
       };
     };
   };
