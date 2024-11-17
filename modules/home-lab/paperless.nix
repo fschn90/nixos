@@ -7,6 +7,7 @@
     passwordFile = config.sops.secrets."paperless/admin-password".path;
     consumptionDirIsPublic = true;
     # address = "paperless.fschn.org";
+    dataDir = "/tank/Paperless";
     settings = {
       PAPERLESS_CONSUMER_IGNORE_PATTERN = [
         ".DS_STORE/*"
