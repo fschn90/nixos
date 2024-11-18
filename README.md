@@ -48,6 +48,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 6. [Jellyfin](#jellyfin)
 7. [Deluge](#deluge)
 8. [Firefox-syncserver](#firefox-syncserver)
+9. [Syncthing](#syncthing)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -361,6 +362,16 @@ Second, binding deluged to newly created network namespace and enabling connecti
 Navigate to **about:config** in your Firefox address bar and set **identity.sync.tokenserver.uri** to **https://firefox-sync.fschn.org/1.0/sync/1.5**.
 
 On Firefox android go to Settings > About Firefox and tap the logo a bunch, it will enable a few hidden options back on the main Settings page. One of which should be custom Sync and Firefox Accound settings.
+
+### Syncthing <a name="syncthing"></a>
+
+---
+
+```bash
+sudo zfs create tank/Paperless
+sudo chown -R fschn:users /tank/Paperless
+```
+
 
 ---
 
