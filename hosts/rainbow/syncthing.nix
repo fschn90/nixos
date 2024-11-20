@@ -12,8 +12,28 @@
     dataDir = "/home/fschn";
     openDefaultPorts = true;
     settings.gui = {
-      user = "myuser";
-      password = "mypassword";
+      user = "fschn";
+      # password = "mypassword";
+    };
+    overrideDevices = true;
+    overrideFolders = true;
+    settings.options = {
+      globalAnnounceEnabled = false;
+      localAnnounceEnabled = true;
+    };
+    settings = {
+      devices = {
+        "omhe" = {
+          id = "5JOBVZM-DSBMHPK-MY5LAOS-OLBTSLW-EUHASPW-RJA4KIC-QHSBYPV-VEBSNQW";
+          address = "tcp://100.106.245.44:220000";
+        };
+      };
+      folders = {
+        "test-dir" = {
+          path = "/home/fschn/test-dir";
+          devices = [ "omhe" ];
+        };
+      };
     };
   };
 

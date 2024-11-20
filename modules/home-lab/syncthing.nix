@@ -12,8 +12,28 @@
     group = "users";
     dataDir = "/tank/Paperless";
     settings.gui = {
-      user = "myuser";
-      password = "mypassword";
+      user = "fschn";
+      # password = "mypassword";
+    };
+    overrideDevices = true;
+    overrideFolders = true;
+    settings.options = {
+      globalAnnounceEnabled = false;
+      localAnnounceEnabled = true;
+    };
+    settings = {
+      devices = {
+        "rainbow" = {
+          id = "MSBKHEW-54C7Z5L-O65KLIJ-PCQZW72-C4ODMY3-SE4IXQQ-KWI2LPU-5YTVNQW"; # does it need to be the same as the other machine??
+          address = "tcp://100.114.14.104:220000";
+        };
+      };
+      folders = {
+        "test-dir" = {
+          path = "/tank/Paperless/test-dir";
+          devices = [ "rainbow" ];
+        };
+      };
     };
   };
 
