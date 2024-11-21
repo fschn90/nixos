@@ -20,6 +20,7 @@
     settings.options = {
       globalAnnounceEnabled = false;
       localAnnounceEnabled = true;
+      urAccepted = -1;
     };
     settings = {
       devices = {
