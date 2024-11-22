@@ -25,6 +25,8 @@
     evince # gnome doc viewer
     gtypist # type tutor, 10-finger-system 
     zellij
+    # zip
+    gnome.file-roller # Archive manager
   ];
 
 }

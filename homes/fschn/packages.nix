@@ -32,6 +32,8 @@
     gimp-with-plugins
     zellij
     nextcloud-client
+    # zip
+    gnome.file-roller # Archive manager
   ];
 
 }
