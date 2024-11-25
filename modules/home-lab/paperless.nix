@@ -18,6 +18,9 @@
         optimize = 1;
         pdfa_image_compression = "lossless";
       };
+      PAPERLESS_CONSUMER_RECURSIVE = true;
+      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
+      # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
     };
   };
 
