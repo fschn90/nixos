@@ -24,6 +24,7 @@
     };
   };
 
+  users.users.paperless.extraGroups = [ "users" ];
 
   services.nginx.virtualHosts."paperless.fschn.org" = {
     forceSSL = true;
