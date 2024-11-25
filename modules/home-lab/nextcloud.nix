@@ -35,6 +35,7 @@
       overwriteprotocol = "https";
       loglevel = 1;
       log_type = "file";
+      log_type_audit = "file";
     };
   };
 
