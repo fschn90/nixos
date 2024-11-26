@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, ... }:
 
 {
 
@@ -32,7 +32,20 @@
           source_labels = [ "__journal__systemd_unit" ];
           target_label = "unit";
         }];
-      }];
+      }
+        {
+          job_name = "system";
+          static_configs = [{
+            # targets = [ "localhost" ];
+            targets = [ "100.106.245.44" ];
+            labels = {
+              instance = "nextcloud.fschn.org";
+              env = "home-lab";
+              job = "nextcloud";
+              __path__ = "/tank/Nextcloud/data/{nextcloud,audit}.log";
+            };
+          }];
+        }];
     };
     # extraFlags
   };
