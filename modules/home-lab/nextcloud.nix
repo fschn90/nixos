@@ -35,7 +35,9 @@
       overwriteprotocol = "https";
       loglevel = 1;
       log_type = "file";
+      logfile = "/tank/Nextcloud/data/nextcloud.log";
       log_type_audit = "file";
+      logfile_audit = "/tank/Nextcloud/data/audit.log";
     };
   };
 
