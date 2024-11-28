@@ -221,6 +221,37 @@ TOKEN=$(openssl rand -hex 32)
 nextcloud-occ config:app:set serverinfo token --value "$TOKEN"
 ```
 
+- ONLYOFFICE DocumentServer:
+
+```nix
+
+  services.onlyoffice = {
+    enable = true;
+    jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
+    hostname = "office.fschn.org";
+  };
+
+  # reverse proxy
+  services.nginx = {
+    virtualHosts.${config.services.onlyoffice.hostname} = {
+      useACMEHost = "fschn.org";
+      forceSSL = true;
+    };
+  };
+
+  # secret deployment
+  sops.secrets."onlyoffice/jwtSecretFile" = {
+    owner = "onlyoffice";
+  };
+```
+
+
+
+Then point nextcloud to the document server from within the Nextcloud UI ("Administration Settings" -> Administration -> ONLYOFFICE), and make sure the 'services.onlyoffice.jwtSecretFile points to a file containing the same key as entered in the configuration of the Nextcloud app. 
+
+Also needed to change the port of scrutiny from 8080 to 8081, as somehow the onlyoffice documentserver needs the 8080 port.
+
+
 ### Auto unlock gnome keyring <a name="keyring"></a>
 
 ---
