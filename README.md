@@ -199,7 +199,7 @@ boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" "tank"];
 
 ---
 
-- prerequesite for `home = "/mnt/Nextcloud-test";` :
+- prerequesite for `home = "/tank/Nextcloud";` :
 
 ```bash
 sudo zfs create tank/Nextcloud

@@ -9,7 +9,6 @@
     database.createLocally = true;
     config = {
       dbtype = "pgsql"; # nextcloud is not optimised for sqlite thus pgsql
-      # adminuser = "admin"; 
       adminpassFile = config.sops.secrets."Nextcloud/admin/Password".path;
     };
     configureRedis = true; # for caching
@@ -18,20 +17,12 @@
       inherit calendar contacts notes onlyoffice tasks
         deck phonetrack polls cospend
         music gpoddersync;
-      # error with pkgs.nextcloud30: maps news integration_paperless 
-      # memories = pkgs.fetchNextcloudApp {
-      #   sha256 = "sha256-DJPskJ4rTECTaO1XJFeOD1EfA3TQR4YXqG+NIti0UPE=";
-      #   url = "https://github.com/pulsejet/memories/releases/download/v7.3.1/memories.tar.gz";
-      #   license = "agpl3Only";
-      # };
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
     home = "/tank/Nextcloud";
-    # package = pkgs.nextcloud29; # to avoid build error with nextcloud27 marked as insecure EOL
     package = pkgs.nextcloud30;
     settings = {
-      # settings for loki scrape also still WIP on loki end
       overwriteprotocol = "https";
       loglevel = 1;
       log_type = "file";
