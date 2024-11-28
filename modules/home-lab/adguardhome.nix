@@ -144,6 +144,10 @@
             domain = "syncthing-rainbow.fschn.org";
             answer = "100.114.14.104";
           }
+          {
+            domain = "office.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 
