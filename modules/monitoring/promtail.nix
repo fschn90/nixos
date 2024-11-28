@@ -50,4 +50,6 @@
     # extraFlags
   };
 
+  users.users.promtail.extraGroups = [ "nextcloud" ];
+
 }
