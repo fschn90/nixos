@@ -252,6 +252,40 @@ Then point nextcloud to the document server from within the Nextcloud UI ("Admin
 Also needed to change the port of scrutiny from 8080 to 8081, as somehow the onlyoffice documentserver needs the 8080 port.
 
 
+- nextcloud logs dashbaord with loki and promtail
+
+extra nextcloud settings:
+```nix
+services.nextcloud.settings = {
+      loglevel = 1;
+      log_type = "file";
+      logfile = "/tank/Nextcloud/data/nextcloud.log";
+      log_type_audit = "file";
+      logfile_audit = "/tank/Nextcloud/data/audit.log";
+    };
+```
+
+add following scrape_config to `services.promtail.configuration`:
+```nix
+  {         
+     job_name = "system";
+    static_configs = [{
+      targets = [ "100.106.245.44" ];
+      labels = {
+        instance = "nextcloud.fschn.org";
+        env = "home-lab";
+        job = "nextcloud";
+        __path__ = "/tank/Nextcloud/data/{nextcloud,audit}.log";
+      };
+    }];
+  };
+```
+
+and give the necesary permissions for the promtail user with:
+```nix
+ users.users.promtail.extraGroups = [ "nextcloud" ];
+```
+
 ### Auto unlock gnome keyring <a name="keyring"></a>
 
 ---
