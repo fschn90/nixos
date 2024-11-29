@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 
 {
-
   services.nextcloud = {
     enable = true;
     hostName = "cloud.fschn.org";
@@ -23,6 +22,7 @@
     home = "/tank/Nextcloud";
     package = pkgs.nextcloud30;
     settings = {
+      # settings for nextcloud log scraping with promtail and loki
       overwriteprotocol = "https";
       loglevel = 1;
       log_type = "file";
@@ -39,11 +39,17 @@
     owner = "nextcloud";
   };
 
-  # reverse proxy
+  # reverse proxies for nextcloud and onlyoffice documentserver
   services.nginx = {
-    virtualHosts.${config.services.nextcloud.hostName} = {
-      useACMEHost = "fschn.org";
-      forceSSL = true;
+    virtualHosts = {
+      ${config.services.nextcloud.hostName} = {
+        useACMEHost = "fschn.org";
+        forceSSL = true;
+      };
+      ${config.services.onlyoffice.hostname} = {
+        useACMEHost = "fschn.org";
+        forceSSL = true;
+      };
     };
   };
 
@@ -54,6 +60,17 @@
     mode = "0440";
   };
 
+  # enabling onlyoffice documentserver
+  services.onlyoffice = {
+    enable = true;
+    jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
+    hostname = "office.fschn.org";
+  };
+
+  # secret deployment for onlyoffice documentserver
+  sops.secrets."onlyoffice/jwtSecretFile" = {
+    owner = "onlyoffice";
+  };
 }
 
 
