@@ -47,19 +47,6 @@
     };
   };
 
-  # WIP TODO: add exception for nextcloud-exporter and reset timeout to default 5s   https://github.com/xperimental/nextcloud-exporter/issues/108
-  services.prometheus.exporters.nextcloud.enable = true;
-  services.prometheus.exporters.nextcloud.tokenFile = config.sops.secrets."Nextcloud/authToken".path;
-  services.prometheus.exporters.nextcloud.url = "https://${builtins.toString config.services.nextcloud.hostName}";
-  # to avoid time out errors in the beginning, seems to be running much faster now, maybe not needed anymore, ie default value enough
-  services.prometheus.exporters.nextcloud.timeout = "60s";
-  services.prometheus.exporters.nextcloud.extraFlags = [
-    "--tls-skip-verify true"
-  ];
-
-  # make sure nextcloud-exporter has access to secret
-  users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
-
   # secret deployment for nextcloud-exporter
   sops.secrets."Nextcloud/authToken" = {
     path = "/tank/Nextcloud/authToken";
