@@ -28,11 +28,11 @@
   # gnome extentions
   environment.systemPackages = with pkgs; [
     gnomeExtensions.appindicator
-    gnomeExtensions.openweather
+    # gnomeExtensions.openweather
     gnomeExtensions.dash-to-dock
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.system-monitor-tray-indicator
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
   ];
 
   # making sure the keyring auto unlocks at boot up, needed for protonmail-bridge and nextcloud-client

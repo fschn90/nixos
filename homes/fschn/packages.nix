@@ -6,9 +6,7 @@
     firefox
     thunderbird
     vlc
-    transmission-gtk
-    # vscode
-    # google-chrome
+    transmission_4-gtk
     spotify
     signal-desktop
     libreoffice
@@ -16,11 +14,11 @@
     digikam
     viking
     fishPlugins.bobthefish
-    gnome.gnome-disk-utility
-    gnome.dconf-editor
-    gnome.nautilus
-    gnome.seahorse
-    gnome.gnome-calculator
+    gnome-disk-utility
+    dconf-editor
+    nautilus
+    seahorse
+    gnome-calculator
     gnome-decoder # bar- / qr-code scanner
     loupe # image viewer
     snapshot # webcam viewer
@@ -32,8 +30,7 @@
     gimp-with-plugins
     zellij
     nextcloud-client
-    # zip
-    gnome.file-roller # Archive manager
+    file-roller # Archive manager
   ];
 
 }
