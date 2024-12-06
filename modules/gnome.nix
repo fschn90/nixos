@@ -19,7 +19,7 @@
 
   # tweaks 
   services.gnome.core-utilities.enable = false;
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
   # hardware.pulseaudio.enable = false;
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
