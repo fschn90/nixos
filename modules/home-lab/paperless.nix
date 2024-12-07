@@ -8,6 +8,7 @@
     consumptionDirIsPublic = true;
     # address = "paperless.fschn.org";
     dataDir = "/tank/Paperless";
+    consumptionDir = "${config.services.paperless.dataDir}/from-rainbow";
     settings = {
       PAPERLESS_CONSUMER_IGNORE_PATTERN = [
         ".DS_STORE/*"
