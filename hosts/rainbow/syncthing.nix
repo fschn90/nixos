@@ -30,8 +30,8 @@
         };
       };
       folders = {
-        "test-dir" = {
-          path = "/home/fschn/test-dir";
+        "PAPERLESS-CONSUME" = {
+          path = "/home/fschn/PAPERLESS-CONSUME";
           devices = [ "omhe" ];
         };
       };

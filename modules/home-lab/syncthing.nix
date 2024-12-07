@@ -30,8 +30,8 @@
         };
       };
       folders = {
-        "test-dir" = {
-          path = "/tank/Paperless/test-dir";
+        "PAPERLESS-CONSUME" = {
+          path = "/tank/Paperless/from-rainbow";
           devices = [ "rainbow" ];
         };
       };
