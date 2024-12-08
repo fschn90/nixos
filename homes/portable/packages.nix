@@ -29,6 +29,7 @@
     gtypist # type tutor, 10-finger-system 
     zellij
     file-roller # Archive manager
+    tree
   ];
 
 }

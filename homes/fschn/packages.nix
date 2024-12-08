@@ -31,6 +31,7 @@
     zellij
     nextcloud-client
     file-roller # Archive manager
+    tree
   ];
 
 }
