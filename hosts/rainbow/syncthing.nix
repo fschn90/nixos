@@ -33,6 +33,8 @@
         "PAPERLESS-CONSUME" = {
           path = "/home/fschn/PAPERLESS-CONSUME";
           devices = [ "omhe" ];
+          syncOwnership = true;
+          sendOwnership = true;
         };
       };
     };

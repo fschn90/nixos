@@ -33,6 +33,8 @@
         "PAPERLESS-CONSUME" = {
           path = "/tank/Paperless/from-rainbow";
           devices = [ "rainbow" ];
+          syncOwnership = true;
+          sendOwnership = true;
         };
       };
     };
