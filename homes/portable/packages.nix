@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
     firefox
     vlc
-    transmission-gtk
+    transmission_4-gtk
     spotify
     signal-desktop
     libreoffice

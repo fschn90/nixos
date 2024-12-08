@@ -26,7 +26,7 @@
   };
 
   services.nginx = {
-    virtualHosts."deluge.fschn.orG" = {
+    virtualHosts."deluge.fschn.org" = {
       useACMEHost = "fschn.org";
       forceSSL = true;
       locations."/" = {
@@ -52,7 +52,7 @@
     };
   };
 
-  # setting up wireguard interafe within network namespace
+  # setting up wireguard interface within network namespace
   systemd.services.wg = {
     description = "wg network interface";
     bindsTo = [ "netns@wg.service" ];

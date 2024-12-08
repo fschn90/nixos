@@ -351,8 +351,8 @@ First, creating network namespace with wireguard vpn interface based on this [tu
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.iproute}/bin/ip netns add %I";
-      ExecStop = "${pkgs.iproute}/bin/ip netns del %I";
+      ExecStart = "${pkgs.iproute2}/bin/ip netns add %I";
+      ExecStop = "${pkgs.iproute2}/bin/ip netns del %I";
     };
   };
 
@@ -367,22 +367,22 @@ First, creating network namespace with wireguard vpn interface based on this [tu
       RemainAfterExit = true;
       ExecStart = with pkgs; writers.writeBash "wg-up" ''
         see -e
-        ${iproute}/bin/ip link add wg0 type wireguard
-        ${iproute}/bin/ip link set wg0 netns wg
-        ${iproute}/bin/ip -n wg address add ${toString config.sops.secrets."Deluge/vpn-ip4addr-cidr".path} dev wg0
-        # ${iproute}/bin/ip -n wg -6 address add <ipv6 VPN addr/cidr> dev wg0
-        ${iproute}/bin/ip netns exec wg \
+        ${iproute2}/bin/ip link add wg0 type wireguard
+        ${iproute2}/bin/ip link set wg0 netns wg
+        ${iproute2}/bin/ip -n wg address add ${toString config.sops.secrets."Deluge/vpn-ip4addr-cidr".path} dev wg0
+        # ${iproute2}/bin/ip -n wg -6 address add <ipv6 VPN addr/cidr> dev wg0
+        ${iproute2}/bin/ip netns exec wg \
           ${wireguard-tools}/bin/wg setconf wg0 ${toString config.sops.secrets."Deluge/vpn.conf".path}
-        ${iproute}/bin/ip -n wg link set wg0 up
+        ${iproute2}/bin/ip -n wg link set wg0 up
         # need to set lo up as network namespace is started with lo down
-        ${iproute}/bin/ip -n wg link set lo up
-        ${iproute}/bin/ip -n wg route add default dev wg0
-        # ${iproute}/bin/ip -n wg -6 route add default dev wg0
+        ${iproute2}/bin/ip -n wg link set lo up
+        ${iproute2}/bin/ip -n wg route add default dev wg0
+        # ${iproute2}/bin/ip -n wg -6 route add default dev wg0
       '';
       ExecStop = with pkgs; writers.writeBash "wg-down" ''
-        ${iproute}/bin/ip -n wg route del default dev wg0
-        # ${iproute}/bin/ip -n wg -6 route del default dev wg0
-        ${iproute}/bin/ip -n wg link del wg0
+        ${iproute2}/bin/ip -n wg route del default dev wg0
+        # ${iproute2}/bin/ip -n wg -6 route del default dev wg0
+        ${iproute2}/bin/ip -n wg link del wg0
       '';
     };
   };
@@ -432,6 +432,7 @@ On Firefox android go to Settings > About Firefox and tap the logo a bunch, it w
 
 ---
 
+as prerequisite for Paperless:
 ```bash
 sudo zfs create tank/Paperless
 sudo chown -R fschn:users /tank/Paperless
