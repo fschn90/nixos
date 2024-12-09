@@ -18,10 +18,15 @@
       PAPERLESS_OCR_USER_ARGS = {
         optimize = 1;
         pdfa_image_compression = "lossless";
+        continue_on_soft_render_error = true; # avoid error: Ghostscript rasterizing failed. 
+        invalidate_digital_signatures = true; # avoid error: DigitalSignatureError: Input PDF has a digital signature. OCR would alter the document, invalidating the signature.
+
       };
       PAPERLESS_CONSUMER_RECURSIVE = true;
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
+      PAPERLESS_CONSUMER_DELETE_DUPLICATES = true;
       # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
+
     };
   };
 
