@@ -36,10 +36,10 @@
         {
           job_name = "system";
           static_configs = [{
-            # targets = [ "localhost" ];
-            targets = [ "100.106.245.44" ];
+            targets = [ "localhost" ];
+            # targets = [ "100.106.245.44" ];
             labels = {
-              instance = "nextcloud.fschn.org";
+              instance = "cloud.fschn.org";
               env = "home-lab";
               job = "nextcloud";
               __path__ = "/tank/Nextcloud/data/{nextcloud,audit}.log";
