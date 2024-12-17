@@ -148,6 +148,10 @@
             domain = "office.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "fritzbox.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 
