@@ -13,7 +13,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ### Minor Features
 - prometheus data on extra zfs dataset?
 - persist deluge config
-- remove nvim lua config 
 
 ### Major Features
 - NH the nix helper (vimjoyer)
@@ -22,9 +21,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 
 ### Home lap
 - fritz.home reverse proxy
-- paperless
 - immich
-- maybes: sonarr, homeassistant, arr suit, navidrome
 - HEADSCALE!!
 - https://github.com/tailscale/tailscale/tree/main/cmd/nginx-auth
 - restic off-site backup with hetzner storage box or backblaze
@@ -35,7 +32,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
   - restic (once offsite backup is done)
 
 ### Other
-- write wiki page for running deluge in network namespace with wireguard vpn
+-
 
 
 ## Documentation
