@@ -46,32 +46,25 @@
         useACMEHost = "fschn.org";
         forceSSL = true;
       };
-      ${config.services.onlyoffice.hostname} = {
-        useACMEHost = "fschn.org";
-        forceSSL = true;
-      };
+      # ${config.services.onlyoffice.hostname} = {
+      #   useACMEHost = "fschn.org";
+      #   forceSSL = true;
+      # };
     };
   };
 
-  # # secret deployment for nextcloud-exporter
-  # sops.secrets."Nextcloud/authToken" = {
-  #   path = "/tank/Nextcloud/authToken";
-  #   owner = "nextcloud";
-  #   mode = "0440";
+
+  # # enabling onlyoffice documentserver
+  # services.onlyoffice = {
+  #   enable = true;
+  #   jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
+  #   hostname = "office.fschn.org";
   # };
 
-  # enabling onlyoffice documentserver
-  services.onlyoffice = {
-    enable = true;
-    jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
-    hostname = "office.fschn.org";
-    # postgresPasswordFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
-  };
-
-  # secret deployment for onlyoffice documentserver
-  sops.secrets."onlyoffice/jwtSecretFile" = {
-    owner = "onlyoffice";
-  };
+  # # secret deployment for onlyoffice documentserver
+  # sops.secrets."onlyoffice/jwtSecretFile" = {
+  #   owner = "onlyoffice";
+  # };
 
 
 
@@ -91,8 +84,8 @@
     ];
   };
 
-  # make sure nextcloud-exporter has access to secret
-  users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
+  # # make sure nextcloud-exporter has access to secret
+  # users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
 
   # secret deployment for nextcloud-exporter
   sops.secrets."Nextcloud/authToken" = {
