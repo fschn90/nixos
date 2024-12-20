@@ -92,6 +92,15 @@
         monthly = 12;
         yearly = 2;
       };
+      "NIXROOT/root" = {
+        autoprune = true;
+        autosnap = true;
+        hourly = 24;
+        daily = 31;
+        weekly = 7;
+        monthly = 12;
+        yearly = 2;
+      };
     };
     extraArgs = [ "--debug" ];
   };
