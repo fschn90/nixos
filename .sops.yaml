@@ -3,6 +3,7 @@ keys:
   - &host_rainbow age1dal0p4q5un4x6gpaxa7arkj7zxq372hrats8ft4qw05gx0ezkqkssn576a
   - &host_oide age14t9xnmtevjk83g9k6kczkakuaje4d7m35evjzpmt3uza7peaw5esq85zy2
   - &host_omhe age1gqslggsr50gnlrg48z0879qgca9yr902e7lvtyh3qsvgyygchgesrsktzr
+  - &host_berry age1ue2pzrqmrqhye7g04errxdauxp70aj99rqurq82qj23etfdjmgaqft425d
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -11,3 +12,4 @@ creation_rules:
           - *host_rainbow
           - *host_oide
           - *host_omhe
+          - *host_berry
