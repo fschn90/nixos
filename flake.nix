@@ -60,6 +60,17 @@
             sops-nix.nixosModules.sops
           ];
         };
+        # Raspberry Pi
+        berry = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/berry/configuration.nix
+            hardware.nixosModules.raspberry-pi-4
+            home-manager.nixosModules.home-manager
+            { home-manager.users.fschn = import ./homes/headless; }
+            sops-nix.nixosModules.sops
+          ];
+        };
       };
     };
 }
