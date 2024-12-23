@@ -24,7 +24,7 @@
       # ../../modules/sanoid-backup-target.nix
       ../../modules/nix.nix
       # ../../modules/home-lab/nextcloud.nix
-      # ../../modules/home-lab/adguardhome.nix
+      ./adguardhome.nix
       # ../../modules/acme.nix
       # ../../modules/home-lab/jellyfin.nix
       # ../../modules/nginx.nix
@@ -94,6 +94,8 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  networking.firewall.allowedTCPPorts = [ 53 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "24.11";
