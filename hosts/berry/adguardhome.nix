@@ -271,7 +271,7 @@
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/general_url.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/specific.txt
 
-        ./adguard-mobile-custom.txt
+        # ./adguard-mobile-custom.txt
       ];
     };
   };
