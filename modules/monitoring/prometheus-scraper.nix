@@ -14,6 +14,7 @@
             "omhe:${toString config.services.prometheus.exporters.node.port}"
             "rainbow:${toString config.services.prometheus.exporters.node.port}"
             "oide:${toString config.services.prometheus.exporters.node.port}"
+            "berry:${toString config.services.prometheus.exporters.node.port}"
           ];
         }];
       }
@@ -34,6 +35,7 @@
             "omhe:${toString config.services.prometheus.exporters.nginx.port}"
             "rainbow:${toString config.services.prometheus.exporters.nginx.port}"
             "oide:${toString config.services.prometheus.exporters.nginx.port}"
+            "berry:${toString config.services.prometheus.exporters.nginx.port}"
           ];
         }];
       }
@@ -54,6 +56,7 @@
             "omhe:${toString config.services.prometheus.exporters.smartctl.port}"
             "rainbow:${toString config.services.prometheus.exporters.smartctl.port}"
             "oide:${toString config.services.prometheus.exporters.smartctl.port}"
+            "berry:${toString config.services.prometheus.exporters.smartctl.port}"
           ];
         }];
       }
