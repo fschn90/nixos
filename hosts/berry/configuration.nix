@@ -29,7 +29,9 @@
       # ../../modules/home-lab/jellyfin.nix
       # ../../modules/nginx.nix
       # ../../modules/monitoring/default-server.nix
-      ../../modules/monitoring/default-workstation.nix
+      # ../../modules/monitoring/default-workstation.nix
+      ../../modules/monitoring/prometheus-exporters.nix
+      ../../modules/monitoring/promtail.nix
       # ../../modules/home-lab/deluge.nix
       # ../../modules/home-lab/firefox-sync.nix
       # ../../modules/home-lab/immich.nix
