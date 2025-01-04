@@ -23,6 +23,13 @@
         sendOptions = "w c";
         extraArgs = [ "--sshoption=StrictHostKeyChecking=off" ];
       };
+      # "NIXROOT/root" = {
+      #   # sshKey = "/var/lib/syncoid/backup";
+      #   source = "NIXROOT/root";
+      #   target = "tank/root";
+      #   sendOptions = "w c";
+      #   # extraArgs = [ "--sshoption=StrictHostKeyChecking=off" ];
+      # };
     };
 
     # necesary to prune old snapshots: https://github.com/NixOS/nixpkgs/issues/216614
@@ -92,15 +99,15 @@
         monthly = 12;
         yearly = 2;
       };
-      "NIXROOT/root" = {
-        autoprune = true;
-        autosnap = true;
-        hourly = 24;
-        daily = 31;
-        weekly = 7;
-        monthly = 12;
-        yearly = 2;
-      };
+      # "NIXROOT/root" = {
+      #   autoprune = true;
+      #   autosnap = true;
+      #   hourly = 24;
+      #   daily = 31;
+      #   weekly = 7;
+      #   monthly = 12;
+      #   yearly = 2;
+      # };
     };
     extraArgs = [ "--debug" ];
   };
