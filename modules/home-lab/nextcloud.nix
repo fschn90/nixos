@@ -16,6 +16,7 @@
       inherit calendar contacts notes onlyoffice tasks
         deck phonetrack polls cospend
         music gpoddersync;
+      # integration_paperless; # doesnt seem to work yet
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
