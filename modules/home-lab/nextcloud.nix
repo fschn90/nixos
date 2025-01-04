@@ -91,10 +91,10 @@
   # secret deployment for nextcloud-exporter
   sops.secrets."Nextcloud/authToken" = {
     path = "/tank/Nextcloud/authToken";
-    owner = "nextcloud";
+    owner = "nextcloud-exporter";
     mode = "0440";
   };
-
+  users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
 }
 
 
