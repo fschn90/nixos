@@ -4,6 +4,7 @@
   services.immich = {
     enable = true;
     environment.IMMICH_MACHINE_LEARNING_URL = "http://localhost:3003";
+    mediaLocation = "/tank/Immich";
   };
 
   services.nginx.virtualHosts."photos.fschn.org" = {
