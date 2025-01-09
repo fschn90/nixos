@@ -36,6 +36,12 @@
           syncOwnership = true;
           sendOwnership = true;
         };
+        "Pixel3XL" = {
+          path = "/tank/Photos/Phone Pixel 3 XL";
+          devices = [ "rainbow" ];
+          syncOwnership = true;
+          sendOwnership = true;
+        };
       };
     };
   };
