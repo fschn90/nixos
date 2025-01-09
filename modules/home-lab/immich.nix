@@ -14,4 +14,6 @@
       proxyPass = "http://localhost:${toString config.services.immich.port}";
     };
   };
+
+  users.users.immich.extraGroups = [ "users" ];
 }
