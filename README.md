@@ -14,6 +14,8 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - prometheus data on extra zfs dataset?
 - persist deluge config
 - auto login for user on headless machine
+- two zfs tanks unlocked with one password prompt
+- zfs promt before ssh
 
 ### Major Features
 - NH the nix helper (vimjoyer)
