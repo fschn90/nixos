@@ -36,8 +36,8 @@
           syncOwnership = true;
           sendOwnership = true;
         };
-        "Pixel3XL" = {
-          path = "/home/fschn/Pictures/Phone Pixel 3 XL";
+        "Photos" = {
+          path = "/home/fschn/Pictures";
           devices = [ "omhe" ];
           syncOwnership = true;
           sendOwnership = true;

@@ -36,8 +36,8 @@
           syncOwnership = true;
           sendOwnership = true;
         };
-        "Pixel3XL" = {
-          path = "/tank/Photos/Phone Pixel 3 XL";
+        "Photos" = {
+          path = "/tank/Photos";
           devices = [ "rainbow" ];
           syncOwnership = true;
           sendOwnership = true;
