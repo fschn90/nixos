@@ -38,6 +38,7 @@
       # ../../modules/home-lab/paperless.nix
       # ../../modules/home-lab/syncthing.nix
       # ../../modules/home-lab/fritz.nix
+      # ./tor.nix
     ];
 
 
