@@ -29,6 +29,7 @@
       ../../modules/home-lab/paperless.nix
       ../../modules/home-lab/syncthing.nix
       ../../modules/home-lab/fritz.nix
+      ../berry/tor.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -158,7 +159,7 @@
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  networking.firewall.allowedTCPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 53 443 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
