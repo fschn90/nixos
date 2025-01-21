@@ -45,6 +45,8 @@
 
       # Network settings
       ORPort = [ 443 ];
+
+      ExitRelay = false;
     };
   };
 
