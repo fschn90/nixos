@@ -21,7 +21,7 @@
 
     # Configure Tor settings
     settings = {
-      Nickname = "tor-bridge.uniformly698";
+      Nickname = "torbridgeuniformly6";
       ContactInfo = "tor-bridge.uniformly698@passmail.net";
 
       # Bandwidth settings
