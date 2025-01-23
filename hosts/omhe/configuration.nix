@@ -29,7 +29,7 @@
       ../../modules/home-lab/paperless.nix
       ../../modules/home-lab/syncthing.nix
       ../../modules/home-lab/fritz.nix
-      ../berry/tor.nix
+      # ../berry/tor.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -70,6 +70,9 @@
   hardware.bluetooth.enable = false;
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
+
+  # autologin of user
+  services.getty.autologinUser = config.users.users.fschn.name;
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
