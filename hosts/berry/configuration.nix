@@ -71,6 +71,9 @@
 
   # environment.systemPackages = with pkgs; [ vim ];
 
+  # autologin of user
+  services.getty.autologinUser = config.users.users.fschn.name;
+
   services.openssh.enable = true;
 
   # users = {
