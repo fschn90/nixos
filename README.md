@@ -49,6 +49,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 8. [Firefox-syncserver](#firefox-syncserver)
 9. [Syncthing](#syncthing)
 9. [Immich](#immich)
+9. [Citrix Workspace](#citrix)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -450,6 +451,13 @@ sudo chown -R fschn:users /tank/Photos
 added photos folder from rainbow host to be synced in syncthing.nix
 
 add `/tank/Photos` as external library in immich admin web gui.
+
+### Citrix <a name="citrix"></a>
+
+---
+
+First downlaoded the tar.gz installation file from the citrix homepage, getting the correct version is important. then `nix-prefetch-url file://$PWD/linuxx64-22.12.0.12.tar.gz`, again with the correct version.
+
 
 ---
 
