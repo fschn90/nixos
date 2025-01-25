@@ -48,6 +48,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 7. [Deluge](#deluge)
 8. [Firefox-syncserver](#firefox-syncserver)
 9. [Syncthing](#syncthing)
+9. [Immich](#immich)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -436,7 +437,19 @@ as prerequisite for Paperless:
 sudo zfs create tank/Paperless
 sudo chown -R fschn:users /tank/Paperless
 ```
+### Immich <a name="immich"></a>
 
+---
+
+as prerequisite for Paperless:
+```bash
+sudo zfs create tank/Photos
+sudo chown -R fschn:users /tank/Photos
+```
+
+added photos folder from rainbow host to be synced in syncthing.nix
+
+add `/tank/Photos` as external library in immich admin web gui.
 
 ---
 
