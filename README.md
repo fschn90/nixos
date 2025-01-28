@@ -13,9 +13,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ### Minor Features
 - prometheus data on extra zfs dataset?
 - persist deluge config
-- auto login for user on headless machine
 - two zfs tanks unlocked with one password prompt
-- zfs promt before ssh
 
 ### Major Features
 - NH the nix helper (vimjoyer)
@@ -23,7 +21,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 - disko
 
 ### Home lap
-- immich
 - HEADSCALE!!
 - https://github.com/tailscale/tailscale/tree/main/cmd/nginx-auth
 - restic off-site backup with hetzner storage box or backblaze
@@ -32,9 +29,6 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
   - dashboard monitoring sanoid and syncoid
   - alerting
   - restic (once offsite backup is done)
-
-### Other
--
 
 
 ## Documentation
