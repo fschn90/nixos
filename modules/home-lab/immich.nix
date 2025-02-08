@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
 
   services.immich = {
@@ -29,7 +29,15 @@
 
   ### DRAFT still need to change everything 
 
-  home-manager.users.myuser = {
+  sops.secrets."Nextcloud/my-user/user" = {
+    # path = "/tank/Nextcloud/authToken";
+    # owner = "nextcloud-exporter";
+    # mode = "0440";
+  };
+
+  ## TODO deploy user and password as in deluge wg-up. change path. and test. 
+
+  home-manager.users.fschn = {
     systemd.user = {
       services.nextcloud-autosync = {
         Unit = {
@@ -38,7 +46,7 @@
         };
         Service = {
           Type = "simple";
-          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /music /home/myuser/music https://nextcloud.example.org";
+          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user TODO --password TODO --path /music /home/myuser/music https://nextcloud.example.org";
           TimeoutStopSec = "180";
           KillMode = "process";
           KillSignal = "SIGINT";
