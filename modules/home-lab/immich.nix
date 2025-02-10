@@ -34,6 +34,11 @@
     # owner = "nextcloud-exporter";
     # mode = "0440";
   };
+  sops.secrets."Nextcloud/my-user/password" = {
+    # path = "/tank/Nextcloud/authToken";
+    # owner = "nextcloud-exporter";
+    # mode = "0440";
+  };
 
   ## TODO deploy user and password as in deluge wg-up. change path. and test. 
 
@@ -46,7 +51,7 @@
         };
         Service = {
           Type = "simple";
-          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user TODO --password TODO --path /music /home/myuser/music https://nextcloud.example.org";
+          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${toString config.sops.secrets."Nextcloud.my-user.user".path})--password $(cat ${toString config.sops.secrets."Nextcloud.my-user.password".path}) --path /instantUpload/OpenCamera '/tank/Photos/Phone Pixel 8A' https://cloud.fschn.org";
           TimeoutStopSec = "180";
           KillMode = "process";
           KillSignal = "SIGINT";
