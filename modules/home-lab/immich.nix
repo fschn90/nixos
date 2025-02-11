@@ -25,22 +25,20 @@
   users.users.immich.extraGroups = [ "users" ];
 
 
-  ### nextcloud sync for photos on phone
-
-  ### DRAFT still need to change everything 
+  ### nextcloud sync for photos on phone to be automatically added to immich in the background
 
   sops.secrets."Nextcloud/my-user/user" = {
-    # path = "/tank/Nextcloud/authToken";
-    # owner = "nextcloud-exporter";
-    # mode = "0440";
+    owner = config.users.users.fschn.name;
+    mode = "0400";
   };
   sops.secrets."Nextcloud/my-user/password" = {
-    # path = "/tank/Nextcloud/authToken";
-    # owner = "nextcloud-exporter";
-    # mode = "0440";
+    owner = config.users.users.fschn.name;
+    mode = "0400";
   };
 
-  ## TODO deploy user and password as in deluge wg-up. change path. and test. 
+  environment.systemPackages = with pkgs; [
+    nextcloud-client
+  ];
 
   home-manager.users.fschn = {
     systemd.user = {
@@ -51,7 +49,7 @@
         };
         Service = {
           Type = "simple";
-          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${toString config.sops.secrets."Nextcloud.my-user.user".path})--password $(cat ${toString config.sops.secrets."Nextcloud.my-user.password".path}) --path /instantUpload/OpenCamera '/tank/Photos/Phone Pixel 8A' https://cloud.fschn.org";
+          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${toString config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${toString config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/OpenCamera '/tank/Photos/Phone Pixel 8A/OpenCamera' https://cloud.fschn.org";
           TimeoutStopSec = "180";
           KillMode = "process";
           KillSignal = "SIGINT";
