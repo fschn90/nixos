@@ -5,13 +5,10 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 ## TO-DOs:
 
 ### Bugs
-- check sops required keys on all machines: "Failed to get the data key required to decrypt the SOPS file."
 - smartctl_exporter and scrutiny error logs
 - spotify keeps redownloading saved songs when starting application every time
-- helix does not yank into system clipboard
 
 ### Minor Features
-- prometheus data on extra zfs dataset?
 - persist deluge config
 - two zfs tanks unlocked with one password prompt
 
@@ -464,6 +461,7 @@ First downlaoded the tar.gz installation file from the citrix homepage, getting 
 5. [Firefox-syncserver](#syncserver)
 6. [Deluge in network namespace with wireguard vpn](#deluge-netns)
 7. [Jellyfin](#jellerror)
+8. [sops-nix](#sops-nix-trouble)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -590,3 +588,15 @@ sudo systemctl restart jellyfin
 ```
 
 didnt remove metadata in fact.
+
+### sops-nix <a name="sops-nix-trouble"></a>
+```bash
+$ sops secrets/main.yaml
+Failed to get the data key required to decrypt the SOPS file.
+```
+
+then moste likely forgot to add the age key for user. if thats the case then:
+```bash
+$ mkdir -p ~/.config/sops/age
+$ nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
+```
