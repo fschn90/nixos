@@ -1,10 +1,20 @@
-||orf.at^$important,client=100.70.131.33
-@@||audioapi.orf.at^$important,client=100.70.131.33
-@@||oe1.orf.at^$important,client=100.70.131.33
-@@||appmeta.orf.at^$important,client=100.70.131.33
-@@||collector.orf.at^$important,client=100.70.131.33
-||theguardian.com^$important,client=100.70.131.33
-||zeit.de^$important,client=100.70.131.33
-||derstandard.at^$important,client=100.70.131.33
-||ft.com^$important,client=100.70.131.33
-||9gag.com^$important,client=100.70.131.33
+// ||orf.at^$important,client=100.70.131.33
+// @@||audioapi.orf.at^$important,client=100.70.131.33
+// @@||oe1.orf.at^$important,client=100.70.131.33
+// @@||appmeta.orf.at^$important,client=100.70.131.33
+// @@||collector.orf.at^$important,client=100.70.131.33
+// ||theguardian.com^$important,client=100.70.131.33
+// ||zeit.de^$important,client=100.70.131.33
+// ||derstandard.at^$important,client=100.70.131.33
+// ||ft.com^$important,client=100.70.131.33
+// ||9gag.com^$important,client=100.70.131.33
+||orf.at^$important
+@@||audioapi.orf.at^$important
+@@||oe1.orf.at^$important
+@@||appmeta.orf.at^$important
+@@||collector.orf.at^$important
+||theguardian.com^$important
+||zeit.de^$important
+||derstandard.at^$important
+||ft.com^$important
+||9gag.com^$important
