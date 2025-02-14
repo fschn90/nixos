@@ -31,6 +31,7 @@
     owner = config.users.users.fschn.name;
     mode = "0400";
   };
+
   sops.secrets."Nextcloud/my-user/password" = {
     owner = config.users.users.fschn.name;
     mode = "0400";
@@ -40,32 +41,17 @@
     nextcloud-client
   ];
 
-  home-manager.users.fschn = {
-    systemd.user = {
-      services.nextcloud-autosync = {
-        Unit = {
-          Description = "Auto sync Nextcloud";
-          After = "network-online.target";
-        };
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${toString config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${toString config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/OpenCamera '/tank/Photos/Phone Pixel 8A/OpenCamera' https://cloud.fschn.org";
-          TimeoutStopSec = "180";
-          KillMode = "process";
-          KillSignal = "SIGINT";
-        };
-        Install.WantedBy = [ "multi-user.target" ];
-      };
-      timers.nextcloud-autosync = {
-        Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 60 minutes";
-        Timer.OnBootSec = "5min";
-        Timer.OnUnitActiveSec = "60min";
-        Install.WantedBy = [ "multi-user.target" "timers.target" ];
-      };
-      startServices = true;
+  systemd.services.nextcloud-autosync = {
+    unitConfig = {
+      Description = "Auto sync Nextcloud";
+      After = "network-online.target";
     };
+    script = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/OpenCamera '/tank/Photos/Phone Pixel 8A/OpenCamera' https://cloud.fschn.org";
+    serviceConfig = {
+      User = config.users.users.fschn.name;
+    };
+    wantedBy = [ "multi-user.target" ];
+    startAt = "*-*-* *:00:00";
   };
-
-
 
 }
