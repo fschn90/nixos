@@ -271,6 +271,9 @@
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/specific.txt
 
         ./adguard-mobile-custom.txt
+        ## url to same file as above to avoid error:  updating filter from url "/nix/store/h6iysbz4sx69w7j9wk0gnxm1mq88jsx4-adguard-mobile-custom.txt": path "/nix/store/h6iysbz4sx69w7j9wk0gnxm1mq88jsx4-adguard-mobile-custom.txt" does not match safe patterns
+        ## really not sure why this doesnt work..
+        https://raw.githubusercontent.com/fschn90/nixos/refs/heads/main/modules/home-lab/adguard-mobile-custom.txt
       ];
     };
   };
