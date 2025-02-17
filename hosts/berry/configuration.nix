@@ -105,8 +105,8 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  networking.firewall.allowedTCPPorts = [ 53 ];
-  networking.firewall.allowedUDPPorts = [ 53 ];
+  networking.firewall.allowedTCPPorts = [ 53 2222 ];
+  networking.firewall.allowedUDPPorts = [ 53 2222 ];
 
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "24.11";
