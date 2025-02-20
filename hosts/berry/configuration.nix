@@ -38,7 +38,7 @@
       # ../../modules/home-lab/paperless.nix
       # ../../modules/home-lab/syncthing.nix
       # ../../modules/home-lab/fritz.nix
-      # ./tor.nix
+      ./tor.nix
     ];
 
 
@@ -105,8 +105,8 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  networking.firewall.allowedTCPPorts = [ 53 2222 ];
-  networking.firewall.allowedUDPPorts = [ 53 2222 ];
+  networking.firewall.allowedTCPPorts = [ 53 443 2222 ];
+  networking.firewall.allowedUDPPorts = [ 53 443 2222 ];
 
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "24.11";
