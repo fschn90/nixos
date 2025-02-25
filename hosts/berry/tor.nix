@@ -44,7 +44,7 @@
       NumCPUs = 3;
 
       # Network settings
-      ORPort = [ 443 ];
+      ORPort = [ 2222 ];
 
       # ExitRelay = false;
     };
