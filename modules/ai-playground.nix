@@ -1,3 +1,5 @@
+{
+
   services.ollama = {
     enable = true;
     acceleration = "rocm";
@@ -6,5 +8,7 @@
     };
     rocmOverrideGfx = "11.0.1";
   };
+
+  services.open-webui.enable = true;
 
 }
