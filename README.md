@@ -462,6 +462,7 @@ First downlaoded the tar.gz installation file from the citrix homepage, getting 
 6. [Deluge in network namespace with wireguard vpn](#deluge-netns)
 7. [Jellyfin](#jellerror)
 8. [sops-nix](#sops-nix-trouble)
+9. [stable-diffusion](#stable-diffusion)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -599,4 +600,43 @@ then moste likely forgot to add the age key for user. if thats the case then:
 ```bash
 $ mkdir -p ~/.config/sops/age
 $ nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
+```
+
+### Stable Diffusion with AMD Radeon RX 7800 XT <a name="stable-diffusion"></a>
+
+standard installation proccess:
+```bash
+mkdir ai
+cd ai
+git clone git@github.com:virchau13/automatic1111-webui-nix.git
+git clone git@github.com:AUTOMATIC1111/stable-diffusion-webui.git
+nix-shell --argstr variant ROCM
+./webui.sh
+```
+
+however, this fails with following msg:
+```bash
+Collecting torch
+  ERROR: HTTP error 403 while getting https://download.pytorch.org/whl/nightly/rocm5.7/torch-2.2.0.dev20231010%2Brocm5.7-cp310-cp310-linux_x86_64.whl (from https://download.pytorch.org/whl/nightly/rocm5.7/torch/)
+ERROR: Could not install requirement torch from https://download.pytorch.org/whl/nightly/rocm5.7/torch-2.2.0.dev20231010%2Brocm5.7-cp310-cp310-linux_x86_64.whl because of HTTP error 403 Client Error: Forbidden for url: https://download.pytorch.org/whl/nightly/rocm5.7/torch-2.2.0.dev20231010%2Brocm5.7-cp310-cp310-linux_x86_64.whl for URL https://download.pytorch.org/whl/nightly/rocm5.7/torch-2.2.0.dev20231010%2Brocm5.7-cp310-cp310-linux_x86_64.whl (from https://download.pytorch.org/whl/nightly/rocm5.7/torch/)
+Traceback (most recent call last):
+  File "/home/fschn/ai/stable-diffusion-webui/launch.py", line 48, in <module>
+    main()
+  File "/home/fschn/ai/stable-diffusion-webui/launch.py", line 39, in main
+    prepare_environment()
+  File "/home/fschn/ai/stable-diffusion-webui/modules/launch_utils.py", line 381, in prepare_environment
+    run(f'"{python}" -m {torch_command}', "Installing torch and torchvision", "Couldn't install torch", live=True)
+  File "/home/fschn/ai/stable-diffusion-webui/modules/launch_utils.py", line 116, in run
+    raise RuntimeError("\n".join(error_bits))
+RuntimeError: Couldn't install torch.
+Command: "/home/fschn/ai/stable-diffusion-webui/venv/bin/python" -m pip install torch torchvision --index-url https://download.pytorch.org/whl/nightly/rocm5.7
+Error code: 1
+```
+
+following then worked:
+```bash
+source venv/bin/activate
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7 # Manually update pytorch
+export HSA_OVERRIDE_GFX_VERSION=11.0.0 # Fake to be a 7900XTX card
+TORCH_COMMAND='pip install torch torchvision --extra-index-url pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7' python launch.py --precision full --upcast-sampling # starting stable-diffusion webui on localhost:7860
 ```
