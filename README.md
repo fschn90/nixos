@@ -564,6 +564,8 @@ From [HackerNews](https://news.ycombinator.com/item?id=34674569), even though no
 
 ### Deluge in network namespace with wireguard vpn <a name="deluge-netns"></a>
 
+---
+
 first rebuild switch failed with `Failed to open network namespace path /var/run/netns/wg: No such file or directory`, solved then with:
 
 ```bash
@@ -581,6 +583,8 @@ How to get magnet links into deluge web client: use the firefox extention `Torre
 
 ### Jellyfin <a name="jellerror"></a>
 
+---
+
 `Error displaying media content` for all media files, then this helped:
 ```bash
 mv /var/cache/jellyfin /var/cache/jellyfin-bak
@@ -591,6 +595,9 @@ sudo systemctl restart jellyfin
 didnt remove metadata in fact.
 
 ### sops-nix <a name="sops-nix-trouble"></a>
+
+---
+
 ```bash
 $ sops secrets/main.yaml
 Failed to get the data key required to decrypt the SOPS file.
@@ -603,6 +610,8 @@ $ nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > 
 ```
 
 ### Stable Diffusion with AMD Radeon RX 7800 XT <a name="stable-diffusion"></a>
+
+---
 
 standard installation proccess:
 ```bash
@@ -635,8 +644,11 @@ Error code: 1
 
 following then worked:
 ```bash
+# Manually update pytorch:
 source venv/bin/activate
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7 # Manually update pytorch
-export HSA_OVERRIDE_GFX_VERSION=11.0.0 # Fake to be a 7900XTX card
-TORCH_COMMAND='pip install torch torchvision --extra-index-url pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7' python launch.py --precision full --upcast-sampling # starting stable-diffusion webui on localhost:7860
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7 export 
+# Fake to be a 7900XTX card:
+HSA_OVERRIDE_GFX_VERSION=11.0.0 
+# starting stable-diffusion webui on localhost:7860 with:
+TORCH_COMMAND='pip install torch torchvision --extra-index-url pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7' python launch.py --precision full --upcast-sampling 
 ```
