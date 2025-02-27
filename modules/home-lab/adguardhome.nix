@@ -158,35 +158,36 @@
         blocked_services = {
           ids = [
             "linkedin"
+            "mastodon"
           ];
           schedule = {
             mon = {
-              start = "19h";
+              start = "17h";
               end = "22h";
             };
             tue = {
-              start = "19h";
+              start = "17h";
               end = "22h";
             };
             wed = {
-              start = "19h";
+              start = "17h";
               end = "22h";
             };
             thu = {
-              start = "19h";
+              start = "17h";
               end = "22h";
             };
             fri = {
-              start = "19h";
+              start = "17h";
               end = "22h";
             };
             sat = {
-              start = "19h";
-              end = "22h";
+              start = "12h";
+              end = "24h";
             };
             sun = {
-              start = "19h";
-              end = "22h";
+              start = "12h";
+              end = "24h";
             };
             time_zone = "Europe/Vienna";
           };
