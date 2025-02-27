@@ -44,7 +44,13 @@
       NumCPUs = 3;
 
       # Network settings
-      ORPort = [ 2222 ];
+      # ORPort = [ 2222 ];
+      ORPort = [
+        {
+          port = 2222;
+          flags = [ "IPv4Only" ];
+        }
+      ];
 
       # ExitRelay = false;
     };
