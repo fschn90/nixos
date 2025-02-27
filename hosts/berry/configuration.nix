@@ -105,8 +105,16 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  networking.firewall.allowedTCPPorts = [ 53 2222 45849 ];
-  networking.firewall.allowedUDPPorts = [ 53 2222 45849 ];
+  networking.firewall.allowedTCPPorts = [ 53 2222 2223 45849 ];
+  networking.firewall.allowedUDPPorts = [ 53 2222 2223 45849 ];
+
+  services.nginx.virtualHosts."jellyfin.fschn.org" = {
+    forceSSL = true;
+    useACMEHost = "fschn.org";
+    locations."/" = {
+      proxyPass = "http://localhost:2223";
+    };
+  };
 
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "24.11";
