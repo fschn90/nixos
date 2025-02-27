@@ -88,73 +88,73 @@
         # Time interval in hours for updating filters.
         filters_update_interval = 12;
         # List of legacy DNS rewrites, where domain is the domain or wildcard you want to be rewritten and answer is IP address, CNAME record, A or AAAA special values. Special value A keeps A records from the upstream and AAAA keeps AAAA values from the upstream.
-        # rewrites = [
-        #   {
-        #     domain = "adguard.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "cloud.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "monitor.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "jellyfin.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "scrutiny-omhe.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "scrutiny-oide.fschn.org";
-        #     answer = "100.79.181.86";
-        #   }
-        #   {
-        #     domain = "scrutiny-rainbow.fschn.org";
-        #     answer = "100.114.14.104";
-        #   }
-        #   {
-        #     domain = "prometheus.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "deluge.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "firefox-sync.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "photos.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "paperless.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "syncthing-omhe.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "syncthing-rainbow.fschn.org";
-        #     answer = "100.114.14.104";
-        #   }
-        #   {
-        #     domain = "office.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
-        #   {
-        #     domain = "fritzbox.fschn.org";
-        #     answer = "100.106.245.44";
-        #   }
+        rewrites = [
+          #   {
+          #     domain = "adguard.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "cloud.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "monitor.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          {
+            domain = "jellyfin.fschn.org";
+            answer = "192.168.178.22";
+          }
+          #   {
+          #     domain = "scrutiny-omhe.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "scrutiny-oide.fschn.org";
+          #     answer = "100.79.181.86";
+          #   }
+          #   {
+          #     domain = "scrutiny-rainbow.fschn.org";
+          #     answer = "100.114.14.104";
+          #   }
+          #   {
+          #     domain = "prometheus.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "deluge.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "firefox-sync.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "photos.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "paperless.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "syncthing-omhe.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "syncthing-rainbow.fschn.org";
+          #     answer = "100.114.14.104";
+          #   }
+          #   {
+          #     domain = "office.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
+          #   {
+          #     domain = "fritzbox.fschn.org";
+          #     answer = "100.106.245.44";
+          #   }
 
-        # ];
+        ];
 
         # blocked_services = {
         #   ids = [
