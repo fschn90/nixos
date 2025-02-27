@@ -88,10 +88,6 @@
   # allow unfree
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    firefox
-  ];
-
   # home-manager
   home-manager = {
     useGlobalPkgs = true;
