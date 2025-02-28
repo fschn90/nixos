@@ -5,5 +5,6 @@
     recommendedProxySettings = true;
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
+    logError = "stderr debug";
   };
 }
