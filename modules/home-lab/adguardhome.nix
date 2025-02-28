@@ -152,6 +152,10 @@
             domain = "fritzbox.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "ai.fschn.org";
+            answer = "100.106.245.44";
+          }
 
         ];
 
