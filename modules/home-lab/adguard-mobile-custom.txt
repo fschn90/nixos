@@ -18,3 +18,4 @@
 ||derstandard.at^$important
 ||ft.com^$important
 ||9gag.com^$important
+||chaos.social^$important,client=100.70.131.33
