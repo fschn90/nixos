@@ -104,8 +104,8 @@
   # services.openssh.settings.PermitRootLogin = "no";
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [ 8080 ];
+  # networking.firewall.allowedUDPPorts = [ 8080 ];
   # Or disable the firewall altogether. 
   # networking.firewall.enable = false;
 
