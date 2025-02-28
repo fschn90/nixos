@@ -31,6 +31,13 @@
       ../../modules/home-lab/fritz.nix
       # ../berry/tor.nix
     ];
+  services.nginx.virtualHosts."ai.fschn.org" = {
+    forceSSL = true;
+    useACMEHost = "fschn.org";
+    locations."/" = {
+      proxyPass = "http://100.114.14.104:8080";
+    };
+  };
 
   # Use the GRUB 2 boot loader.
   # boot.loader.grub.enable = true;
