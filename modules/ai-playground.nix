@@ -10,5 +10,6 @@
   };
 
   services.open-webui.enable = true;
+  services.open-webui.host = "100.114.14.104";
 
 }
