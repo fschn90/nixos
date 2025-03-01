@@ -156,6 +156,10 @@
             domain = "ai.fschn.org";
             answer = "100.106.245.44";
           }
+          {
+            domain = "fritzbox-eltern.fschn.org";
+            answer = "100.65.150.91";
+          }
 
         ];
 
