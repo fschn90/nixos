@@ -101,6 +101,16 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  services.nginx = {
+    virtualHosts."fritzbox-eltern.fschn.org" = {
+      useACMEHost = "fschn.org";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://192.168.178.1";
+      };
+    };
+  };
+
   networking.firewall.allowedTCPPorts = [ 53 2222 2223 45849 ];
   networking.firewall.allowedUDPPorts = [ 53 2222 2223 45849 ];
 
