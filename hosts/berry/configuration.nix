@@ -25,7 +25,7 @@
       ../../modules/nix.nix
       # ../../modules/home-lab/nextcloud.nix
       ./adguardhome.nix
-      # ../../modules/acme.nix
+      ../../modules/acme.nix
       # ../../modules/home-lab/jellyfin.nix
       ../../modules/nginx.nix
       # ../../modules/monitoring/default-server.nix
