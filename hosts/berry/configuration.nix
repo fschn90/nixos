@@ -110,6 +110,13 @@
           proxyPass = "http://192.168.178.1";
         };
       };
+      "adguard-eltern.fschn.org" = {
+        useACMEHost = "fschn.org";
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://100.65.150.91:3000";
+        };
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [ 2222 2223 45849 ];
