@@ -117,6 +117,13 @@
           proxyPass = "http://100.65.150.91:3000";
         };
       };
+      "jellyfin.fschn.org" = {
+        forceSSL = true;
+        useACMEHost = "fschn.org";
+        locations."/" = {
+          proxyPass = "http://localhost:2223";
+        };
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [ 2222 2223 45849 ];
