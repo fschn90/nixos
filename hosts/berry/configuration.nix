@@ -27,7 +27,7 @@
       ./adguardhome.nix
       # ../../modules/acme.nix
       # ../../modules/home-lab/jellyfin.nix
-      # ../../modules/nginx.nix
+      ../../modules/nginx.nix
       # ../../modules/monitoring/default-server.nix
       # ../../modules/monitoring/default-workstation.nix
       ../../modules/monitoring/prometheus-exporters.nix
@@ -113,14 +113,16 @@
   networking.firewall.allowedTCPPorts = [ 2222 2223 45849 ];
   networking.firewall.allowedUDPPorts = [ 2222 2223 45849 ];
 
-
-  services.nginx.virtualHosts."jellyfin.fschn.org" = {
-    forceSSL = true;
-    useACMEHost = "fschn.org";
-    locations."/" = {
-      proxyPass = "http://localhost:2223";
-    };
   };
+
+
+  # services.nginx.virtualHosts."jellyfin.fschn.org" = {
+  # forceSSL = true;
+  # useACMEHost = "fschn.org";
+  # locations."/" = {
+  # proxyPass = "http://localhost:2223";
+  # };
+  # };
 
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "24.11";
