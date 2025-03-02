@@ -2,6 +2,7 @@
 
   services.adguardhome = {
     enable = true;
+    openFirewall = true;
     settings = {
       http = {
         # Web interface IP address with port to listen on.
