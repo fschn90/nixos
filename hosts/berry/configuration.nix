@@ -102,11 +102,13 @@
   users.defaultUserShell = pkgs.fish;
 
   services.nginx = {
-    virtualHosts."fritzbox-eltern.fschn.org" = {
-      useACMEHost = "fschn.org";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://192.168.178.1";
+    virtualHosts = {
+      "fritzbox-eltern.fschn.org" = {
+        useACMEHost = "fschn.org";
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://192.168.178.1";
+        };
       };
     };
   };
