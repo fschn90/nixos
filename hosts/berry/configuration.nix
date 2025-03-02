@@ -129,6 +129,17 @@
   networking.firewall.allowedTCPPorts = [ 2222 2223 45849 ];
   networking.firewall.allowedUDPPorts = [ 2222 2223 45849 ];
 
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "tailscale0" ];
+    externalInterface = "tailscale0";
+    forwardPorts = [
+      {
+        sourcePort = 2223;
+        proto = "tcp";
+        destination = "100.114.14.104:8096";
+      }
+    ];
   };
 
 
