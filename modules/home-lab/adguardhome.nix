@@ -161,6 +161,10 @@
             domain = "fritzbox-eltern.fschn.org";
             answer = "100.65.150.91";
           }
+          {
+            domain = "adguard-eltern.fschn.org";
+            answer = "100.65.150.91";
+          }
 
         ];
 
