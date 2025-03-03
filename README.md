@@ -540,7 +540,7 @@ Because the dashboard is expecting prometheus to scrape every 15s.
 ---
 
 
-To view logs, type `about:sync-logs` into firefox address bar.
+To view logs, type [about:sync-log](about:sync-log) into firefox address bar.
 
 Logging out of mozilla account in firefox seemed to sometimes solve connection errors.
 Especially when rebuilding firefox-syncserver with a new hostname it seemed to be necesarry.
@@ -548,16 +548,6 @@ Especially when rebuilding firefox-syncserver with a new hostname it seemed to b
 To avoid error `findCluster has a pre-existing clusterURL, so fetching new token`.
 In the firefox address bar type about:profiles.
 Then in the profile dir, delete `weave` dir, firefox-sync used to be formerly named Weave.
-
-To avoid error `The option services.nginx.virtualHosts."firefox-sync.fschn.org".forceSSL has conflicting definition values`,  use lib.mkForce value:
-
-```nix
-  services.nginx = {
-    virtualHosts."firefox-sync.fschn.org" = {
-      forceSSL = lib.mkForce true;
-    };
-  };
- ```
 
 From [HackerNews](https://news.ycombinator.com/item?id=34674569), even though not relevant yet:
 > sometimes the first sync times out when you have a larger data set, and you need to manually enable each sync type to reduce the size. But once it's up and running, I don't really have any issues.
