@@ -609,6 +609,7 @@ mkdir ai
 cd ai
 git clone git@github.com:virchau13/automatic1111-webui-nix.git
 git clone git@github.com:AUTOMATIC1111/stable-diffusion-webui.git
+cd stable-diffusion-webui/
 nix-shell --argstr variant ROCM
 ./webui.sh
 ```
@@ -638,7 +639,7 @@ following then worked:
 source venv/bin/activate
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7 export 
 # Fake to be a 7900XTX card:
-HSA_OVERRIDE_GFX_VERSION=11.0.0 
+export HSA_OVERRIDE_GFX_VERSION=11.0.0 
 # starting stable-diffusion webui on localhost:7860 with:
 TORCH_COMMAND='pip install torch torchvision --extra-index-url pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7' python launch.py --precision full --upcast-sampling 
 ```
