@@ -12,11 +12,14 @@
       # hostname = "localhost";
       # url = "http://localhost:5000";
       enableNginx = true;
+      # enableTLS = true;
     };
   };
 
 
-  sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET" = { };
+  sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET" = {
+    mode = "0777";
+  };
 
   services.nginx = {
     virtualHosts."firefox-sync.fschn.org" = {
