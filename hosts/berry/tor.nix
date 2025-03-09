@@ -31,7 +31,7 @@
       RelayBandwidthBurst = "100 MB";
 
       # Restrict exit nodes to a specific country (use the appropriate country code)
-      ExitNodes = "{ch} StrictNodes 1";
+      # ExitNodes = "{ch} StrictNodes 1";
 
       # Reject all exit traffic
       ExitPolicy = "reject *:*";
