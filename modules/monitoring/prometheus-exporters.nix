@@ -32,7 +32,6 @@
   services.prometheus.exporters.zfs.enable = true;
   services.prometheus.exporters.nginx.enable = true;
   # # services.prometheus.exporters.nginxlog.enable = true;
-  # services.prometheus.exporters.smartctl.enable = true;
   # services.prometheus.exporters.nextcloud = {
   #   enable = true;
   #   tokenFile = config.sops.secrets."Nextcloud/authToken".path;
@@ -43,6 +42,7 @@
   #     "--tls-skip-verify true"
   #   ];
   # };
+  services.prometheus.exporters.smartctl.enable = true;
 
   # # make sure nextcloud-exporter has access to secret
   # users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
