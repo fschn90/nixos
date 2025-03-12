@@ -1,4 +1,7 @@
 {
+
+  services.tailscaleAuth.enable = true;
+
   services.nginx = {
     enable = true;
     statusPage = true; # for monitoring
@@ -12,6 +15,9 @@
       "photos.fschn.org"
       "jellyfin.fschn.org"
       "cloud.fschn.org"
+      "deluge.fschn.org"
+      "paperless.fschn.org"
+      "ai.fschn.org"
     ];
     tailscaleAuth.enable = true;
   };
