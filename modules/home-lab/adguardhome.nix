@@ -223,6 +223,14 @@
         https://easylist-downloads.adblockplus.org/easylistgermany.txt
         https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
         https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt
+        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt
+        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt
+        https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareAdGuardHome.txt
+        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/dyndns.txt
+        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/hoster.txt
+        # https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/spam-tlds.txt
+        https://raw.githubusercontent.com/xRuffKez/NRD/refs/heads/main/lists/30-day_phishing/adblock/nrd-phishing-30day_adblock.txt
+        # https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/doh-vpn-proxy-bypass.txt
 
         # easylist
         https://easylist.to/easylist/easylist.txt
