@@ -25,10 +25,10 @@
       ContactInfo = "tor-bridge.uniformly698@passmail.net";
 
       # Bandwidth settings
-      MaxAdvertisedBandwidth = "100 MB";
-      BandWidthRate = "50 MB";
-      RelayBandwidthRate = "50 MB";
-      RelayBandwidthBurst = "100 MB";
+      MaxAdvertisedBandwidth = "300 MB";
+      BandWidthRate = "200 MB";
+      RelayBandwidthRate = "200 MB";
+      RelayBandwidthBurst = "300 MB";
 
       # Restrict exit nodes to a specific country (use the appropriate country code)
       # ExitNodes = "{ch} StrictNodes 1";
