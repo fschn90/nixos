@@ -8,6 +8,7 @@
     wget
     lshw
     htop
+    direnv
     # nixfmt-classic
     # tree
     # lua
