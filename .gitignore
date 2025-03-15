@@ -1,2 +1,4 @@
 result
 modules/result
+*.sync-conflict*
+.stfolder
