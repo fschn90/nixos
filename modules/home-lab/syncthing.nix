@@ -74,6 +74,7 @@
   # users.users.fschn.extraGroups = [ "syncthing" ];
   # systemd.services.syncthing.serviceConfig.UMask = "0007";
 
+  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
 
 }
 
