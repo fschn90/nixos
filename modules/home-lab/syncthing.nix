@@ -48,7 +48,7 @@
         };
         "NixOS" = {
           path = "/etc/nixos/";
-          devices = [ "rainbow" ];
+          devices = [ "rainbow" "berry" ];
           syncOwnership = true;
           sendOwnership = true;
         };

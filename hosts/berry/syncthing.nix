@@ -48,7 +48,7 @@
         # };
         "NixOS" = {
           path = "/etc/nixos/";
-          devices = [ "omhe" ];
+          devices = [ "omhe" "rainbow" ];
           syncOwnership = true;
           sendOwnership = true;
         };
