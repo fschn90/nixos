@@ -165,6 +165,10 @@
             domain = "adguard-eltern.fschn.org";
             answer = "100.65.150.91";
           }
+          {
+            domain = "syncthing-berry.fschn.org";
+            answer = "100.65.150.91";
+          }
 
         ];
 
