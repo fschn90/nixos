@@ -25,8 +25,12 @@
     settings = {
       devices = {
         "rainbow" = {
-          id = "MSBKHEW-54C7Z5L-O65KLIJ-PCQZW72-C4ODMY3-SE4IXQQ-KWI2LPU-5YTVNQW"; # does it need to be the same as the other machine??
+          id = "MSBKHEW-54C7Z5L-O65KLIJ-PCQZW72-C4ODMY3-SE4IXQQ-KWI2LPU-5YTVNQW";
           address = "tcp://100.114.14.104:220000";
+        };
+        "berry" = {
+          id = "DAG4S4R-CCZDIMK-R7CPHD4-XBCO45P-UI2T6JS-TG2CY2K-C4IFHXF-DJE4QAE";
+          address = "tcp://100.65.150.91:220000";
         };
       };
       folders = {

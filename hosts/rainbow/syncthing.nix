@@ -28,6 +28,10 @@
           id = "5JOBVZM-DSBMHPK-MY5LAOS-OLBTSLW-EUHASPW-RJA4KIC-QHSBYPV-VEBSNQW";
           address = "tcp://100.106.245.44:220000";
         };
+        "berry" = {
+          id = "DAG4S4R-CCZDIMK-R7CPHD4-XBCO45P-UI2T6JS-TG2CY2K-C4IFHXF-DJE4QAE";
+          address = "tcp://100.65.150.91:220000";
+        };
       };
       folders = {
         "PAPERLESS-CONSUME" = {
