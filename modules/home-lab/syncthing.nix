@@ -42,6 +42,12 @@
           syncOwnership = true;
           sendOwnership = true;
         };
+        "NixOS" = {
+          path = "/etc/nixos/";
+          devices = [ "rainbow" ];
+          syncOwnership = true;
+          sendOwnership = true;
+        };
       };
     };
   };
