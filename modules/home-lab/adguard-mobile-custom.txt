@@ -19,3 +19,5 @@
 ||ft.com^$important
 ||9gag.com^$important
 ||chaos.social^$important,client=100.70.131.33
+||*.social^$important,client=100.70.131.33
+||news.ycombinator.com^$important,client=100.70.131.33
