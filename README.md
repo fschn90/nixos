@@ -41,6 +41,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 9. [Syncthing](#syncthing)
 9. [Immich](#immich)
 9. [Citrix Workspace](#citrix)
+10. [Adding VPNs](#vpn)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -449,6 +450,20 @@ add `/tank/Photos` as external library in immich admin web gui.
 
 First downlaoded the tar.gz installation file from the citrix homepage, getting the correct version is important. then `nix-prefetch-url file://$PWD/linuxx64-22.12.0.12.tar.gz`, again with the correct version.
 
+### Adding VPNs <a name="vpn"></a>
+
+---
+
+still a somewhat clumsy and manual process, first download example.conf file from eg proton or other vpn provider then:
+
+```bash
+sudo nmcli connection import type wireguard file ~/Downloads/example.conf                                                                                               Tue 15 Apr 2025 04:00:30 PM CEST
+sudo cat /etc/NetworkManager/system-connections/example.nmconnection ## ctrl + c output
+
+# then manually add with
+cd /etc/nixos/
+sops secrets/main.yaml ## and ctrl + v to relevant section
+```
 
 ---
 
