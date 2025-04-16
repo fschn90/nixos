@@ -26,6 +26,7 @@
     file-roller # Archive manager
     tree
     tree
+    nh
   ];
 
 }
