@@ -1,8 +1,8 @@
 # your home manager configuration
 {
   imports = [
-    # ./packages.nix
-    ../home-modules/packages.nix
+    ./packages.nix
+    # ../home-modules/packages.nix
     # ../home-modules/nvim.nix
     ../home-modules/alacritty.nix
     ../home-modules/dconf.nix
