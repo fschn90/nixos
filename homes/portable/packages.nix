@@ -15,11 +15,6 @@
     dconf-editor
     nautilus
     seahorse
-    # gnome-calculator
-    # gnome-disk-utility
-    # dconf-editor
-    # nautilus
-    # seahorse
     gnome-calculator
     gnome-decoder # bar- / qr-code scanner
     loupe # image viewer
@@ -29,6 +24,7 @@
     gtypist # type tutor, 10-finger-system 
     zellij
     file-roller # Archive manager
+    tree
     tree
   ];
 
