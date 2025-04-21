@@ -9,10 +9,10 @@
     settings.host = "0.0.0.0";
     singleNode = {
       enable = true;
-      capacity = 3;
+      capacity = 4;
       # hostname = "firefox-sync.fschn.org";
       hostname = "0.0.0.0";
-      url = "https://firefox-sync.fschn.org";
+      url = "http://firefox-sync.fschn.org";
       # hostname = "localhost";
       # url = "http://localhost:5000";
       enableNginx = true;
@@ -25,11 +25,11 @@
     mode = "0777";
   };
 
-  services.nginx = {
-    virtualHosts."firefox-sync.fschn.org" = {
-      useACMEHost = "fschn.org";
-      # avoiding error `The option has conflicting definition values` with lib.mkForce
-      forceSSL = lib.mkForce true;
-    };
-  };
+  # services.nginx = {
+  #   virtualHosts."firefox-sync.fschn.org" = {
+  #     useACMEHost = "fschn.org";
+  #     # avoiding error `The option has conflicting definition values` with lib.mkForce
+  #     forceSSL = lib.mkForce true;
+  #   };
+  # };
 }
