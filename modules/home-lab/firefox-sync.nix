@@ -18,7 +18,7 @@
   sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET" = { };
 
   services.nginx = {
-    virtualHosts."firefox-sync.fschn.org" = {
+    virtualHosts."ffsync.fschn.org" = {
       useACMEHost = "fschn.org";
       forceSSL = true;
       locations."/" = {
