@@ -6,9 +6,13 @@
   services.firefox-syncserver = {
     enable = true;
     secrets = config.sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET".path;
+    settings.host = "0.0.0.0";
     singleNode = {
       enable = true;
-      hostname = "firefox-sync.fschn.org";
+      capacity = 3;
+      # hostname = "firefox-sync.fschn.org";
+      hostname = "0.0.0.0";
+      url = "https://firefox-sync.fschn.org";
       # hostname = "localhost";
       # url = "http://localhost:5000";
       enableNginx = true;
