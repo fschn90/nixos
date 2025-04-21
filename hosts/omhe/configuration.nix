@@ -17,28 +17,20 @@
       ../../modules/tailscale.nix
       ../../modules/sanoid-backup-target.nix
       ../../modules/nix.nix
-      ../../modules/home-lab/nextcloud.nix
-      ../../modules/home-lab/adguardhome.nix
+      ./nextcloud.nix
+      ./adguardhome.nix
       ../../modules/acme.nix
-      ../../modules/home-lab/jellyfin.nix
+      ./jellyfin.nix
       ../../modules/nginx.nix
       ../../modules/monitoring/default-server.nix
-      ../../modules/home-lab/deluge.nix
-      ../../modules/home-lab/firefox-sync.nix
-      ../../modules/home-lab/immich.nix
-      ../../modules/home-lab/paperless.nix
-      ../../modules/home-lab/syncthing.nix
-      ../../modules/home-lab/fritz.nix
-      # ../berry/tor.nix
+      ./deluge.nix
+      ./firefox-sync.nix
+      ./immich.nix
+      ./paperless.nix
+      ./syncthing.nix
+      ./nginx-reverse-proxies.nix
+      ./tor.nix
     ];
-  services.nginx.virtualHosts."ai.fschn.org" = {
-    forceSSL = true;
-    useACMEHost = "fschn.org";
-    locations."/" = {
-      proxyPass = "http://100.114.14.104:8080";
-    };
-  };
-
   # Use the GRUB 2 boot loader.
   # boot.loader.grub.enable = true;
   # boot.loader.grub.devices = [ "nodev" ];
@@ -167,8 +159,8 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 53 5000 ];
-  networking.firewall.allowedUDPPorts = [ 53 5000 ];
+  networking.firewall.allowedTCPPorts = [ 2222 45849 ];
+  networking.firewall.allowedUDPPorts = [ 2222 45849 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
