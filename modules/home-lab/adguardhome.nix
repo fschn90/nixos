@@ -126,7 +126,7 @@
             answer = "100.106.245.44";
           }
           {
-            domain = "firefox-sync.fschn.org";
+            domain = "ffsync.fschn.org";
             answer = "100.106.245.44";
           }
           {
