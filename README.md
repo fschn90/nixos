@@ -417,7 +417,7 @@ Second, binding deluged to newly created network namespace and enabling connecti
 
 ---
 
-Navigate to **about:config** in your Firefox address bar and set **identity.sync.tokenserver.uri** to **https://firefox-sync.fschn.org/1.0/sync/1.5**.
+Navigate to **about:config** in your Firefox address bar and set **identity.sync.tokenserver.uri** to **https://ffsync.fschn.org/1.0/sync/1.5**.
 
 On Firefox android go to Settings > About Firefox and tap the logo a bunch, it will enable a few hidden options back on the main Settings page. One of which should be custom Sync and Firefox Accound settings.
 
