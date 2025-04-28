@@ -70,6 +70,17 @@
           ];
         }];
       }
+      {
+        job_name = "process";
+        static_configs = [{
+          targets = [
+            "omhe:${toString config.services.prometheus.exporters.process.port}"
+            "rainbow:${toString config.services.prometheus.exporters.process.port}"
+            "oide:${toString config.services.prometheus.exporters.process.port}"
+            "berry:${toString config.services.prometheus.exporters.process.port}"
+          ];
+        }];
+      }
 
     ];
   };
