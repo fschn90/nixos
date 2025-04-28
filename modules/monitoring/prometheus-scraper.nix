@@ -81,7 +81,17 @@
           ];
         }];
       }
-
+      {
+        job_name = "systemd";
+        static_configs = [{
+          targets = [
+            "omhe:${toString config.services.prometheus.exporters.systemd.port}"
+            "rainbow:${toString config.services.prometheus.exporters.systemd.port}"
+            "oide:${toString config.services.prometheus.exporters.systemd.port}"
+            "berry:${toString config.services.prometheus.exporters.systemd.port}"
+          ];
+        }];
+      }
     ];
   };
 
