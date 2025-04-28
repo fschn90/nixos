@@ -46,12 +46,12 @@
           syncOwnership = true;
           sendOwnership = true;
         };
-        "NixOS" = {
-          path = "/etc/nixos/";
-          devices = [ "rainbow" "berry" ];
-          syncOwnership = true;
-          sendOwnership = true;
-        };
+        # "NixOS" = {
+        #  path = "/etc/nixos/";
+        #  devices = [ "rainbow" "berry" ];
+        #  syncOwnership = true;
+        #  sendOwnership = true;
+        # };
       };
     };
   };
