@@ -30,6 +30,7 @@
   };
 
   services.prometheus.exporters.process.enable = true;
+  services.prometheus.exporters.systemd.enable = true;
 
   # services.prometheus.exporters.zfs.enable = true;
   # services.prometheus.exporters.nginx.enable = true;
