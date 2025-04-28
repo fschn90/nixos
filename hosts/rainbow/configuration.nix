@@ -30,6 +30,7 @@
     ../../modules/monitoring/default-workstation.nix
     ./syncthing.nix
     ../../modules/ai-playground.nix
+    ../../modules/overlay.nix
   ];
 
   # necesarry for zfs
