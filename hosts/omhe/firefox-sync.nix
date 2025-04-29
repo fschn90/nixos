@@ -17,13 +17,13 @@
 
   sops.secrets."firefox-syncserver/SYNC_MASTER_SECRET" = { };
 
-  services.nginx = {
-    virtualHosts."ffsync.fschn.org" = {
-      useACMEHost = "fschn.org";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:5000";
-      };
-    };
-  };
+  # services.nginx = {
+  #   virtualHosts."ffsync.fschn.org" = {
+  #     useACMEHost = "fschn.org";
+  #     forceSSL = true;
+  #     locations."/" = {
+  #       proxyPass = "http://localhost:5000";
+  #     };
+  #   };
+  # };
 }
