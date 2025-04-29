@@ -11,6 +11,8 @@
       enable = true;
       capacity = 4;
       hostname = "0.0.0.0";
+      enableNginx = true;
+      url = "http://ffsync.fschn.org";
     };
   };
 
