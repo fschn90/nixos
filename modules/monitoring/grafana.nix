@@ -92,6 +92,11 @@
       group = "grafana";
       user = "grafana";
     };
+    "grafana-dashboards/Systemd_exporter_rev1.json" = {
+      source = ./dashboards/Systemd_exporter_rev1.json;
+      group = "grafana";
+      user = "grafana";
+    };
   };
 
   services.nginx.virtualHosts."monitor.fschn.org" = {
