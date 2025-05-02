@@ -1,4 +1,4 @@
-{ config, ... }:
+# { config, ... }:
 
 {
   services.prometheus.exporters.node = {
@@ -6,12 +6,12 @@
     port = 9100;
     enabledCollectors = [
       "logind"
-      "systemd"
+      # "systemd"
       "ethtool"
       "softirqs"
       "tcpstat"
       "wifi"
-      "processes"
+      # "processes"
       "cpu"
       "loadavg"
       "filesystem"
@@ -21,7 +21,7 @@
       "powersupplyclass"
       # "logind"
     ];
-    # extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" "--collector.processes" ];
+    extraFlags = [ "--collector.systemd" "--collector.processes" ];
     disabledCollectors = [
       "textfile"
     ];
