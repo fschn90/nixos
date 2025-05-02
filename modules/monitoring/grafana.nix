@@ -72,8 +72,8 @@
   };
 
   environment.etc = {
-    "grafana-dashboards/node-exporter-full_rev37.json" = {
-      source = ./dashboards/node-exporter-full_rev37.json;
+    "grafana-dashboards/node-exporter-full_rev40.json" = {
+      source = ./dashboards/node-exporter-full_rev40.json;
       group = "grafana";
       user = "grafana";
     };
