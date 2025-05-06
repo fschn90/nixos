@@ -72,6 +72,10 @@
   };
 
   environment.etc = {
+    ### Adding a new dashboard?? ###
+    ### Read me first
+    #  a new dashboard it needs to be imported manually with the grafana web interface and then exported as json first,
+    # and only then to be added to the config below. this adds the specific datasource uid to the json.
     "grafana-dashboards/node-exporter-full_rev40.json" = {
       source = ./dashboards/node-exporter-full_rev40.json;
       group = "grafana";
@@ -97,6 +101,9 @@
       group = "grafana";
       user = "grafana";
     };
+    ### Adding a new dashboard?? ###
+    ### Adding a new dashboard?? ###
+    ### Adding a new dashboard?? ###
   };
 
   services.nginx.virtualHosts."monitor.fschn.org" = {
