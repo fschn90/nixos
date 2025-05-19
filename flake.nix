@@ -23,55 +23,58 @@
 
   outputs = { self, nixpkgs, home-manager, hardware, sops-nix, ... }@inputs:
     let inherit (self) outputs;
-    in {
+    in
+    {
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
+      nixosConfigurations =
 
-        # LAPTOP
-        oide = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./hosts/oide/configuration.nix
-            hardware.nixosModules.lenovo-thinkpad-t490
-            home-manager.nixosModules.home-manager
-            { home-manager.users.fschn = import ./homes/portable; }
-            sops-nix.nixosModules.sops
-          ];
-        };
+        {
+          # LAPTOP
+          oide = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/oide/configuration.nix
+              hardware.nixosModules.lenovo-thinkpad-t490
+              home-manager.nixosModules.home-manager
+              { home-manager.users.fschn = import ./homes/portable; }
+              sops-nix.nixosModules.sops
+            ];
+          };
 
-        # DESKTOP
-        rainbow = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./hosts/rainbow/configuration.nix
-            home-manager.nixosModules.home-manager
-            { home-manager.users.fschn = import ./homes/fschn; }
-            sops-nix.nixosModules.sops
-          ];
-        };
+          # DESKTOP
+          rainbow = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/rainbow/configuration.nix
+              home-manager.nixosModules.home-manager
+              { home-manager.users.fschn = import ./homes/fschn; }
+              sops-nix.nixosModules.sops
+              hardware.nixosModules.gigabyte-b650
+            ];
+          };
 
-        # HOME SERVER
-        omhe = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./hosts/omhe/configuration.nix
-            home-manager.nixosModules.home-manager
-            { home-manager.users.fschn = import ./homes/headless; }
-            sops-nix.nixosModules.sops
-          ];
+          # HOME SERVER
+          omhe = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/omhe/configuration.nix
+              home-manager.nixosModules.home-manager
+              { home-manager.users.fschn = import ./homes/headless; }
+              sops-nix.nixosModules.sops
+            ];
+          };
+          # Raspberry Pi
+          berry = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/berry/configuration.nix
+              hardware.nixosModules.raspberry-pi-4
+              home-manager.nixosModules.home-manager
+              { home-manager.users.fschn = import ./homes/headless; }
+              sops-nix.nixosModules.sops
+            ];
+          };
         };
-        # Raspberry Pi
-        berry = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./hosts/berry/configuration.nix
-            hardware.nixosModules.raspberry-pi-4
-            home-manager.nixosModules.home-manager
-            { home-manager.users.fschn = import ./homes/headless; }
-            sops-nix.nixosModules.sops
-          ];
-        };
-      };
     };
 }
