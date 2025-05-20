@@ -18,7 +18,7 @@
   systemd.services."autovt@tty1".enable = false;
 
   # tweaks 
-  services.gnome.core-utilities.enable = false;
+  services.gnome.core-apps.enable = false;
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
   # hardware.pulseaudio.enable = false;
   environment.gnome.excludePackages = (with pkgs; [
