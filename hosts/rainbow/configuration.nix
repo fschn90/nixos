@@ -29,7 +29,7 @@
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
     ./syncthing.nix
-    ../../modules/ai-playground.nix
+    ./ollama.nix
     ../../modules/overlays.nix
   ];
 
