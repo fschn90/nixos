@@ -8,7 +8,7 @@
     recommendedProxySettings = true;
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
-    # logError = "stderr debug";
+    logError = "stderr debug";
     #   tailscaleAuth.virtualHosts = [
     #     "adguard.fschn.org"
     #     "monitor.fschn.org"
