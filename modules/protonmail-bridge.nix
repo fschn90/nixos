@@ -13,4 +13,9 @@
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
   };
+
+  environment.systemPackages = with pkgs; [
+    protonmail-bridge
+  ];
+
 }

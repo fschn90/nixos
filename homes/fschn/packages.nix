@@ -26,7 +26,6 @@
     evince # gnome doc viewer
     gtypist # type tutor, 10-finger-system
     filezilla
-    protonmail-bridge
     gimp-with-plugins
     zellij
     nextcloud-client
