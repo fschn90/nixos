@@ -22,9 +22,9 @@
       "org/gnome/shell".enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         "system-monitor-indicator@mknap.com"
-        # "openweather-extension@jenslody.de"
         "dash-to-dock@micxgx.gmail.com"
         "clipboard-indicator@tudmotu.com"
+        "advanced-weather@sanjai.com"
       ];
 
     };

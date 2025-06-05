@@ -28,10 +28,10 @@
   # gnome extentions
   environment.systemPackages = with pkgs; [
     gnomeExtensions.appindicator
-    # gnomeExtensions.openweather
     gnomeExtensions.dash-to-dock
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.system-monitor-tray-indicator
+    gnomeExtensions.advanced-weather-companion
     adwaita-icon-theme
   ];
 
