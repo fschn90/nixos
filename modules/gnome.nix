@@ -30,7 +30,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
     gnomeExtensions.clipboard-indicator
-    gnomeExtensions.system-monitor-tray-indicator
+    gnomeExtensions.system-monitor-next
     gnomeExtensions.advanced-weather-companion
     adwaita-icon-theme
   ];

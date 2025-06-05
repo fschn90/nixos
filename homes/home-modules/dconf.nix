@@ -24,6 +24,7 @@
         "system-monitor-indicator@mknap.com"
         "dash-to-dock@micxgx.gmail.com"
         "clipboard-indicator@tudmotu.com"
+        "system-monitor-next@paradoxxx.zero.gmail.com"
         "advanced-weather@sanjai.com"
       ];
 
