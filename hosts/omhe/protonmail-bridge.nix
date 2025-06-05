@@ -9,11 +9,10 @@
     description = "Protonmail Bridge";
     enable = true;
     script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --no-window --noninteractive --log-level info";
-    # path = [ pkgs.gnome-keyring ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
     path = [ pkgs.pass ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
-    # wantedBy = [ "graphical-session.target" ];
-    # partOf = [ "graphical-session.target" ];
     after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig.Restart = "always";
   };
 
   environment.systemPackages = with pkgs; [
