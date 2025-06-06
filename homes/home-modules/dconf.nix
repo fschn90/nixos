@@ -21,7 +21,6 @@
 
       "org/gnome/shell".enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
-        "system-monitor-indicator@mknap.com"
         "dash-to-dock@micxgx.gmail.com"
         "clipboard-indicator@tudmotu.com"
         "system-monitor-next@paradoxxx.zero.gmail.com"
