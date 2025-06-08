@@ -1,17 +1,3 @@
-# My NixOs config
-
-personal setup with flakes and home-manager, deploying secrets with sops-nix.
-
-
-| | |
-|-|-|
-| **Shell:** | fish |
-| **Editor:** | helix |
-| **Terminal:** | alacrity |
-| **Browser:** | firefox |
-| **GUI:** | gnome + wayland |
-
-
 ## Documentation
 
 1. [Initial partitioning and formating the drive with zfs](#initial)
