@@ -13,6 +13,7 @@
   };
 
   services.open-webui.enable = true;
+  services.open-webui.package = pkgs.unstable.open-webui;
   services.open-webui.host = "100.114.14.104";
 
 }
