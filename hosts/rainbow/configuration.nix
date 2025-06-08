@@ -31,6 +31,7 @@
     ./syncthing.nix
     ./ollama.nix
     ../../modules/overlays.nix
+    ../../modules/wifi.nix
   ];
 
   # necesarry for zfs
