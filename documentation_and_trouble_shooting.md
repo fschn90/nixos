@@ -528,6 +528,20 @@ sops secrets/main.yaml ## and ctrl + v to relevant section
 `zpool replace [pool] [device] [new device]`
 
 questions: does this need to be done frome a live-usb?
+> still not sure.
+
+* When on live usb, the following hurdels need to be taken:
+```bash
+cannot import 'rpool': pool was previously in use from another system.
+Last access by <removed> (hostid=removed) at Mon Jan 30 05:59:03 2023
+The pool can be imported, use 'zpool import -f' to import the pool.
+```
+
+> `zgenhostid -f <the right hostid>`
+
+* Then: `zpool set autoexpand=on <name of pool>`
+
+* eventually: `zpool replace [pool] [device] [new device]`
 
 
 ```bash
