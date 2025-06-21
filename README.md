@@ -6,7 +6,7 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 |-|-|
 | **Shell:** | fish |
 | **Editor:** | helix |
-| **Terminal:** | alacrity |
+| **Terminal:** | alacritty |
 | **Browser:** | firefox |
 | **GUI:** | gnome + wayland |
 
