@@ -13,6 +13,7 @@
         useACMEHost = "fschn.org";
         locations."/" = {
           proxyPass = "http://100.114.14.104:8080";
+          proxyWebsockets = true;
         };
       };
     };
