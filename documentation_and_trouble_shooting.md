@@ -588,6 +588,7 @@ sops secrets/main.yaml ## and ctrl + v to relevant section
 7. [Jellyfin](#jellerror)
 8. [sops-nix](#sops-nix-trouble)
 9. [stable-diffusion](#stable-diffusion)
+10. [zpool & hostid issues](#zpool-hostid)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -767,4 +768,35 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 export HSA_OVERRIDE_GFX_VERSION=11.0.0 
 # starting stable-diffusion webui on localhost:7860 with:
 TORCH_COMMAND='pip install torch torchvision --extra-index-url pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7' python launch.py --precision full --upcast-sampling 
+```
+
+### zpool & hostid issues <a name="zpool-hostid"></a>
+
+when changing the hostid on a running nixos system with zfs following error may occure:
+
+```bash
+$zpool status                                                                                                                                        Tue 08 Jul 2025 12:42:21 PM UTC
+  pool: NIXROOT
+ state: ONLINE
+status: Mismatch between pool hostid and system hostid on imported pool.
+        This pool was previously imported into a system with a different hostid,
+        and then was verbatim imported into this system.
+action: Export this pool on all systems on which it is imported.
+        Then import it to correct the mismatch.
+   see: https://openzfs.github.io/openzfs-docs/msg/ZFS-8000-EY
+config:
+
+        NAME                            STATE     READ WRITE CKSUM
+        NIXROOT                         ONLINE       0     0     0
+          wwn-0x5001b448c9392e80-part2  ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+in this case the following to solve by making changes of host id to zpool persistent:
+
+```bash
+zpool set multihost=on NIXROOT
+zpool set multihost=off NIXROOT
+zpool status NIXROOT
 ```
