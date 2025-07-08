@@ -94,6 +94,7 @@
 ```bash
 sudo nixos-generate-config --root /mnt
 # make sure hardware-configuration.nix contains the right device by-uuid
+#### skip step below if you want to keep old hostid, in case u want to import previously existing zpool (which is already accessed by previous hostid)
 head -c 8 /etc/machine-id
 # copy the value to configuration.nix to  networking.hostId = "xxxxxxxx";
 # with the updated configuration.nix and hardware-configuration.nix copy or pull the remaining nixos config
