@@ -89,6 +89,16 @@
   sudo mount /dev/nvme0n1p1 /mnt/boot
   sudo mount -t zfs NIXROOT/home /mnt/home
 ```
+- installing nixos (if on live-usb and eg connected via ssh)
+
+```bash
+sudo nixos-generate-config --root /mnt
+# make sure hardware-configuration.nix contains the right device by-uuid
+head -c 8 /etc/machine-id
+# copy the value to configuration.nix to  networking.hostId = "xxxxxxxx";
+# with the updated configuration.nix and hardware-configuration.nix copy or pull the remaining nixos config
+sudo nixos-install --flake .#flake
+```
 
 ### Setup of hdds <a name="hdds"></a>
 
