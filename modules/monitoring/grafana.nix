@@ -13,7 +13,6 @@
 
       server = {
         # Listening Address
-        # http_addr = "100.106.245.44";
         http_addr = "127.0.0.1";
         # protocol = "http";
         # and Port
@@ -49,7 +48,6 @@
           type = "prometheus";
           # url = "${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
           url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
-          # url = "http://100.106.245.44:9090/";
         }
         {
           name = "Loki";

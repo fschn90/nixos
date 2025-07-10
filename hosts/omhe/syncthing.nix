@@ -4,7 +4,7 @@
 
   services.syncthing = {
     enable = true;
-    guiAddress = "100.106.245.44:8384";
+    guiAddress = "${toString config.tailnet.omhe}:8384";
     openDefaultPorts = true;
     user = "fschn";
     group = "users";
@@ -48,12 +48,11 @@
       useACMEHost = "fschn.org";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://100.106.245.44:8384";
+        proxyPass = "http://${toString config.tailnet.omhe}:8384";
       };
     };
   };
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
-
 }
 

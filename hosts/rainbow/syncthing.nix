@@ -23,7 +23,7 @@
       devices = {
         "omhe" = {
           id = "5JOBVZM-DSBMHPK-MY5LAOS-OLBTSLW-EUHASPW-RJA4KIC-QHSBYPV-VEBSNQW";
-          address = "tcp://100.106.245.44:220000";
+          address = "tcp://${toString config.tailnet.omhe}:220000";
         };
       };
       folders = {

@@ -15,8 +15,7 @@
       clients = [
         {
           # url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-          # url = "http://100.106.245.44:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-          url = "http://100.106.245.44:3030/loki/api/v1/push";
+          url = "http://${toString config.tailnet.omhe}:3030/loki/api/v1/push";
         }
       ];
       scrape_configs = [{
@@ -37,7 +36,6 @@
           job_name = "system";
           static_configs = [{
             targets = [ "localhost" ];
-            # targets = [ "100.106.245.44" ];
             labels = {
               instance = "cloud.fschn.org";
               env = "home-lab";

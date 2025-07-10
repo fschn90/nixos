@@ -255,7 +255,7 @@ add following scrape_config to `services.promtail.configuration`:
   {         
      job_name = "system";
     static_configs = [{
-      targets = [ "100.106.245.44" ];
+      targets = [ "${toString config.tailnet.omhe}" ];
       labels = {
         instance = "nextcloud.fschn.org";
         env = "home-lab";

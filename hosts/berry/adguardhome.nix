@@ -76,7 +76,7 @@
       #     persistent = [
       #       {
       #         name = "omhe";
-      #         ids = [ "100.106.245.44" ];
+      #         ids = [ "${toString config.tailnet.omhe}" ];
       #         use_global_settings = true;
       #       }
       #     ];
@@ -92,15 +92,15 @@
         rewrites = [
           #   {
           #     domain = "adguard.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "cloud.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "monitor.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           {
             domain = "jellyfin.fschn.org";
@@ -108,7 +108,7 @@
           }
           #   {
           #     domain = "scrutiny-omhe.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "scrutiny-oide.fschn.org";
@@ -120,27 +120,27 @@
           #   }
           #   {
           #     domain = "prometheus.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "deluge.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "firefox-sync.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "photos.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "paperless.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "syncthing-omhe.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "syncthing-rainbow.fschn.org";
@@ -148,11 +148,11 @@
           #   }
           #   {
           #     domain = "office.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
           #   {
           #     domain = "fritzbox.fschn.org";
-          #     answer = "100.106.245.44";
+          #     answer = "${toString config.tailnet.omhe}";
           #   }
 
         ];
@@ -292,7 +292,7 @@
   #     forceSSL = true;
   #     locations = {
   #       "/" = {
-  #         proxyPass = "http://100.106.245.44:3000";
+  #         proxyPass = "http://${toString config.tailnet.omhe}:3000";
   #       };
   #     };
   #   };
