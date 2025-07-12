@@ -113,7 +113,7 @@
           }
           {
             domain = "scrutiny-oide.fschn.org";
-            answer = "100.79.181.86";
+            answer = "${toString config.tailnet.oide}";
           }
           {
             domain = "scrutiny-rainbow.fschn.org";

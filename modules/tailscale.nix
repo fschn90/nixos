@@ -15,6 +15,10 @@
         type = lib.types.str;
         default = "100.65.150.91";
       };
+      oide = lib.mkOption {
+        type = lib.types.str;
+        default = "100.79.181.86";
+      };
     };
   };
 
