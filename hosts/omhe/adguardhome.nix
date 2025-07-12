@@ -161,15 +161,15 @@
           }
           {
             domain = "fritzbox-eltern.fschn.org";
-            answer = "100.65.150.91";
+            answer = "${toString config.tailnet.berry}";
           }
           {
             domain = "adguard-eltern.fschn.org";
-            answer = "100.65.150.91";
+            answer = "${toString config.tailnet.berry}";
           }
           {
             domain = "syncthing-berry.fschn.org";
-            answer = "100.65.150.91";
+            answer = "${toString config.tailnet.berry}";
           }
 
         ];

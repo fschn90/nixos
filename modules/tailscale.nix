@@ -6,9 +6,11 @@
   sops.secrets."tailnet/omhe" = { };
 
   options = {
-    tailnet.omhe.ip = lib.mkOption {
-      type = lib.types.str;
-      default = builtins.readFile config.sops.secrets."tailnet/omhe".path;
+    tailnet = {
+      berry = lib.mkOption {
+        type = lib.types.str;
+        default = "100.65.150.91";
+      };
     };
   };
 

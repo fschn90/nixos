@@ -1,3 +1,4 @@
+{ config, ... }:
 {
 
   services.adguardhome = {
@@ -6,7 +7,7 @@
     settings = {
       http = {
         # Web interface IP address with port to listen on.
-        address = "100.65.150.91:3000";
+        address = "${toString config.tailnet.berry}3000";
       };
       dns = {
         # List of upstream DNS servers
