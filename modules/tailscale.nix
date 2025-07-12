@@ -2,11 +2,12 @@
 
 {
 
-
-  sops.secrets."tailnet/omhe" = { };
-
   options = {
     tailnet = {
+      omhe = lib.mkOption {
+        type = lib.types.str;
+        default = "100.67.133.79";
+      };
       rainbow = lib.mkOption {
         type = lib.types.str;
         default = "100.114.14.104";
@@ -22,16 +23,21 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    tailscale
-  ];
+  config = {
 
-  services.tailscale.enable = true;
-  services.tailscale.extraUpFlags = [
-    "--ssh"
-  ];
-  #   services.tailscale.authKeyFile = config.sops.secrets."tailscale/key".path; 
+    environment.systemPackages = with pkgs; [
+      tailscale
+    ];
 
-  sops.secrets."tailscale/key" = { };
+    services.tailscale.enable = true;
+    services.tailscale.extraUpFlags = [
+      "--ssh"
+    ];
+
+    # services.tailscale.authKeyFile = config.sops.secrets."tailscale/key".path; 
+
+    sops.secrets."tailscale/key" = { };
+
+  };
 
 } 
