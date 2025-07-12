@@ -117,7 +117,7 @@
           }
           {
             domain = "scrutiny-rainbow.fschn.org";
-            answer = "100.114.14.104";
+            answer = "${toString config.tailnet.rainbow}";
           }
           {
             domain = "prometheus.fschn.org";
@@ -145,7 +145,7 @@
           }
           {
             domain = "syncthing-rainbow.fschn.org";
-            answer = "100.114.14.104";
+            answer = "${toString config.tailnet.rainbow}";
           }
           {
             domain = "office.fschn.org";

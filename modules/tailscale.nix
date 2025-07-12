@@ -7,6 +7,10 @@
 
   options = {
     tailnet = {
+      rainbow = lib.mkOption {
+        type = lib.types.str;
+        default = "100.114.14.104";
+      };
       berry = lib.mkOption {
         type = lib.types.str;
         default = "100.65.150.91";
