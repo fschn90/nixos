@@ -99,6 +99,11 @@
       group = "grafana";
       user = "grafana";
     };
+    "grafana-dashboards/nextcloud_logs_rev4.json" = {
+      source = ./dashboards/nextcloud_logs_rev4.json;
+      group = "grafana";
+      user = "grafana";
+    };
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
