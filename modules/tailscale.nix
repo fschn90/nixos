@@ -6,7 +6,7 @@
     tailnet = {
       omhe = lib.mkOption {
         type = lib.types.str;
-        default = "100.67.133.79";
+        default = "100.75.234.64";
       };
       rainbow = lib.mkOption {
         type = lib.types.str;
