@@ -189,6 +189,7 @@ boot.zfs.requestEncryptionCredentials = lib.mkForce [ "NIXROOT" "tank"];
 ```bash
 sudo zfs create tank/Nextcloud
 sudo zfs set mountpoint=/tank/Nextcloud tank/Nextcloud
+sudo chown nextcloud:nextcloud /tank/Nextcloud/
 ```
 
 - to avoid `nexcould version is marked insecure` error, specify nextcloud package:
@@ -270,6 +271,8 @@ and give the necesary permissions for the promtail user with:
 ```nix
  users.users.promtail.extraGroups = [ "nextcloud" ];
 ```
+
+- first login with user `root` (which is the default value of `services.nextcloud.config.adminuser`) and password as set with `services.nextcloud.config.adminpassFile`.
 
 ### Auto unlock gnome keyring <a name="keyring"></a>
 
@@ -629,13 +632,21 @@ After manually removing nextcloud data and rebuilding, with e.g.:
 
 ```bash
 zfs destroy tank/Nextcloud
+## or rename to keep files (not database tho) as backup
+zfs rename tank/Nextcloud tank/Nextcloud-old
+## the recreate nextcloud home
 zfs create tank/Nextcloud
+sudo zfs set mountpoint=/tank/Nextcloud tank/Nextcloud
+# make sure the nextcloud user owns the dir
+sudo chown nextcloud:nextcloud /tank/Nextcloud/
+# drop the old database for fresh restart
+sudo -u postgres dropdb nextcloud
 nixos-rebuild switch
 ```
 
 - the user already exisits error
 
-renaming the admin user with `services.nextcloud.config.adminuser` to another value does work. probably the previous user is kept in the cache despite delete the whole filesystem. also deleteing the old users in the nextcloud interface ensures not running out of names eventually.
+renaming the admin user with `services.nextcloud.config.adminuser` to another value does work. probably the previous user is kept in the cache despite delete the whole filesystem. also deleteing the old users in the nextcloud interface ensures not running out of names eventually. idea: maybe needs to remove user from database
 
 
 ### Grafana <a name="grafana-trouble"></a>
