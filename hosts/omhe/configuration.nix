@@ -29,8 +29,8 @@
       ./paperless.nix
       ./syncthing.nix
       ./nginx-reverse-proxies.nix
-      ./tor.nix
-      ./protonmail-bridge.nix
+      # ./tor.nix
+      # ./protonmail-bridge.nix
     ];
 
   # Use the GRUB 2 boot loader.
