@@ -811,3 +811,17 @@ zpool set multihost=on NIXROOT
 zpool set multihost=off NIXROOT
 zpool status NIXROOT
 ```
+
+### immich restore db from backup <a name="restore-immichdb"></a>
+
+Entirely based [on](https://gist.github.com/V3ntus/8f28c7965c085bb99a9b51904ebd8248) from [V3ntus](https://gist.github.com/V3ntus).
+
+Lost the postgres database due to a faily drive but had mediaLocation in tackt including backups.
+
+1. Stop Immich
+
+```bash
+sudo systemctl stop immich-server.service immich-machine-learning.service
+```
+
+2. get backup file
