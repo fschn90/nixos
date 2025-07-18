@@ -10,6 +10,7 @@
       "auth.anonymous".enabled = true;
       "auth.anonymous".org_name = "Main Org.";
       "auth.anonymous".org_role = "Viewer";
+      # dashboards.default_home_dashboard_path = ""; ## set to node exporter
 
       server = {
         # Listening Address

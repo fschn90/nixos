@@ -592,6 +592,7 @@ sops secrets/main.yaml ## and ctrl + v to relevant section
 8. [sops-nix](#sops-nix-trouble)
 9. [stable-diffusion](#stable-diffusion)
 10. [zpool & hostid issues](#zpool-hostid)
+11. [Immich restore database from backup](#restore-immichdb)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -812,7 +813,7 @@ zpool set multihost=off NIXROOT
 zpool status NIXROOT
 ```
 
-### immich restore db from backup <a name="restore-immichdb"></a>
+### Immich restore database from backup <a name="restore-immichdb"></a>
 
 Entirely based [on](https://gist.github.com/V3ntus/8f28c7965c085bb99a9b51904ebd8248) from [V3ntus](https://gist.github.com/V3ntus).
 
@@ -824,4 +825,49 @@ Lost the postgres database due to a faily drive but had mediaLocation in tackt i
 sudo systemctl stop immich-server.service immich-machine-learning.service
 ```
 
-2. get backup file
+2. Get and prepare backup (which immich hopefully created)
+
+```bash
+# moving file to to location which is readable by postgres user, extracting it and making sure it is readable
+sudo cp -p /tank/Immich/backups/immich-db-backup.sql.gz /var/lib/postgresql/
+sudo gunzip /var/lib/postgresql/immich-db-backup.sql.gz
+sudo chown postgres:postgres /var/lib/postgresql/immich-db-backup.sql.gz
+```
+
+3. Prepare database
+
+```bash
+sudo -u postgres psql immich
+immich=# <paste following codeblock and exit>
+```
+```sql
+DROP SCHEMA public CASCADE;
+DROP SCHEMA vectors CASCADE;
+
+CREATE SCHEMA public;
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS vectors;
+CREATE EXTENSION IF NOT EXISTS cube;
+CREATE EXTENSION IF NOT EXISTS earthdistance;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+ALTER SCHEMA public OWNER TO immich;
+ALTER SCHEMA vectors OWNER TO immich;
+GRANT SELECT ON TABLE pg_vector_index_stat TO immich;
+
+ALTER EXTENSION vectors UPDATE;
+```
+
+4. Import the backup
+
+```bash
+sudo -u postgres psql immich -f /var/lib/postgresql/immich-db-backup.sql.gz
+```
+
+5. Start Immich
+
+```bash
+sudo systemctl start immich-server.service immich-machine-learning.service
+```
