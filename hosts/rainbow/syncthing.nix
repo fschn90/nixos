@@ -1,13 +1,17 @@
 { pkgs, config, ... }:
 
 {
+  systemd.tmpfiles.rules = [
+    "d /home/fschn/.config/syncthing - fschn users"
+  ];
 
   services.syncthing = {
     enable = true;
-    guiAddress = "100.114.14.104:8384";
+    guiAddress = "${toString config.tailnet.rainbow}:8384";
     user = "fschn";
     group = "users";
     dataDir = "/home/fschn";
+    configDir = "/home/fschn/.config/syncthing";
     openDefaultPorts = true;
     settings.gui = {
       user = "fschn";
@@ -22,13 +26,13 @@
     settings = {
       devices = {
         "omhe" = {
-          id = "5JOBVZM-DSBMHPK-MY5LAOS-OLBTSLW-EUHASPW-RJA4KIC-QHSBYPV-VEBSNQW";
+          id = "CZPM2MR-QCNNKMX-ESB2KUO-ASI76LX-2H7PLRW-4OT6XIU-YNX7TEU-T22RCQO";
           address = "tcp://${toString config.tailnet.omhe}:220000";
         };
       };
       folders = {
         "PAPERLESS-CONSUME" = {
-          path = "/home/fschn/PAPERLESS-CONSUME";
+          path = "/home/fschn/Documents/PAPERLESS-CONSUME";
           devices = [ "omhe" ];
           syncOwnership = true;
           sendOwnership = true;
@@ -48,11 +52,10 @@
       useACMEHost = "fschn.org";
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://100.114.14.104:8384";
+        proxyPass = "http://${toString config.tailnet.rainbow}:8384";
       };
     };
   };
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
-
 }
