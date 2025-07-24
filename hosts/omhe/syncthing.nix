@@ -8,7 +8,8 @@
     openDefaultPorts = true;
     user = "fschn";
     group = "users";
-    dataDir = "/tank/Paperless";
+    # dataDir = "/tank/Paperless";
+    configDir = "/home/fschn/.config/syncthing";
     settings.gui = {
       user = "fschn";
     };
@@ -23,7 +24,7 @@
       devices = {
         "rainbow" = {
           id = "MSBKHEW-54C7Z5L-O65KLIJ-PCQZW72-C4ODMY3-SE4IXQQ-KWI2LPU-5YTVNQW";
-          address = "tcp://100.114.14.104:220000";
+          address = "tcp://${toString config.tailnet.rainbow}:220000";
         };
       };
       folders = {
