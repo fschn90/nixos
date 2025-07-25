@@ -6,10 +6,9 @@
     enable = true;
     guiAddress = "${toString config.tailnet.omhe}:8384";
     openDefaultPorts = true;
+    # needs to run as system user to avoid permission issues
     user = "fschn";
     group = "users";
-    # dataDir = "/tank/Paperless";
-    configDir = "/home/fschn/.config/syncthing";
     settings.gui = {
       user = "fschn";
     };
@@ -23,7 +22,7 @@
     settings = {
       devices = {
         "rainbow" = {
-          id = "MSBKHEW-54C7Z5L-O65KLIJ-PCQZW72-C4ODMY3-SE4IXQQ-KWI2LPU-5YTVNQW";
+          id = "XGAUTJ5-E7LH5CR-C6N3ONB-YWB6YHV-6AO7GXJ-LK5VOUX-3ATR2VN-LZV3KQE";
           address = "tcp://${toString config.tailnet.rainbow}:220000";
         };
       };
