@@ -421,6 +421,15 @@ On Firefox android go to Settings > About Firefox and tap the logo a bunch, it w
 
 ---
 
+needs to be run as as system user to avoid permission issues. thus:
+
+```nix
+  services.syncthing = {
+    user = "fschn";
+    group = "users";
+    };
+```
+
 ### Paperless <a name="paperless"></a>
 
 ---
