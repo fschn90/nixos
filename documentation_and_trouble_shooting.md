@@ -11,6 +11,7 @@
 9. [Syncthing](#syncthing)
 9. [Citrix Workspace](#citrix)
 10. [Adding VPNs](#vpn)
+10. [Paperless](#paperless)
 11. [Immich](#immich)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
@@ -417,6 +418,10 @@ Navigate to **about:config** in your Firefox address bar and set **identity.sync
 On Firefox android go to Settings > About Firefox and tap the logo a bunch, it will enable a few hidden options back on the main Settings page. One of which should be custom Sync and Firefox Accound settings.
 
 ### Syncthing <a name="syncthing"></a>
+
+---
+
+### Paperless <a name="paperless"></a>
 
 ---
 
