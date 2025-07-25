@@ -1,17 +1,13 @@
 { pkgs, config, ... }:
 
 {
-  systemd.tmpfiles.rules = [
-    "d /home/fschn/.config/syncthing - fschn users"
-  ];
 
   services.syncthing = {
     enable = true;
     guiAddress = "${toString config.tailnet.rainbow}:8384";
+    # needs to run as system user to avoid permission issues
     user = "fschn";
     group = "users";
-    dataDir = "/home/fschn";
-    configDir = "/home/fschn/.config/syncthing";
     openDefaultPorts = true;
     settings.gui = {
       user = "fschn";
@@ -26,7 +22,7 @@
     settings = {
       devices = {
         "omhe" = {
-          id = "CZPM2MR-QCNNKMX-ESB2KUO-ASI76LX-2H7PLRW-4OT6XIU-YNX7TEU-T22RCQO";
+          id = "X7H2IMZ-JHIPBB2-WXBVUCM-LGLUGDW-ZZ2NYUP-6VS3JGG-ZHSL5TC-XRRG7QT";
           address = "tcp://${toString config.tailnet.omhe}:220000";
         };
       };
