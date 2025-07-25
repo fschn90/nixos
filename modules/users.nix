@@ -3,7 +3,7 @@
 {
   users.users.fschn = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "syncthing" ]; # wheel to enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ]; # wheel to enable ‘sudo’ for the user.
     hashedPasswordFile = config.sops.secrets."Users/fschn/Password".path;
   };
 
