@@ -9,10 +9,10 @@
 7. [Deluge](#deluge)
 8. [Firefox-syncserver](#firefox-syncserver)
 9. [Syncthing](#syncthing)
-9. [Citrix Workspace](#citrix)
-10. [Adding VPNs](#vpn)
 10. [Paperless](#paperless)
 11. [Immich](#immich)
+12. [Citrix Workspace](#citrix)
+13. [Adding VPNs](#vpn)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -473,125 +473,6 @@ sudo cat /etc/NetworkManager/system-connections/example.nmconnection ## ctrl + c
 cd /etc/nixos/
 sops secrets/main.yaml ## and ctrl + v to relevant section
 ```
-
-### Migrating primary drive on NixOS <a name="prime-drive"></a>
-
----
-
-1st approach, based on [this](https://lobste.rs/s/vgtgc2/migrating_primary_drive_on_nixos):
-
-
-* **Partition & mount (just as initial setup documented above):**
-<blockquote>
-
-- Partition and format the drive:
-
-- `sudo sgdisk --zap-all /dev/nvme0n1`
-
-- `sudo fdisk /dev/nvme0n1`, then:
-
-```bash
-  g
-  n
-  accept default part num
-  accept default first sector
-  last sector: +2G
-  t
-  use partiton type 1 (EFI System)
-  n
-  accept default partition number
-  accept default first sector
-  accept default last sector
-  w
-```
-
-- No swap partition (huge amount of memory, also security)
-
-- Create the boot volume:
-
-```bash
-  sudo mkfs.fat -F 32 /dev/nvme0n1p1
-  sudo fatlabel /dev/nvme0n1p1 NIXBOOT
-```
-
-- Create a zpool:
-
-```bash
-  sudo zpool create -f \
-   -o altroot="/mnt" \
-   -o ashift=12 \
-   -o autotrim=on \
-   -O compression=lz4 \
-   -O acltype=posixacl \
-   -O xattr=sa \
-   -O relatime=on \
-   -O normalization=formD \
-   -O dnodesize=auto \
-   -O sync=disabled \
-   -O encryption=aes-256-gcm \
-   -O keylocation=prompt \
-   -O keyformat=passphrase \
-   -O mountpoint=none \
-   NIXROOT \
-   /dev/nvme0n1p2
-```
-
-- Create zfs volumes::
-
-```bash
-  sudo zfs create -o mountpoint=legacy NIXROOT/root
-  sudo zfs create -o mountpoint=legacy NIXROOT/home
-  # reserved to cope with running out of disk space
-  sudo zfs create -o refreservation=1G -o mountpoint=none NIXROOT/reserved
-```
-
-- `sudo mount -t zfs NIXROOT/root /mnt`
-- Mount subvolumes:
-
-```bash
-  sudo mkdir /mnt/boot
-  sudo mkdir /mnt/home
-  sudo mount /dev/nvme0n1p1 /mnt/boot
-  sudo mount -t zfs NIXROOT/home /mnt/home
-```
-</blockquote>
-
-* **Generate a new /etc/nixos/hardware-configuration.nix file**
-> `nixos-generate-config`
-* **Copy over the /etc/nixos/configuration.nix**
-* **Update the Grub device UUID in the configuration.nix**
-* **Copied a few directories from /var/lib**
-
-2nd approach:
-
-`zpool replace [pool] [device] [new device]`
-
-questions: does this need to be done frome a live-usb?
-> still not sure.
-
-* When on live usb, the following hurdels need to be taken:
-```bash
-cannot import 'rpool': pool was previously in use from another system.
-Last access by <removed> (hostid=removed) at Mon Jan 30 05:59:03 2023
-The pool can be imported, use 'zpool import -f' to import the pool.
-```
-
-> `zgenhostid -f <the right hostid>`
-
-* Then: `zpool set autoexpand=on <name of pool>`
-
-* eventually: `zpool replace [pool] [device] [new device]`
-
-
-```bash
-sudo nmcli connection import type wireguard file ~/Downloads/example.conf                                                                                               Tue 15 Apr 2025 04:00:30 PM CEST
-sudo cat /etc/NetworkManager/system-connections/example.nmconnection ## ctrl + c output
-
-# then manually add with
-cd /etc/nixos/
-sops secrets/main.yaml ## and ctrl + v to relevant section
-```
-
 ---
 
 ## Troubleshooting <a name="trouble"></a>
