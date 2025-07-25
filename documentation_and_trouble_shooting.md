@@ -9,9 +9,9 @@
 7. [Deluge](#deluge)
 8. [Firefox-syncserver](#firefox-syncserver)
 9. [Syncthing](#syncthing)
-9. [Immich](#immich)
 9. [Citrix Workspace](#citrix)
 10. [Adding VPNs](#vpn)
+11. [Immich](#immich)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -429,7 +429,7 @@ sudo chown -R fschn:users /tank/Paperless
 
 ---
 
-as prerequisite for Paperless:
+as prerequisite for Immich:
 ```bash
 sudo zfs create tank/Photos
 sudo chown -R fschn:users /tank/Photos
