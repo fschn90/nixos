@@ -52,7 +52,7 @@
   services.postgresqlBackup = {
     enable = true;
     databases = [ "paperless" ];
-    location = "/tank/Paperless/backup";
-    compressionLevel = 11;
+    location = "/tank/Paperless/backups";
+    compressionLevel = 7;
   };
 }
