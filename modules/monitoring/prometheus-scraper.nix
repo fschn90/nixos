@@ -92,6 +92,14 @@
           ];
         }];
       }
+      {
+        job_name = "postgres_exporter";
+        static_configs = [{
+          targets = [
+            "omhe:${toString config.services.prometheus.exporters.postgres.port}"
+          ];
+        }];
+      }
     ];
   };
 
