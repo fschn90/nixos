@@ -74,6 +74,8 @@
   services.prometheus.exporters.nginx.enable = true;
   # services.prometheus.exporters.nginxlog.enable = true;
   services.prometheus.exporters.smartctl.enable = true;
+  services.prometheus.exporters.postgres.enable = true;
+  services.prometheus.exporters.postgres.runAsLocalSuperUser = true;
   services.prometheus.exporters.nextcloud = {
     enable = true;
     tokenFile = config.sops.secrets."Nextcloud/authToken".path;
