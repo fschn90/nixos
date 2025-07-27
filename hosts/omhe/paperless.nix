@@ -44,4 +44,15 @@
     owner = "paperless";
   };
 
+  systemd.tmpfiles.rules = [
+    "d /tank/Paperless/backups 0770 postgres postgres  -"
+  ];
+
+
+  services.postgresqlBackup = {
+    enable = true;
+    databases = [ "paperless" ];
+    location = "/tank/Paperless/backup";
+    compressionLevel = 11;
+  };
 }
