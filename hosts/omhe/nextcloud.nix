@@ -96,7 +96,16 @@
     owner = "nextcloud-exporter";
     mode = "0440";
   };
+
   users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
+
+  services.postgresqlBackup = {
+    enable = true;
+    databases = [ "nextcloud" ];
+    location = "/tank/Nextcloud/backups";
+    compressionLevel = 7;
+  };
+
 }
 
 
