@@ -105,6 +105,11 @@
       group = "grafana";
       user = "grafana";
     };
+    "grafana-dashboards/postgres_rev8.json" = {
+      source = ./dashboards/postgres_rev8.json;
+      group = "grafana";
+      user = "grafana";
+    };
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
