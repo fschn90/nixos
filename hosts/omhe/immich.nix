@@ -51,7 +51,7 @@
       User = config.users.users.fschn.name;
     };
     wantedBy = [ "multi-user.target" ];
-    startAt = "*-*-* *:00:00";
+    startAt = "*:0/4:00";
   };
 
 }
