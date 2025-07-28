@@ -439,6 +439,7 @@ as prerequisite for Paperless:
 sudo zfs create tank/Paperless
 sudo chown -R fschn:users /tank/Paperless
 ```
+
 ### Immich <a name="immich"></a>
 
 ---
@@ -477,7 +478,7 @@ sops secrets/main.yaml ## and ctrl + v to relevant section
 
 ## Troubleshooting <a name="trouble"></a>
 
-1. [Auto unlocking gnome keyring](#keyring)
+1. [Auto unlocking gnome keyring](#keyring-blank)
 2. [Switching bootloader from Grub to systemd-boot](#bootloader)
 3. [Nextcloud reinstallation](#nextcloud)
 4. [Grafana](#grafana-trouble)
@@ -491,7 +492,7 @@ sops secrets/main.yaml ## and ctrl + v to relevant section
 12. [Paperless migrate from sqlite to postgresql](#paperdbmigration)
 
 
-### Auto unlocking gnome keyring <a name="keyring"></a>
+### Auto unlocking gnome keyring <a name="keyring-blank"></a>
 
 ---
 
@@ -550,7 +551,6 @@ renaming the admin user with `services.nextcloud.config.adminuser` to another va
 
 ---
 
-
 1. to avoid `provisioned dashboard cannot be deleted / saved`, the followgin needs to be edited:
 
 ```nix
@@ -572,7 +572,6 @@ Because the dashboard is expecting prometheus to scrape every 15s.
 ### Firefox-syncserver <a name="syncserver"></a>
 
 ---
-
 
 To view logs, type [about:sync-log](about:sync-log) into firefox address bar.
 
@@ -680,6 +679,8 @@ TORCH_COMMAND='pip install torch torchvision --extra-index-url pip3 install --pr
 
 ### zpool & hostid issues <a name="zpool-hostid"></a>
 
+---
+
 when changing the hostid on a running nixos system with zfs following error may occure:
 
 ```bash
@@ -710,6 +711,8 @@ zpool status NIXROOT
 ```
 
 ### Immich restore database from backup <a name="restore-immichdb"></a>
+
+---
 
 Entirely based [on](https://gist.github.com/V3ntus/8f28c7965c085bb99a9b51904ebd8248) from [V3ntus](https://gist.github.com/V3ntus).
 
