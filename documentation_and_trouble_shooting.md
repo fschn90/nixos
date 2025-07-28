@@ -488,6 +488,7 @@ sops secrets/main.yaml ## and ctrl + v to relevant section
 9. [stable-diffusion](#stable-diffusion)
 10. [zpool & hostid issues](#zpool-hostid)
 11. [Immich restore database from backup](#restore-immichdb)
+12. [Paperless migrate from sqlite to postgresql](#paperdbmigration)
 
 
 ### Auto unlocking gnome keyring <a name="keyring"></a>
@@ -765,4 +766,28 @@ sudo -u postgres psql immich -f /var/lib/postgresql/immich-db-backup.sql.gz
 
 ```bash
 sudo systemctl start immich-server.service immich-machine-learning.service
+```
+### Paperless migrate from sqlite to postgresql <a name="paperdbmigration"></a>
+
+following steps were necesarry:
+```bash
+# stop paperless
+sudo systemctl stop paperless-consumer paperless-scheduler paperless-task-queue paperless-web redis-paperless
+# create export destionation
+sudo mkdir /tank/Paperless/export
+sudo chown -R paperless:paperless /tank/Paperless/export
+sudo chmod -R 775 /tank/Paperless/export
+# export data and all settings
+sudo paperless-manage document_exporter /tank/Paperless/export/
+
+
+
+### adapt nixos config file and point paperless to postgres
+### nixos-rebuil switch
+
+# additional steps necesary
+paperless-manage makemigrations --skip-checks
+paperless-manage migrate
+# import data
+sudo paperless-manage document_importer /tank/Paperless/export/
 ```
