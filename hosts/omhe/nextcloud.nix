@@ -68,8 +68,6 @@
   # };
 
 
-
-
   services.prometheus.exporters.zfs.enable = true;
   services.prometheus.exporters.nginx.enable = true;
   # services.prometheus.exporters.nginxlog.enable = true;
@@ -87,8 +85,6 @@
     ];
   };
 
-  # # make sure nextcloud-exporter has access to secret
-  # users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
 
   # secret deployment for nextcloud-exporter
   sops.secrets."Nextcloud/authToken" = {
@@ -99,11 +95,17 @@
 
   users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
 
+  ### Nextcloud postgresql backup
+  users.users.postgres.extraGroups = [ "nextcloud" ];
+
+  systemd.tmpfiles.rules = [
+    "d /tank/Nextcloud/backups 0750 postgres root  -"
+  ];
+
   services.postgresqlBackup = {
     enable = true;
     databases = [ "nextcloud" ];
     location = "/tank/Nextcloud/backups";
-    compressionLevel = 7;
   };
 
 }
