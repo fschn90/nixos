@@ -27,6 +27,11 @@
       PAPERLESS_CONSUMER_DELETE_DUPLICATES = true;
       # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
       PAPERLESS_URL = "https://paperless.fschn.org"; # neccessary to avoid error: [WARNING] [django.security.csrf] Forbidden (Origin checking failed - https://paperless.fschn.org does not match any trusted origins.): /accounts/login/
+
+      # Postgres settings
+      PAPERLESS_DBHOST = "/run/postgresql";
+      PAPERLESS_DBUSER = "paperless";
+      PAPERLESS_DBNAME = "paperless";
     };
   };
 
@@ -42,6 +47,21 @@
 
   sops.secrets."paperless/admin-password" = {
     owner = "paperless";
+  };
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "paperless" ];
+    ensureUsers = [
+      {
+        name = "paperless";
+        ensureDBOwnership = true;
+      }
+    ];
+    # authentication = ''
+    # type database  DBuser  auth-method
+    # local all       all     trust
+    # '';
   };
 
 }
