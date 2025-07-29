@@ -106,6 +106,15 @@
         daily = 31;
         weekly = 7;
         monthly = 12;
+        yearly = 1;
+      };
+      "tank/root" = {
+        autoprune = true;
+        autosnap = false;
+        hourly = 24;
+        daily = 31;
+        weekly = 7;
+        monthly = 12;
         yearly = 2;
       };
     };
