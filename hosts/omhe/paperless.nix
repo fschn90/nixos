@@ -34,13 +34,15 @@ in
         invalidate_digital_signatures = true; # avoid error: DigitalSignatureError: Input PDF has a digital signature. OCR would alter the document, invalidating the signature.
 
       };
+      PAPERLESS_TIME_ZONE = "Europe/Vienna";
+      PAPERLESS_TASK_WORKERS = 2;
+      PAPERLESS_THREADS_PER_WORKER = 1;
+      PAPERLESS_WEBSERVER_WORKERS = 2;
       PAPERLESS_CONSUMER_RECURSIVE = true;
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
       PAPERLESS_CONSUMER_DELETE_DUPLICATES = true;
       # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
       PAPERLESS_URL = "https://paperless.fschn.org"; # neccessary to avoid error: [WARNING] [django.security.csrf] Forbidden (Origin checking failed - https://paperless.fschn.org does not match any trusted origins.): /accounts/login/
-
-      # Postgres settings
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_DBUSER = "paperless";
       PAPERLESS_DBNAME = "paperless";
