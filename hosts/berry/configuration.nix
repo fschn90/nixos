@@ -39,6 +39,8 @@
     hostName = "berry";
   };
 
+  time.timeZone = "Europe/Vienna";
+
   # autologin of user
   services.getty.autologinUser = config.users.users.fschn.name;
 
