@@ -76,7 +76,7 @@
   services.getty.autologinUser = config.users.users.fschn.name;
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Vienna";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
