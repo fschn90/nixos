@@ -1,4 +1,16 @@
-{ config, ... }:
+{ pkgs, config, ... }:
+
+let
+  backupDirDaily = "/tank/Paperless/backup-daily/";
+  backupDirMonthly = "/tank/Paperless/backup-monthly/";
+
+  restore-paperless = pkgs.writeShellApplication {
+    name = "restore-paperless";
+    text = ''
+      sudo -u paperless /run/current-system/sw/bin/paperless-manage document_importer "${backupDirDaily}"
+    '';
+  };
+in
 
 {
 
@@ -58,10 +70,54 @@
         ensureDBOwnership = true;
       }
     ];
-    # authentication = ''
-    # type database  DBuser  auth-method
-    # local all       all     trust
-    # '';
+  };
+
+  environment.systemPackages = [ restore-paperless ];
+
+
+  systemd.tmpfiles.rules = [
+    "d ${backupDirDaily} 0750 paperless paperless  -"
+    "d ${backupDirMonthly} 0750 paperless paperless  -"
+  ];
+
+
+  systemd = {
+    timers."paperless-backup-daily" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+        Unit = "paperless-backup-daily.service";
+      };
+    };
+    timers."paperless-backup-monthly" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "monthly";
+        Persistent = true;
+        Unit = "paperless-backup-monthly.service";
+      };
+    };
+
+    services."paperless-backup-daily" = {
+      script = ''
+        /run/current-system/sw/bin/paperless-manage document_exporter "${backupDirDaily}" -p -d
+        /run/current-system/sw/bin/paperless-manage document_create_classifier
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
+    services."paperless-backup-monthly" = {
+      script = ''
+        /run/current-system/sw/bin/paperless-manage document_exporter "${backupDirMonthly}" -z
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
   };
 
 }
