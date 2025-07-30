@@ -28,6 +28,13 @@
 
       security.admin_password = "$__file{${config.sops.secrets."grafana/admin-password".path}}";
 
+      database = {
+        type = "postgres";
+        host = "/run/postgresql";
+        user = "grafana";
+        name = "grafana";
+      };
+
     };
   };
 
@@ -113,6 +120,18 @@
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
+  };
+
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "grafana" ];
+    ensureUsers = [
+      {
+        name = "grafana";
+        ensureDBOwnership = true;
+      }
+    ];
   };
 
   services.nginx.virtualHosts."monitor.fschn.org" = {
