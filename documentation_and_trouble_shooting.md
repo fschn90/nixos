@@ -13,6 +13,7 @@
 11. [Immich](#immich)
 12. [Citrix Workspace](#citrix)
 13. [Adding VPNs](#vpn)
+14. [Adding zfs log and cache](#logcache)
 
 ### Initial partitioning and formating the drive with zfs <a name="inital"></a>
 
@@ -474,6 +475,39 @@ sudo cat /etc/NetworkManager/system-connections/example.nmconnection ## ctrl + c
 cd /etc/nixos/
 sops secrets/main.yaml ## and ctrl + v to relevant section
 ```
+### Adding zfs log and cache<a name="logcache"></a>
+
+---
+
+first partition ssds:
+
+```bash
+# done twice, once for sde and once for sdf
+sudo fdisk /dev/sde
+g
+n
+accept default part num
+accept default first sector
+last sector: +16G
+n
+accept default partition number
+accept default first sector
+accept default last sector
+w
+```
+then adding to zpool:
+
+```bash
+sudo zpool add tank cache \
+  /dev/disk/by-id/ata-WDC_WDS100T1R0A-68A4W0_25140N801680-part2 \
+  /dev/disk/by-id/ata-WDC_WDS100T1R0A-68A4W0_25140N800235-part2 \
+  log \
+  /dev/disk/by-id/ata-WDC_WDS100T1R0A-68A4W0_25140N801680-part1 \
+  /dev/disk/by-id/ata-WDC_WDS100T1R0A-68A4W0_25140N800235-part1 \
+  -o ashift=12 ## to avoid error: cannot add to 'tank': adding devices with different physical sector sizes is not allowed
+```
+
+
 ---
 
 ## Troubleshooting <a name="trouble"></a>
