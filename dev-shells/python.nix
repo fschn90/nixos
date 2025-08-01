@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
@@ -6,7 +6,8 @@ pkgs.mkShell {
     python3
     python311Packages.pip
     python311Packages.virtualenv
-    python311Packages.spacy
+    # python311Packages.spacy
+    uv
   ];
 
   shellHook = ''
