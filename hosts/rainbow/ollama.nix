@@ -12,8 +12,4 @@
     loadModels = [ "gemma3:12b-it-q8_0" "llama3.1:latest" "deepseek-r1:14b" ];
   };
 
-  services.open-webui.enable = true;
-  services.open-webui.package = pkgs.unstable.open-webui;
-  services.open-webui.host = "100.114.14.104";
-
 }
