@@ -31,6 +31,8 @@
       ./nginx-reverse-proxies.nix
       # ./tor.nix
       # ./protonmail-bridge.nix
+      ../../modules/overlays.nix
+      ./open-webui.nix
     ];
 
   # Use the GRUB 2 boot loader.
