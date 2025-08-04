@@ -9,6 +9,7 @@
   services.xserver.displayManager = {
     gdm.wayland = true;
     gdm.enable = true;
+    gdm.autoSuspend = false;
   };
 
   # auto login user at boot up
