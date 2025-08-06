@@ -72,6 +72,10 @@ in
         ensureDBOwnership = true;
       }
     ];
+    authentication = "
+      #type database  DBuser  auth-method local all       all     trust
+      # TYPE  DATABASE  USER  ADDRESS  METHODhost    all       all   127.0.0.1/32  md5
+    ";
   };
 
   environment.systemPackages = [ restore-paperless ];
