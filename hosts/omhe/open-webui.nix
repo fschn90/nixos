@@ -4,7 +4,7 @@
 
   services.open-webui = {
     enable = true;
-    package = pkgs.unstable.open-webui;
+    # package = pkgs.unstable.open-webui;
     host = config.tailnet.omhe;
     environment = {
       ANONYMIZED_TELEMETRY = "False";
