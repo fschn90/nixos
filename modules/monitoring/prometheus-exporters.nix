@@ -6,12 +6,12 @@
     port = 9100;
     enabledCollectors = [
       "logind"
-      # "systemd"
+      "systemd"
       "ethtool"
       "softirqs"
       "tcpstat"
       "wifi"
-      # "processes"
+      "processes"
       "cpu"
       "loadavg"
       "filesystem"
@@ -19,9 +19,11 @@
       "zfs"
       "drm"
       "powersupplyclass"
-      # "logind"
+      "sysctl"
+      "ksmd"
+      "cpu_vulnerabilities"
     ];
-    extraFlags = [ "--collector.systemd" "--collector.processes" ];
+    # extraFlags = [ "--collector.systemd" "--collector.processes" ];
     disabledCollectors = [
       "textfile"
     ];
