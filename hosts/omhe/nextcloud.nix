@@ -104,7 +104,7 @@
 
   services.postgresqlBackup = {
     enable = true;
-    databases = [ "nextcloud" ];
+    databases = [ "nextcloud" "grafana" ];
     location = "/tank/Nextcloud/backups";
   };
 
