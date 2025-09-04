@@ -126,4 +126,21 @@ in
     };
   };
 
+
+  # protonmail bridge for paperless to consume attached documents
+  systemd.user.services.protonmail-bridge = {
+    description = "Protonmail Bridge";
+    enable = true;
+    script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --no-window --noninteractive --log-level info";
+    path = [ pkgs.pass ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Restart = "always";
+  };
+
+  environment.systemPackages = with pkgs; [
+    pass
+    protonmail-bridge
+  ];
+
 }
