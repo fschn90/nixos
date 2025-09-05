@@ -33,6 +33,7 @@
       # ./protonmail-bridge.nix
       ../../modules/overlays.nix
       ./open-webui.nix
+      ./postgresql.nix
     ];
 
   # Use the GRUB 2 boot loader.

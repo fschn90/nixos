@@ -95,18 +95,18 @@
 
   users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
 
-  ### Nextcloud postgresql backup
-  users.users.postgres.extraGroups = [ "nextcloud" ];
+  # ### Nextcloud postgresql backup
+  # users.users.postgres.extraGroups = [ "nextcloud" ];
 
-  systemd.tmpfiles.rules = [
-    "d /tank/Nextcloud/backups 0750 postgres root  -"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "d /tank/Nextcloud/backups 0750 postgres root  -"
+  # ];
 
-  services.postgresqlBackup = {
-    enable = true;
-    databases = [ "nextcloud" "grafana" ];
-    location = "/tank/Nextcloud/backups";
-  };
+  # services.postgresqlBackup = {
+  #   enable = true;
+  #   databases = [ "nextcloud" "grafana" ];
+  #   location = "/tank/Nextcloud/backups";
+  # };
 
 }
 
