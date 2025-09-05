@@ -78,7 +78,11 @@ in
     ";
   };
 
-  environment.systemPackages = [ restore-paperless ];
+  environment.systemPackages = [
+    restore-paperless
+    pkgs.pass
+    pkgs.protonmail-bridge
+  ];
 
 
   systemd.tmpfiles.rules = [
@@ -138,9 +142,9 @@ in
     serviceConfig.Restart = "always";
   };
 
-  environment.systemPackages = with pkgs; [
-    pass
-    protonmail-bridge
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   pass
+  #   protonmail-bridge
+  # ];
 
 }
