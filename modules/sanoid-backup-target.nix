@@ -26,7 +26,7 @@
       "NIXROOT/root" = {
         # sshKey = "/var/lib/syncoid/backup";
         source = "NIXROOT/root";
-        target = "tank/root";
+        target = "tank/omhe-backup";
         sendOptions = "w c";
         # extraArgs = [ "--sshoption=StrictHostKeyChecking=off" ];
       };
@@ -108,7 +108,7 @@
         monthly = 12;
         yearly = 1;
       };
-      "tank/root" = {
+      "tank/omhe-backup" = {
         autoprune = true;
         autosnap = false;
         hourly = 24;
