@@ -82,6 +82,8 @@ in
     restore-paperless
     pkgs.pass
     pkgs.protonmail-bridge
+    pkgs.pinentry-tty
+    pkgs.gnupg
   ];
 
 
@@ -142,9 +144,10 @@ in
     serviceConfig.Restart = "always";
   };
 
-  # environment.systemPackages = with pkgs; [
-  #   pass
-  #   protonmail-bridge
-  # ];
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-tty;
+  };
 
 }
