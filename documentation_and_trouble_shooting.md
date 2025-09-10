@@ -524,6 +524,8 @@ sudo zpool add tank cache \
 10. [zpool & hostid issues](#zpool-hostid)
 11. [Immich restore database from backup](#restore-immichdb)
 12. [Paperless migrate from sqlite to postgresql](#paperdbmigration)
+13. [gnupg in ssh failed: No pinentry](#gpg-ssh)
+
 
 
 ### Auto unlocking gnome keyring <a name="keyring-blank"></a>
@@ -806,6 +808,8 @@ sudo systemctl start immich-server.service immich-machine-learning.service
 ```
 ### Paperless migrate from sqlite to postgresql <a name="paperdbmigration"></a>
 
+---
+
 following steps were necesarry:
 ```bash
 # stop paperless
@@ -828,3 +832,23 @@ paperless-manage migrate
 # import data
 sudo paperless-manage document_importer /tank/Paperless/export/
 ```
+
+### gnupg in ssh failed: No pinentry<a name="gpg-ssh"></a>
+
+---
+
+After setting config to:
+```nix
+  environment.systemPackages = with pkgs; [
+    pinentry-tty
+    gnupg
+  ];
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-tty;
+  };
+```
+
+and receiving following the error `failed: No pinentry` when `gpg --full-generate-key`, a restart of the machine was necesarry. Then everything worked fine.
