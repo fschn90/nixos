@@ -525,6 +525,7 @@ sudo zpool add tank cache \
 11. [Immich restore database from backup](#restore-immichdb)
 12. [Paperless migrate from sqlite to postgresql](#paperdbmigration)
 13. [gnupg in ssh failed: No pinentry](#gpg-ssh)
+14. [protonmail-bridge with pass](#bridge-pass)
 
 
 
@@ -852,3 +853,18 @@ After setting config to:
 ```
 
 and receiving following the error `failed: No pinentry` when `gpg --full-generate-key`, a restart of the machine was necesarry. Then everything worked fine.
+
+### protonmail-bridge with pass<a name="bridge-pass"></a>
+
+---
+
+in order to avoid the error:
+
+```bash
+$ protonmail-bridge --cli
+>>> Proton Mail Bridge is not able to detect a supported password manager
+(secret-service or pass). Please install and set up a supported password manager
+and restart the application.
+```
+
+first needed to trust the gpg key with `gpg --edit-key <KEY_ID>` and `gpg>trust`. then protonmail-bridge worked fine.

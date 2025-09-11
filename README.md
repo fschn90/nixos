@@ -44,3 +44,4 @@ personal setup with flakes and home-manager, deploying secrets with sops-nix.
 11. [Immich restore database from backup](./documentation_and_trouble_shooting.md#restore-immichdb)
 12. [Paperless migrate from sqlite to postgresql](./documentation_and_trouble_shooting.md#paperdbmigration)
 13. [gnupg in ssh failed: No pinentry](./documentation_and_trouble_shooting.md#gpg-ssh)
+14. [protonmail-bridge with pass](./documentation_and_trouble_shooting.md#bridge-pass)
