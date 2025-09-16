@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
 
   services.ollama = {
@@ -10,6 +10,7 @@
     # };
     rocmOverrideGfx = "11.0.1";
     loadModels = [ "gemma3:12b-it-q8_0" "llama3.1:latest" "deepseek-r1:14b" ];
+    host = config.tailnet.rainbow;
   };
 
 }
