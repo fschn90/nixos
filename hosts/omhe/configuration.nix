@@ -34,6 +34,7 @@
       ../../modules/overlays.nix
       ./open-webui.nix
       ./postgresql.nix
+      ./arr.nix
     ];
 
   # Use the GRUB 2 boot loader.
