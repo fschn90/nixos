@@ -20,4 +20,7 @@
     }
   ];
 
+  # allowing access to indexers behing cloudflare
+  services.flaresolverr.enable = true;
+
 }  
