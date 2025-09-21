@@ -5,17 +5,34 @@
     enable = true;
   };
 
-  services.nginx.virtualHosts."prowlarr.fschn.org" = {
-    forceSSL = true;
-    useACMEHost = "fschn.org";
-    locations."/" = {
-      proxyPass = "http://localhost:${toString config.services.prowlarr.settings.server.port}";
+  services.radarr = {
+    enable = true;
+  };
+
+  services.nginx.virtualHosts = {
+    "prowlarr.fschn.org" = {
+      forceSSL = true;
+      useACMEHost = "fschn.org";
+      locations."/" = {
+        proxyPass = "http://localhost:${toString config.services.prowlarr.settings.server.port}";
+      };
+    };
+    "radarr.fschn.org" = {
+      forceSSL = true;
+      useACMEHost = "fschn.org";
+      locations."/" = {
+        proxyPass = "http://localhost:${toString config.services.radarr.settings.server.port}";
+      };
     };
   };
 
   services.adguardhome.settings.filtering.rewrites = [
     {
       domain = "prowlarr.fschn.org";
+      answer = "${toString config.tailnet.omhe}";
+    }
+    {
+      domain = "radarr.fschn.org";
       answer = "${toString config.tailnet.omhe}";
     }
   ];
