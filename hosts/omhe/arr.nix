@@ -5,9 +5,15 @@
     enable = true;
   };
 
+  # allowing access to indexers behing cloudflare
+  services.flaresolverr.enable = true;
+
   services.radarr = {
     enable = true;
   };
+
+  # permissions for user
+  users.users.radarr.extraGroups = [ "deluge" "jellyfin" ];
 
   services.nginx.virtualHosts = {
     "prowlarr.fschn.org" = {
@@ -36,9 +42,6 @@
       answer = "${toString config.tailnet.omhe}";
     }
   ];
-
-  # allowing access to indexers behing cloudflare
-  services.flaresolverr.enable = true;
 
   # binding privoxy to protonvpn network namespace
   services.privoxy.enable = true;
