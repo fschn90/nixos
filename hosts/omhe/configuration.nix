@@ -35,6 +35,7 @@
       ./open-webui.nix
       ./postgresql.nix
       ./arr.nix
+      ./guacamole.nix
     ];
 
   # Use the GRUB 2 boot loader.
