@@ -10,7 +10,13 @@
     # };
     rocmOverrideGfx = "11.0.1";
     loadModels = [ "gemma3:12b-it-q8_0" "llama3.1:latest" "deepseek-r1:14b" ];
-    host = config.tailnet.rainbow;
+    host = "0.0.0.0";
+  };
+
+  # avoiding Error: listen tcp 100.114.14.104:11434: bind: cannot assign requested address 
+  systemd.services."ollama" = {
+    after = [ "tailscaled.service" ];
+    requires = [ "tailscaled.service" ];
   };
 
 }
