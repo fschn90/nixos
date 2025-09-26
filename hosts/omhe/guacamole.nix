@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 {
 
@@ -41,4 +41,5 @@
           }
         ];
 
+        services.openssh.settings.PasswordAuthentication = lib.mkForce true;
       }
