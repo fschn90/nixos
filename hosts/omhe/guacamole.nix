@@ -23,16 +23,33 @@
     mode = "644";
   };
 
-  #   services.nginx = {
-  #   virtualHosts."guacaomle.fschn.org" = {
-  #     useACMEHost = "fschn.org";
-  #     forceSSL = true;
-  #     locations."/" = {
-  #       proxyPass = "http://localHost:${toString config.services.deluge.web.port}";
-  #     };
-  #   };
-  # };
-
+  services.nginx = {
+    upstreams."guacamole_server" = {
+      extraConfig =
+        keepalive 4;
+      ;
+      servers = {
+        "127.0.0.1:8080" = { };
+      };
+    };
+    virtualHosts."remote.mydomain.net" = {
+      forceSSL = true; # redirect http to https
+      enableACME = true;
+      locations."/" = {
+        extraConfig =
+          proxy_buffering off;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_pass http://guacamole_server/guacamole$request_uri;
+        proxy_redirect http://guacamole_server/ https://$server_name/;
+        ;
+        };
+        };
+        };
 
         services.adguardhome.settings.filtering.rewrites = [
           {
