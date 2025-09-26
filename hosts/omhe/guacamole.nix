@@ -5,7 +5,6 @@
   services.guacamole-server = {
     enable = true;
     host = "127.0.0.1";
-    # userMappingXml = ./guacamole/user-mapping.xml;
     userMappingXml = config.sops.secrets."guacamole/user-mapping.xml".path;
     package = pkgs.unstable.guacamole-server; # Optional, use only when you want to use the unstable channel
   };
@@ -20,7 +19,9 @@
     package = pkgs.unstable.guacamole-client; # Optional, use only when you want to use the unstable channel
   };
 
-  sops.secrets."guacamole/user-mapping.xml" = { };
+  sops.secrets."guacamole/user-mapping.xml" = {
+    mode = "644";
+  };
 
   #   services.nginx = {
   #   virtualHosts."guacaomle.fschn.org" = {
