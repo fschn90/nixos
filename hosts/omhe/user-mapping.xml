@@ -1,0 +1,15 @@
+   <user-mapping>
+       <authorize username="fschn" password="d38497ab3a5fe96f4cffc901990c5a87faa7fcaabc37ebdb00f15fb4491f3ad5" encoding="sha256">
+         <!-- <connection name="NAME_OF_THE_CONNECTION"> -->
+             <!-- <protocol>rdp</protocol> -->
+             <!-- <param name="hostname">127.0.0.1</param> -->
+             <!-- <param name="port">3389</param> -->
+             <!-- <param name="ignore-cert">true</param> -->
+         <!-- </connection> -->
+         <connection name="NixOS SSH">
+             <protocol>ssh</protocol>
+             <param name="hostname">127.0.0.1</param>
+             <param name="port">22</param>
+         </connection>
+       </authorize>
+   </user-mapping>

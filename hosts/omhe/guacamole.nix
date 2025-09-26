@@ -32,10 +32,12 @@
   #   };
   # };
 
-  services.adguardhome.settings.filtering.rewrites = [
-    {
-      domain = "guacamole.fschn.org";
-      answer = "${toString config.tailnet.omhe}";
-    }
-  ];
-}
+
+        services.adguardhome.settings.filtering.rewrites = [
+          {
+            domain = "remote.fschn.org";
+            answer = "${toString config.tailnet.omhe}";
+          }
+        ];
+
+      }
