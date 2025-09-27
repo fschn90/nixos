@@ -4,7 +4,7 @@
 
   services.guacamole-server = {
     enable = true;
-    host = "127.0.0.1";
+    host = "0.0.0.0";
     userMappingXml = config.sops.secrets."guacamole/user-mapping.xml".path;
     package = pkgs.unstable.guacamole-server; # Optional, use only when you want to use the unstable channel
   };
@@ -14,7 +14,7 @@
     enableWebserver = true;
     settings = {
       guacd-port = 4822;
-      guacd-hostname = "127.0.0.1";
+      guacd-hostname = "0.0.0.0";
     };
     package = pkgs.unstable.guacamole-client; # Optional, use only when you want to use the unstable channel
   };
@@ -25,6 +25,7 @@
 
   # to avoid port conflict with open-webui on port 8080
   services.tomcat.port = 8079;
+
   #nginx configuration from wiki.nixos.org/wiki/Remote_Desktop
   services.nginx = {
     enable = true;
@@ -62,12 +63,13 @@
     dejavu_fonts
   ];
 
-        services.adguardhome.settings.filtering.rewrites = [
-          {
-            domain = "remote.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-          }
-        ];
+  services.adguardhome.settings.filtering.rewrites = [
+    {
+      domain = "remote.fschn.org";
+      answer = "${toString config.tailnet.omhe}";
+    }
+  ];
 
-        services.openssh.settings.PasswordAuthentication = lib.mkForce true;
-      }
+  services.openssh.settings.PasswordAuthentication = lib.mkForce true;
+
+}
