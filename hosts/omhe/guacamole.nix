@@ -25,33 +25,38 @@
 
   # to avoid port conflict with open-webui on port 8080
   services.tomcat.port = 8079;
+  #nginx configuration from wiki.nixos.org/wiki/Remote_Desktop
   services.nginx = {
+    enable = true;
     upstreams."guacamole_server" = {
-      extraConfig =
+      extraConfig = ''
         keepalive 4;
+      ''
       ;
       servers = {
-        "127.0.0.1:8080" = { };
+        "0.0.0.0:8079" = { };
       };
     };
-    virtualHosts."remote.mydomain.net" = {
+    virtualHosts."remote.fschn.org" = {
       forceSSL = true; # redirect http to https
-      enableACME = true;
+      useACMEHost = "fschn.org";
+      # enableACME = true;
       locations."/" = {
-        extraConfig =
+        extraConfig = ''
           proxy_buffering off;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $http_connection;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $host;
-        proxy_set_header X-NginX-Proxy true;
-        proxy_pass http://guacamole_server/guacamole$request_uri;
-        proxy_redirect http://guacamole_server/ https://$server_name/;
-        ;
-        };
-        };
-        };
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $http_connection;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $host;
+          proxy_set_header X-NginX-Proxy true;
+          proxy_pass http://guacamole_server/guacamole$request_uri;
+          proxy_redirect http://guacamole_server/ https://$server_name/;
+        '';
+      };
+    };
+  };
+
   # making sure DejaVuSansMono is available
   fonts.packages = with pkgs; [
     dejavu_fonts
