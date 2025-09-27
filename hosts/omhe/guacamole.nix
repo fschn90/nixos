@@ -52,6 +52,10 @@
         };
         };
         };
+  # making sure DejaVuSansMono is available
+  fonts.packages = with pkgs; [
+    dejavu_fonts
+  ];
 
         services.adguardhome.settings.filtering.rewrites = [
           {
