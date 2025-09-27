@@ -23,6 +23,8 @@
     mode = "644";
   };
 
+  # to avoid port conflict with open-webui on port 8080
+  services.tomcat.port = 8079;
   services.nginx = {
     upstreams."guacamole_server" = {
       extraConfig =
