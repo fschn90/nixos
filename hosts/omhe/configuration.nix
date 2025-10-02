@@ -24,7 +24,7 @@
       ../../modules/nginx.nix
       ../../modules/monitoring/default-server.nix
       ./deluge.nix
-      ./firefox-sync.nix
+      # ./firefox-sync.nix
       ./immich.nix
       ./paperless.nix
       ./syncthing.nix
