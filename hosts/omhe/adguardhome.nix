@@ -152,10 +152,6 @@
             answer = "${toString config.tailnet.omhe}";
           }
           {
-            domain = "fritzbox.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-          }
-          {
             domain = "ai.fschn.org";
             answer = "${toString config.tailnet.omhe}";
           }
