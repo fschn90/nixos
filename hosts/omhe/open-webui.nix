@@ -31,7 +31,7 @@
         forceSSL = true;
         useACMEHost = "fschn.org";
         locations."/" = {
-          proxyPass = "http://${toString config.tailnet.omhe}:8080";
+          proxyPass = "http://${toString config.tailnet.omhe}:${toString config.services.open-webui.port}";
           proxyWebsockets = true;
         };
       };
