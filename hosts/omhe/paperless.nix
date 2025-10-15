@@ -41,6 +41,7 @@ in
       PAPERLESS_CONSUMER_RECURSIVE = true;
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
       PAPERLESS_CONSUMER_DELETE_DUPLICATES = true;
+      PAPERLESS_EMAIL_TASK_CRON = "0 3 * * *";
       # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
       PAPERLESS_URL = "https://paperless.fschn.org"; # neccessary to avoid error: [WARNING] [django.security.csrf] Forbidden (Origin checking failed - https://paperless.fschn.org does not match any trusted origins.): /accounts/login/
       PAPERLESS_DBHOST = "/run/postgresql";
