@@ -46,12 +46,12 @@
       Description = "Auto sync Nextcloud";
       After = "network-online.target";
     };
-    script = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/OpenCamera '/tank/Photos/Phone Pixel 8A/OpenCamera' https://cloud.fschn.org";
+    script = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/* '/tank/Photos/Phone Pixel 8A/' https://cloud.fschn.org";
     serviceConfig = {
       User = config.users.users.fschn.name;
     };
     wantedBy = [ "multi-user.target" ];
-    startAt = "*:0/4:00";
+    startAt = "*-*-* *:00:00";
   };
 
 }
