@@ -15,13 +15,14 @@
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit calendar contacts notes onlyoffice tasks
         deck phonetrack polls cospend
-        music gpoddersync;
+        music;
+      # gpoddersync;
       # integration_paperless; # doesnt seem to work yet
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
     home = "/tank/Nextcloud";
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     settings = {
       # settings for nextcloud log scraping with promtail and loki
       overwriteprotocol = "https";
