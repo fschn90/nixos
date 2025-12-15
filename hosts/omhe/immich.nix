@@ -46,7 +46,7 @@
       Description = "Auto sync Nextcloud";
       After = "network-online.target";
     };
-    script = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/* '/tank/Photos/Phone Pixel 8A/' https://cloud.fschn.org";
+    script = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h --user $(cat ${config.sops.secrets."Nextcloud/my-user/user".path}) --password $(cat ${config.sops.secrets."Nextcloud/my-user/password".path}) --path /InstantUpload/Camera '/tank/Photos/Phone Pixel 8A/Camera' https://cloud.fschn.org";
     serviceConfig = {
       User = config.users.users.fschn.name;
     };
