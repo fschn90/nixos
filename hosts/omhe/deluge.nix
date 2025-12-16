@@ -35,6 +35,8 @@
     };
   };
 
+  # making sure my normal user has access to dir
+  users.users.fschn.extraGroups = [ "deluge" ];
 
   # VPN wireguard conf file
   sops.secrets."Deluge/vpn.conf" = { };
