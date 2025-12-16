@@ -25,9 +25,7 @@
     zellij
     file-roller # Archive manager
     tree
-    tree
     nh
-    citrix_workspace_24_02_0
   ];
 
 }
