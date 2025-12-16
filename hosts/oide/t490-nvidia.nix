@@ -20,7 +20,8 @@
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # hotfix while the stable driver didnt build when upgrading to 25.11
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
 
     graphics = {
