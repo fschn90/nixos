@@ -5,8 +5,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.excludePackages = [ pkgs.xterm ];
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager = {
+  # fix from 25.11 upgrade
+  services.desktopManager.gnome.enable = true;
+  services.displayManager = {
     gdm.wayland = true;
     gdm.enable = true;
     gdm.autoSuspend = false;

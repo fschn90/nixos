@@ -2,9 +2,11 @@
 
   programs.git = {
     enable = true;
-    userName = "fschn90";
-    userEmail = "79014934+fschn90@users.noreply.github.com";
-    extraConfig = { init.defaultBranch = "main"; };
+    settings = {
+      user.name = "fschn90";
+      user.email = "79014934+fschn90@users.noreply.github.com";
+      init.defaultBranch = "main";
+    };
   };
-  
+
 }
