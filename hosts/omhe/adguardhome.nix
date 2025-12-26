@@ -233,6 +233,7 @@
         # https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/spam-tlds.txt
         https://raw.githubusercontent.com/xRuffKez/NRD/refs/heads/main/lists/30-day_phishing/adblock/nrd-phishing-30day_adblock.txt
         # https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/doh-vpn-proxy-bypass.txt
+        https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/main/noai_hosts.txt
 
         # easylist
         https://easylist.to/easylist/easylist.txt
