@@ -104,9 +104,6 @@
     useUserPackages = true;
   };
 
-  # auto upgrade but not auto reboot
-  system.autoUpgrade.enable = true;
-
   # fishshell, necessary
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
