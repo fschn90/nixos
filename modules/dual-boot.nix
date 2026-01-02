@@ -9,7 +9,7 @@
   boot.loader.grub.useOSProber = true;
 
   boot.loader.grub.zfsSupport = true;
-  boot.loader.grub.theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
+  boot.loader.grub.theme = "${pkgs.catppuccin-grub}";
   boot.loader.grub.gfxmodeEfi = "3840x2160";
 }
 
