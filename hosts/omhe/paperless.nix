@@ -136,8 +136,8 @@ in
     enable = true;
     script = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --no-window --noninteractive --log-level info";
     path = [ pkgs.pass ]; # HACK: https://github.com/ProtonMail/proton-bridge/issues/176          
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    # after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
     serviceConfig.Restart = "always";
   };
 
