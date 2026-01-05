@@ -36,10 +36,12 @@
     {
       domain = "prowlarr.fschn.org";
       answer = "${toString config.tailnet.omhe}";
+      enabled = true;
     }
     {
       domain = "radarr.fschn.org";
       answer = "${toString config.tailnet.omhe}";
+      enabled = true;
     }
   ];
 

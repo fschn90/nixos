@@ -24,10 +24,12 @@
     {
       domain = "firtzbox.fschn.org";
       answer = "${toString config.tailnet.omhe}";
+      enabled = true;
     }
     {
       domain = "wled.fschn.org";
       answer = "${toString config.tailnet.omhe}";
+      enabled = true;
     }
   ];
 }

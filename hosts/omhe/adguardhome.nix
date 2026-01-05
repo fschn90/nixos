@@ -94,78 +94,97 @@
           {
             domain = "adguard.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "cloud.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "monitor.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "jellyfin.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "scrutiny-omhe.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "scrutiny-oide.fschn.org";
             answer = "${toString config.tailnet.oide}";
+            enabled = true;
           }
           {
             domain = "scrutiny-rainbow.fschn.org";
             answer = "${toString config.tailnet.rainbow}";
+            enabled = true;
           }
           {
             domain = "prometheus.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "deluge.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "ffsync.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "photos.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "paperless.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "syncthing-omhe.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "syncthing-rainbow.fschn.org";
             answer = "${toString config.tailnet.rainbow}";
+            enabled = true;
           }
           {
             domain = "office.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "ai.fschn.org";
             answer = "${toString config.tailnet.omhe}";
+            enabled = true;
           }
           {
             domain = "fritzbox-eltern.fschn.org";
             answer = "${toString config.tailnet.berry}";
+            enabled = true;
           }
           {
             domain = "adguard-eltern.fschn.org";
             answer = "${toString config.tailnet.berry}";
+            enabled = true;
           }
           {
             domain = "syncthing-berry.fschn.org";
             answer = "${toString config.tailnet.berry}";
+            enabled = true;
           }
 
         ];

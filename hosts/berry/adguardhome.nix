@@ -106,6 +106,7 @@
           {
             domain = "jellyfin.fschn.org";
             answer = "192.168.178.22";
+            enabled = true;
           }
           #   {
           #     domain = "scrutiny-omhe.fschn.org";
