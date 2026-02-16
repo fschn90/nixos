@@ -29,8 +29,6 @@
       ./paperless.nix
       ./syncthing.nix
       ./nginx-reverse-proxies.nix
-      # ./tor.nix
-      # ./protonmail-bridge.nix
       ../../modules/overlays.nix
       ./open-webui.nix
       ./postgresql.nix
