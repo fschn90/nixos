@@ -100,6 +100,14 @@
           ];
         }];
       }
+      {
+        job_name = "deluge";
+        static_configs = [{
+          targets = [
+            "omhe:${toString config.services.prometheus.exporters.deluge.port}"
+          ];
+        }];
+      }
     ];
   };
 

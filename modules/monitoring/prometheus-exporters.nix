@@ -1,4 +1,4 @@
-# { config, ... }:
+{ config, ... }:
 
 {
   services.prometheus.exporters.node = {
@@ -33,6 +33,12 @@
 
   services.prometheus.exporters.process.enable = true;
   services.prometheus.exporters.systemd.enable = true;
+  services.prometheus.exporters.deluge.enable = true;
+  services.prometheus.exporters.deluge.delugePasswordFile = config.sops.secrets.Deluge-Password.path;
+
+  sops.secrets.Deluge-Password = {
+    mode = "0444";
+  };
 
   # services.prometheus.exporters.zfs.enable = true;
   # services.prometheus.exporters.nginx.enable = true;
