@@ -75,6 +75,17 @@
               sops-nix.nixosModules.sops
             ];
           };
+          # Raspberry Pi
+          helio = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/helio/configuration.nix
+              hardware.nixosModules.raspberry-pi-4
+              home-manager.nixosModules.home-manager
+              { home-manager.users.fschn = import ./homes/headless; }
+              sops-nix.nixosModules.sops
+            ];
+          };
         };
     };
 }
