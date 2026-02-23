@@ -110,7 +110,7 @@ a reboot seems to be necesarry to generate `/etc/ssh/ssh_host_ed25519_key.pub`, 
 ```bash
 nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
 # copy age-key to /etc/nixos/.sops.yaml
-sops updatekeys secrets/main.yaml.yaml # on a system with a working age-key to add the new one to 
+sops updatekeys secrets/main.yaml # on a system with a working age-key to add the new one to 
 # copy both files to new host
 ```
 
