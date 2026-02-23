@@ -36,7 +36,7 @@
   };
 
   networking = {
-    hostName = "berry";
+    hostName = "helio";
   };
 
   time.timeZone = "Europe/Vienna";
