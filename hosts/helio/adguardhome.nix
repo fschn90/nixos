@@ -8,7 +8,7 @@
     settings = {
       http = {
         # Web interface IP address with port to listen on.
-        address = "${toString config.tailnet.omhe}:3000";
+        address = "${toString config.tailnet.helio}:3000";
       };
       dns = {
         # List of upstream DNS servers
@@ -93,7 +93,7 @@
         rewrites = [
           {
             domain = "adguard.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
+            answer = "${toString config.tailnet.helio}";
             enabled = true;
           }
           {
@@ -329,7 +329,7 @@
       forceSSL = true;
       locations = {
         "/" = {
-          proxyPass = "http://${toString config.tailnet.omhe}:3000";
+          proxyPass = "http://${toString config.tailnet.helio}:3000";
         };
       };
     };
