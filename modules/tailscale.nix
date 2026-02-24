@@ -20,6 +20,10 @@
         type = lib.types.str;
         default = "100.79.181.86";
       };
+      helio = lib.mkOption {
+        type = lib.types.str;
+        default = "100.122.4.51";
+      };
     };
   };
 
