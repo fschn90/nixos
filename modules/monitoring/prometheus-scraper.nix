@@ -15,6 +15,7 @@
             "rainbow:${toString config.services.prometheus.exporters.node.port}"
             "oide:${toString config.services.prometheus.exporters.node.port}"
             "berry:${toString config.services.prometheus.exporters.node.port}"
+            "helio:${toString config.services.prometheus.exporters.node.port}"
           ];
         }];
       }
@@ -36,6 +37,7 @@
             "rainbow:${toString config.services.prometheus.exporters.nginx.port}"
             "oide:${toString config.services.prometheus.exporters.nginx.port}"
             "berry:${toString config.services.prometheus.exporters.nginx.port}"
+            "helio:${toString config.services.prometheus.exporters.nginx.port}"
           ];
         }];
       }
@@ -57,6 +59,7 @@
             "rainbow:${toString config.services.prometheus.exporters.smartctl.port}"
             "oide:${toString config.services.prometheus.exporters.smartctl.port}"
             "berry:${toString config.services.prometheus.exporters.smartctl.port}"
+            "helio:${toString config.services.prometheus.exporters.smartctl.port}"
           ];
         }];
       }
@@ -78,6 +81,7 @@
             "rainbow:${toString config.services.prometheus.exporters.process.port}"
             "oide:${toString config.services.prometheus.exporters.process.port}"
             "berry:${toString config.services.prometheus.exporters.process.port}"
+            "helio:${toString config.services.prometheus.exporters.process.port}"
           ];
         }];
       }
@@ -89,6 +93,7 @@
             "rainbow:${toString config.services.prometheus.exporters.systemd.port}"
             "oide:${toString config.services.prometheus.exporters.systemd.port}"
             "berry:${toString config.services.prometheus.exporters.systemd.port}"
+            "helio:${toString config.services.prometheus.exporters.systemd.port}"
           ];
         }];
       }
