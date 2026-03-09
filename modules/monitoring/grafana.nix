@@ -92,8 +92,8 @@
       group = "grafana";
       user = "grafana";
     };
-    "grafana-dashboards/nextcloud_exporter_rev1.json" = {
-      source = ./dashboards/nextcloud_exporter_rev1.json;
+    "grafana-dashboards/nextcloud_exporter_rev2.json" = {
+      source = ./dashboards/nextcloud_exporter_rev2.json;
       group = "grafana";
       user = "grafana";
     };
