@@ -15,7 +15,7 @@
       ../../modules/nginx.nix
       ../../modules/monitoring/prometheus-exporters.nix
       ../../modules/monitoring/promtail.nix
-      # ./tor.nix
+      ./tor.nix
     ];
 
   boot = {
