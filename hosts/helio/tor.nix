@@ -21,8 +21,8 @@
 
     # Configure Tor settings
     settings = {
-      Nickname = "torbridgeuniformly6";
-      ContactInfo = "tor-bridge.uniformly698@passmail.net";
+      Nickname = "torbridgeenable483";
+      ContactInfo = "tor-bridge.enable483@passmail.net";
 
       # Bandwidth settings
       MaxAdvertisedBandwidth = "300 MB";
