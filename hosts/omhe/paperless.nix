@@ -52,6 +52,8 @@ in
 
   users.users.paperless.extraGroups = [ "users" ];
 
+  users.users.fschn.extraGroups = [ "paperless" ];
+
   services.nginx.virtualHosts."paperless.fschn.org" = {
     forceSSL = true;
     useACMEHost = "fschn.org";
