@@ -84,8 +84,8 @@
   #     };
   #   };
   # };
-  networking.firewall.allowedTCPPorts = [ 53 2222 2223 45849 ];
-  networking.firewall.allowedUDPPorts = [ 53 2222 2223 45849 ];
+  # networking.firewall.allowedTCPPorts = [ 2223 ];
+  # networking.firewall.allowedUDPPorts = [ 2223 ];
 
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "24.11";

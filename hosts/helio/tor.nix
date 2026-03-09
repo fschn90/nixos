@@ -62,4 +62,6 @@
     capacity = 100;
   };
 
+
+  networking.firewall.allowedTCPPorts = [ 2222 45849 ];
 }
