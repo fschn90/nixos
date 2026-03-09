@@ -112,4 +112,13 @@
       PrivateNetwork = "yes";
     };
   };
+
+
+  # prometheus exporter for deluge
+  services.prometheus.exporters.deluge.enable = true;
+  services.prometheus.exporters.deluge.delugePasswordFile = config.sops.secrets.Deluge-Password.path;
+
+  sops.secrets.Deluge-Password = {
+    mode = "0444";
+  };
 }
