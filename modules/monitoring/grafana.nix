@@ -117,6 +117,11 @@
       group = "grafana";
       user = "grafana";
     };
+    "grafana-dashboards/deluge_metrics_rev1.json" = {
+      source = ./dashboards/deluge_metrics_rev1.json;
+      group = "grafana";
+      user = "grafana";
+    };
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
     ### Adding a new dashboard?? ###
