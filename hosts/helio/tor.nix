@@ -59,7 +59,7 @@
   # Operating a Snowflake proxy helps others circumvent censorship. Safe to run.
   services.snowflake-proxy = {
     enable = true;
-    capacity = 10;
+    capacity = 100;
   };
 
 }
