@@ -10,6 +10,14 @@
     spotify
     signal-desktop
     libreoffice
+    hunspell
+    hunspellDicts.de-de
+    hunspellDicts.de-at
+    hunspellDicts.en-us-large
+    hunspellDicts.en-gb-large
+    hunspellDicts.es-es
+    hyphenDicts.en_US # British English
+    hyphenDicts.de_DE # German, etc.
     mumble
     digikam
     viking
