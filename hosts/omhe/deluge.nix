@@ -2,8 +2,11 @@
 
 {
 
+  users.groups.media = { };
+
   services.deluge = {
     enable = true;
+    group = "media";
     dataDir = "/tank/Deluge";
     authFile = config.sops.secrets."Deluge/Admin".path;
     # declarative = true;
@@ -37,7 +40,7 @@
   };
 
   # making sure my normal user has access to dir
-  users.users.fschn.extraGroups = [ "deluge" ];
+  users.users.fschn.extraGroups = [ "media" ];
 
   # VPN wireguard conf file
   sops.secrets."Deluge/vpn.conf" = { };
@@ -108,7 +111,7 @@
     unitConfig = { JoinsNamespaceOf = "deluged.service"; };
     serviceConfig = {
       User = "deluge";
-      Group = "deluge";
+      Group = "media";
       ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:58846";
       PrivateNetwork = "yes";
     };

@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 {
 
+  users.groups.media = { };
+
+  systemd.tmpfiles.rules = [
+    "d /tank/Arr 0775  fschn media  -"
+  ];
+
   services.prowlarr = {
     enable = true;
   };
@@ -10,10 +16,11 @@
 
   services.radarr = {
     enable = true;
+    group = "media";
   };
 
-  # permissions for user
-  users.users.radarr.extraGroups = [ "deluge" "jellyfin" ];
+  # making sure fschn user has access
+  users.users.fschn.extraGroups = [ "media" ];
 
   services.nginx.virtualHosts = {
     "prowlarr.fschn.org" = {
@@ -33,19 +40,6 @@
       };
     };
   };
-
-  services.adguardhome.settings.filtering.rewrites = [
-    {
-      domain = "prowlarr.fschn.org";
-      answer = "${toString config.tailnet.omhe}";
-      enabled = true;
-    }
-    {
-      domain = "radarr.fschn.org";
-      answer = "${toString config.tailnet.omhe}";
-      enabled = true;
-    }
-  ];
 
   # binding privoxy to protonvpn network namespace
   services.privoxy.enable = true;

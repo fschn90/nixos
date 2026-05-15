@@ -3,6 +3,7 @@
 {
 
   services.jellyfin.enable = true;
+  services.jellyfin.group = "media";
   services.jellyfin.dataDir = "/tank/Jellyfin";
   environment.systemPackages = [
     pkgs.jellyfin
@@ -19,10 +20,7 @@
     };
   };
 
-  # making sure jellyfin has access to deluge download dir
-  users.users.jellyfin.extraGroups = [ "deluge" ];
-
   # marking sure my normal user has access to all jellyfin directories
-  users.users.fschn.extraGroups = [ "jellyfin" ];
+  users.users.fschn.extraGroups = [ "media" ];
 
 }
