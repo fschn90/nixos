@@ -15,6 +15,7 @@
     useACMEHost = "fschn.org";
     locations."/" = {
       proxyPass = "http://localhost:8096";
+      proxyWebsockets = true;
     };
   };
 

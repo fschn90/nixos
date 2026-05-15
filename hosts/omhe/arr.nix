@@ -21,6 +21,7 @@
       useACMEHost = "fschn.org";
       locations."/" = {
         proxyPass = "http://localhost:${toString config.services.prowlarr.settings.server.port}";
+        proxyWebsockets = true;
       };
     };
     "radarr.fschn.org" = {
@@ -28,6 +29,7 @@
       useACMEHost = "fschn.org";
       locations."/" = {
         proxyPass = "http://localhost:${toString config.services.radarr.settings.server.port}";
+        proxyWebsockets = true;
       };
     };
   };

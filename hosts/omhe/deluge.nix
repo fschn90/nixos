@@ -31,6 +31,7 @@
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://localHost:${toString config.services.deluge.web.port}";
+        proxyWebsockets = true;
       };
     };
   };
