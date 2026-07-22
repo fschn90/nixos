@@ -14,7 +14,6 @@
       ../../modules/acme.nix
       ../../modules/nginx.nix
       ../../modules/monitoring/prometheus-exporters.nix
-      ../../modules/monitoring/promtail.nix
       ./tor.nix
     ];
 
