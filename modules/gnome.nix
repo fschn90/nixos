@@ -8,7 +8,6 @@
   # fix from 25.11 upgrade
   services.desktopManager.gnome.enable = true;
   services.displayManager = {
-    gdm.wayland = true;
     gdm.enable = true;
     gdm.autoSuspend = false;
   };
