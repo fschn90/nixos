@@ -8,7 +8,7 @@
     extraPackages = with pkgs; [
       nil
       nixpkgs-fmt
-      nodePackages.prettier
+      prettier
       yaml-language-server
       marksman
       dprint

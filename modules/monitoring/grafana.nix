@@ -5,6 +5,7 @@
   services.grafana = {
     enable = true;
     settings = {
+      security.secret_key = config.sops.secrets."grafana/secret_key".path;
       analytics.reporting_enabled = false;
 
       "auth.anonymous".enabled = true;
@@ -152,6 +153,8 @@
     owner = "grafana";
   };
 
-
+  sops.secrets."grafana/secret_key" = {
+    owner = "grafana";
+  };
 
 }
