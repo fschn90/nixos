@@ -12,6 +12,8 @@
       PROFILE_LOCATION = "/tank/Immich/profile";
       BACKUP_LOCATION = "/tank/Immich/backups";
     };
+    # as current version 2.x.x is marked insecure. to-do: back to stable once 26.11 is released 10.09.2026
+    package = pkgs.unstable.immich;
   };
 
   services.nginx.virtualHosts."photos.fschn.org" = {
