@@ -30,6 +30,7 @@
     ../../modules/monitoring/default-workstation.nix
     ./syncthing.nix
     ../../modules/overlays.nix
+    ./llama-ccp.nix
   ];
 
   # necesarry for zfs
