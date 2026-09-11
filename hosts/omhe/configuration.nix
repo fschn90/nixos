@@ -30,7 +30,6 @@
       ./syncthing.nix
       ./nginx-reverse-proxies.nix
       ../../modules/overlays.nix
-      # ./open-webui.nix
       ./postgresql.nix
       ./arr.nix
     ];
