@@ -168,7 +168,7 @@
           }
           {
             domain = "ai.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
+            answer = "${toString config.tailnet.rainbow}";
             enabled = true;
           }
           {
