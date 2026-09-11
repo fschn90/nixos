@@ -29,7 +29,6 @@
     ../../modules/acme.nix
     ../../modules/monitoring/default-workstation.nix
     ./syncthing.nix
-    # ./ollama.nix
     ../../modules/overlays.nix
   ];
 
