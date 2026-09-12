@@ -8,10 +8,10 @@
         inherit (final) config;
       };
     })
-    ## skipping check phase for valkey as a test keeps failling: 15.05.26 TODO remove in one month and see if it build without test fails 
-    (final: prev: {
-      valkey = prev.valkey.overrideAttrs (_: { doCheck = false; });
-    })
+    # ## skipping check phase for valkey as a test keeps failling: 15.05.26 TODO remove in one month and see if it build without test fails 
+    # (final: prev: {
+    #   valkey = prev.valkey.overrideAttrs (_: { doCheck = false; });
+    # })
   ];
 
 
