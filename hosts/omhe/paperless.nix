@@ -47,6 +47,7 @@ in
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_DBUSER = "paperless";
       PAPERLESS_DBNAME = "paperless";
+      PAPERLESS_AI_ENABLED = true;
     };
   };
 
