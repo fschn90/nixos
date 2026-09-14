@@ -44,6 +44,37 @@
         min-p = "0.0";
         presence-penalty = "1.5";
       };
+      "minicpm-v-8b" = {
+        hf-repo = "second-state/MiniCPM-V-2_6-GGUF";
+        hf-file = "MiniCPM-V-2_6-Q8_0.gguf"; # ~8.1 GB on disk, effectively lossless vs f16
+        alias = "minicpm-v:8b";
+
+        # Vision projector (SigLip-400M), same repo as the main GGUF.
+        # llama.cpp would auto-detect it via -hf (any file starting
+        # with "mmproj"), but pinning the URL explicitly means it
+        # always grabs exactly this one, not whichever the heuristic
+        # happens to pick.
+        mmproj-url = "https://huggingface.co/second-state/MiniCPM-V-2_6-GGUF/resolve/main/mmproj-model-f16.gguf"; # ~1.03 GB
+        # --mmproj-offload defaults to enabled, so the vision encoder
+        # lands on the GPU too without needing to set it here.
+
+        # Dense model (not MoE) — -ngl is the normal VRAM dial here.
+        # ~8.1 GB weights + ~1 GB mmproj ≈ 9.1 GB, leaving ~7 GB for
+        # KV cache, compute buffers, and GNOME's own VRAM use on this
+        # box — still comfortable on 16 GB, so offload everything.
+        n-gpu-layers = "99";
+
+        ctx-size = "16384";
+        batch-size = "1024";
+        ubatch-size = "256";
+        flash-attn = "on";
+
+        # OpenBMB's recommended sampler settings for the MiniCPM-V family.
+        temp = "0.7";
+        top-p = "0.8";
+        top-k = "100";
+        repeat-penalty = "1.05";
+      };
     };
   };
 
