@@ -5,7 +5,8 @@
     enable = true;
     host = "0.0.0.0";
     package = pkgs.unstable.llama-cpp-rocm;
-    extraFlags = [ "--load-mode" "none" ];
+    extraFlags = [ "--load-mode" "none" "--models-max" "1" ];
+
     modelsPreset = {
       "qwen3.6-35b-a3b" = {
         hf-repo = "unsloth/Qwen3.6-35B-A3B-GGUF";
