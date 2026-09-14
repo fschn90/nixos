@@ -196,7 +196,9 @@ in
       AUTO_GENERATE_DOCUMENT_TYPE = "true"; # Only existing document types will be used
       AUTO_GENERATE_CREATED_DATE = "true";
     };
-    environmentFiles = config.sops.secrets.paperless-gpt-env.path;
+    environmentFiles = [
+      config.sops.secrets.paperless-gpt-env.path
+    ];
     volumes = [
       # Persistent prompts directory (user customizations saved here)
       "/var/lib/paperless-gpt/prompts:/app/prompts"
