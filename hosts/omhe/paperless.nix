@@ -91,6 +91,13 @@ in
   systemd.tmpfiles.rules = [
     "d ${backupDirDaily} 0750 paperless paperless  -"
     "d ${backupDirMonthly} 0750 paperless paperless  -"
+    # Create persistent directories for prompts and config.
+    # The upstream paperless-gpt image runs as UID/GID 10001 and must be
+    # able to write into /app/prompts and /app/config, so the host mounts
+    # are owned by that UID with owner-write permissions.
+    "d /var/lib/paperless-gpt 0755 root root -"
+    "d /var/lib/paperless-gpt/prompts 0755 10001 10001 -"
+    "d /var/lib/paperless-gpt/config 0755 10001 10001 -"
   ];
 
 
@@ -150,4 +157,53 @@ in
     pinentryPackage = pkgs.pinentry-tty;
   };
 
+
+  #################
+  # paperless-gpt #
+  #################
+
+  sops.secrets."paperless-gpt-env" = { };
+
+  virtualisation.oci-containers.containers.paperless-gpt = {
+    autoStart = true;
+    image = "icereed/paperless-gpt:latest";
+    environment = {
+      # Listen on port 28983 (same as previous paperless-ai for continuity)
+      LISTEN_INTERFACE = ":28983";
+      # Use OpenAI-compatible provider
+      LLM_PROVIDER = "openai";
+      OPENAI_BASE_URL = "http://rainbow:8080";
+      LLM_MODEL = "Qwen3.6-35B-A3B";
+      # LLM-based OCR using the dedicated GLM-OCR vision model.
+      OCR_PROVIDER = "llm";
+      VISION_LLM_PROVIDER = "openai";
+      VISION_LLM_MODEL = "minicpm-v:8b";
+      # Cap OCR-generated output length; prevents runaway vision calls.
+      VISION_LLM_MAX_TOKENS = "2048";
+
+
+      AUTO_OCR_TAG = "paperless-gpt-ocr-auto";
+      AUTO_TAG = "paperless-gpt-auto";
+      MANUAL_TAG = "paperless-gpt-manual";
+      PDF_OCR_TAGGING = "true";
+      PDF_OCR_COMPLETE_TAG = "paperless-gpt-ocr-complete";
+      PDF_UPLOAD = "false";
+
+      AUTO_GENERATE_TITLE = "true";
+      AUTO_GENERATE_TAGS = "true";
+      CREATE_NEW_TAGS = "true";
+      AUTO_GENERATE_CORRESPONDENTS = "true";
+      AUTO_GENERATE_DOCUMENT_TYPE = "true"; # Only existing document types will be used
+      AUTO_GENERATE_CREATED_DATE = "true";
+    };
+    environmentFiles = config.sops.secrets.paperless-gpt-env.path;
+    volumes = [
+      # Persistent prompts directory (user customizations saved here)
+      "/var/lib/paperless-gpt/prompts:/app/prompts"
+      # Persistent config directory (settings.json saved here)
+      "/var/lib/paperless-gpt/config:/app/config"
+    ];
+    # Use host networking so the container listens on the host stack directly;
+    extraOptions = [ "--network=host" ];
+  };
 }
