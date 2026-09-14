@@ -174,7 +174,7 @@ in
       # Use OpenAI-compatible provider
       LLM_PROVIDER = "openai";
       OPENAI_BASE_URL = "http://rainbow:8080";
-      LLM_MODEL = "Qwen3.6-35B-A3B";
+      LLM_MODEL = "qwen3.6-35b-a3b";
       # LLM-based OCR using the dedicated GLM-OCR vision model.
       OCR_PROVIDER = "llm";
       VISION_LLM_PROVIDER = "openai";
