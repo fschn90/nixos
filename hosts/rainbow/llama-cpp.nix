@@ -1,11 +1,13 @@
 { pkgs, config, ... }:
 {
 
+  sops.secrets."llama-cpp/OPENAI_API_KEY" = { };
+
   services.llama-cpp = {
     enable = true;
     host = "0.0.0.0";
     package = pkgs.unstable.llama-cpp-rocm;
-    extraFlags = [ "--load-mode" "none" "--models-max" "1" ];
+    extraFlags = [ "--load-mode" "none" "--models-max" "1" "--api-key" "${toString config.sops.secrets."llama-cpp/OPENAI_API_KEY".path}" ];
 
     modelsPreset = {
       "qwen3.6-35b-a3b" = {
