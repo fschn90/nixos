@@ -47,7 +47,7 @@
     };
   };
 
-  systemd.services.llama-cpp.environment.HSA_OVERRIDE_GFX_VERSION = "11.0.1";
+  systemd.services.llama-cpp.environment.HSA_OVERRIDE_GFX_VERSION = "11.0.0";
 
   services.nginx = {
     virtualHosts = {
