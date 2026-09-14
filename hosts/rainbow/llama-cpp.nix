@@ -3,6 +3,7 @@
 
   services.llama-cpp = {
     enable = true;
+    host = "0.0.0.0";
     package = pkgs.unstable.llama-cpp-rocm;
     extraFlags = [ "--load-mode none" ];
     modelsPreset = {
