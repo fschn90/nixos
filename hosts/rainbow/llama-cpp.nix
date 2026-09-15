@@ -80,6 +80,40 @@
         top-k = "100";
         repeat-penalty = "1.05";
       };
+      "qwen3.6-35b-a3b-ocr" = {
+        hf-repo = "unsloth/Qwen3.6-35B-A3B-GGUF";
+        hf-file = "Qwen3.6-35B-A3B-UD-IQ4_NL.gguf"; # same weights as the agentic preset
+        alias = "qwen3.6-35b-a3b-ocr";
+
+        # Natively multimodal, but llama.cpp still needs the vision
+        # encoder as a separate projector.
+        mmproj-url = "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/mmproj-F16.gguf"; # ~900 MB
+
+        # Same MoE-offload split as the text preset. OCR only needs
+        # one page of context at a time, so ctx-size is cut way down
+        # from 32768 — that's the headroom that pays for the ~900 MB
+        # mmproj without touching n-cpu-moe. If it still OOMs on
+        # startup, raise n-cpu-moe (e.g. 26-28) before anything else.
+        n-gpu-layers = "999";
+        n-cpu-moe = "24";
+        fit = "off";
+
+        ctx-size = "16384";
+        batch-size = "1024";
+        ubatch-size = "256";
+        flash-attn = "on";
+
+        jinja = "on"; # required for the chat template to place image tokens correctly
+
+        # Deliberately not the agentic-coding sampler above: OCR wants
+        # faithful transcription, not creative sampling. No
+        # presence-penalty in particular — it fights literal
+        # transcription of repeated words/digits/table cells.
+        temp = "0.2";
+        top-p = "0.9";
+        top-k = "40";
+        min-p = "0.0";
+      };
     };
   };
 
