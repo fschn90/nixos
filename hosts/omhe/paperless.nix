@@ -178,10 +178,12 @@ in
       # LLM-based OCR using the dedicated GLM-OCR vision model.
       OCR_PROVIDER = "llm";
       VISION_LLM_PROVIDER = "openai";
-      VISION_LLM_MODEL = "minicpm-v:8b";
+      VISION_LLM_MODEL = "qwen3.6-35b-a3b-ocr";
       # Cap OCR-generated output length; prevents runaway vision calls.
-      VISION_LLM_MAX_TOKENS = "2048";
-
+      VISION_LLM_MAX_TOKENS = "8192";
+      VISION_LLM_TEMPERATURE = "0.2";
+      OCR_LIMIT_PAGES = "0";
+      LLM_LANGUAGE = "German/English";
 
       AUTO_OCR_TAG = "paperless-gpt-ocr-auto";
       AUTO_TAG = "paperless-gpt-auto";
