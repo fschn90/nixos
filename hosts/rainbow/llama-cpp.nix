@@ -116,30 +116,30 @@
         jinja = "true"; # required for Qwen3-VL's chat template
       };
     };
+
   };
-};
 
-systemd.services.llama-cpp.environment.HSA_OVERRIDE_GFX_VERSION = "11.0.0";
+  systemd.services.llama-cpp.environment.HSA_OVERRIDE_GFX_VERSION = "11.0.0";
 
-# The service runs under DynamicUser, so it has no access to /dev/dri
-# without this. Also works around the Mesa shader cache issue (#441531).
-systemd.services.llama-cpp.serviceConfig.SupplementaryGroups = [ "render" "video" ];
-systemd.services.llama-cpp.environment = {
-XDG_CACHE_HOME = "/var/cache/llama-cpp";
-MESA_SHADER_CACHE_DIR = "/var/cache/llama-cpp";
-};
+  # The service runs under DynamicUser, so it has no access to /dev/dri
+  # without this. Also works around the Mesa shader cache issue (#441531).
+  systemd.services.llama-cpp.serviceConfig.SupplementaryGroups = [ "render" "video" ];
+  systemd.services.llama-cpp.environment = {
+    XDG_CACHE_HOME = "/var/cache/llama-cpp";
+    MESA_SHADER_CACHE_DIR = "/var/cache/llama-cpp";
+  };
 
-services.nginx = {
-virtualHosts = {
-"ai.fschn.org" = {
-forceSSL = true;
-useACMEHost = "fschn.org";
-locations."/" = {
-proxyPass = "http://${toString config.services.llama-cpp.host}:${toString config.services.llama-cpp.port}";
-proxyWebsockets = true;
-};
-};
-};
-};
+  services.nginx = {
+    virtualHosts = {
+      "ai.fschn.org" = {
+        forceSSL = true;
+        useACMEHost = "fschn.org";
+        locations."/" = {
+          proxyPass = "http://${toString config.services.llama-cpp.host}:${toString config.services.llama-cpp.port}";
+          proxyWebsockets = true;
+        };
+      };
+    };
+  };
 
 }

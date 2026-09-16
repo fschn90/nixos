@@ -198,6 +198,8 @@ in
       AUTO_GENERATE_CORRESPONDENTS = "true";
       AUTO_GENERATE_DOCUMENT_TYPE = "true"; # Only existing document types will be used
       AUTO_GENERATE_CREATED_DATE = "true";
+
+      LOG_LEVEL = "debug";
     };
     environmentFiles = [
       config.sops.secrets.paperless-gpt-env.path
