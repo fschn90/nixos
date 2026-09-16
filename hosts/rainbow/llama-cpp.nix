@@ -114,10 +114,79 @@
         top-k = "40";
         min-p = "0.0";
       };
+      "qwen2.5-vl-7b-ocr" = {
+        hf-repo = "unsloth/Qwen2.5-VL-7B-Instruct-GGUF";
+        hf-file = "Qwen2.5-VL-7B-Instruct-Q8_0.gguf"; # mmproj auto-fetched from same repo
+        alias = "qwen2.5-vl-7b-ocr";
+
+        # Fits comfortably in 16GB with room for context
+        n-gpu-layers = "99"; # offload everything to the GPU
+        ctx-size = "16384"; # bump to 16384 if you batch multi-page docs
+        flash-attn = "on";
+
+        # Low temperature for deterministic, faithful text extraction
+        temp = "0.1";
+        top-p = "0.9";
+        top-k = "40";
+        repeat-penalty = "1.05";
+      };
+      "qwen3.8-27b" = {
+        hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+        hf-file = "Qwen3.8-27B-UD-Q3_K_XL.gguf";
+        alias = "qwen3.8-27b";
+
+        n-gpu-layers = "99";
+        ctx-size = "32768"; # raise until it OOMs, 262144 is the model max
+        flash-attn = "on";
+        cache-type-k = "q8_0";
+        cache-type-v = "q8_0";
+        batch-size = "512";
+        ubatch-size = "256";
+        parallel = "1";
+        no-mmproj = "true"; # skips the 931 MB vision projector
+
+        temp = "1.0";
+        top-p = "0.95";
+        top-k = "20";
+        min-p = "0.0";
+        presence-penalty = "0.0";
+        repeat-penalty = "1.0";
+      };
+
+      # Same GGUF, non-thinking sampling. Costs no extra disk.
+      "qwen3.8-27b-instruct" = {
+        hf-repo = "unsloth/Qwen3.8-27B-GGUF";
+        hf-file = "Qwen3.8-27B-UD-Q3_K_XL.gguf";
+        alias = "qwen3.8-27b-instruct";
+
+        n-gpu-layers = "99";
+        ctx-size = "32768";
+        flash-attn = "on";
+        cache-type-k = "q8_0";
+        cache-type-v = "q8_0";
+        parallel = "1";
+        no-mmproj = "true";
+        reasoning = "off";
+
+        temp = "0.7";
+        top-p = "0.80";
+        top-k = "20";
+        min-p = "0.0";
+        presence-penalty = "1.5";
+        repeat-penalty = "1.0";
+      };
     };
   };
 
   systemd.services.llama-cpp.environment.HSA_OVERRIDE_GFX_VERSION = "11.0.0";
+
+  # The service runs under DynamicUser, so it has no access to /dev/dri
+  # without this. Also works around the Mesa shader cache issue (#441531).
+  systemd.services.llama-cpp.serviceConfig.SupplementaryGroups = [ "render" "video" ];
+  systemd.services.llama-cpp.environment = {
+    XDG_CACHE_HOME = "/var/cache/llama-cpp";
+    MESA_SHADER_CACHE_DIR = "/var/cache/llama-cpp";
+  };
 
   services.nginx = {
     virtualHosts = {
