@@ -178,7 +178,7 @@ in
       # LLM-based OCR using the dedicated GLM-OCR vision model.
       OCR_PROVIDER = "llm";
       VISION_LLM_PROVIDER = "openai";
-      VISION_LLM_MODEL = "qwen2.5-vl-7b-ocr";
+      VISION_LLM_MODEL = "Qwen3-VL-8B-Instruct";
       # Cap OCR-generated output length; prevents runaway vision calls.
       VISION_LLM_MAX_TOKENS = "8192";
       VISION_LLM_TEMPERATURE = "0.2";
