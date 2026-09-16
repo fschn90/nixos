@@ -174,11 +174,11 @@ in
       # Use OpenAI-compatible provider
       LLM_PROVIDER = "openai";
       OPENAI_BASE_URL = "http://rainbow:8080";
-      LLM_MODEL = "qwen3.6-35b-a3b";
+      LLM_MODEL = "qwen3.8-27b";
       # LLM-based OCR using the dedicated GLM-OCR vision model.
       OCR_PROVIDER = "llm";
       VISION_LLM_PROVIDER = "openai";
-      VISION_LLM_MODEL = "qwen3.6-35b-a3b-ocr";
+      VISION_LLM_MODEL = "qwen2.5-vl-7b-ocr";
       # Cap OCR-generated output length; prevents runaway vision calls.
       VISION_LLM_MAX_TOKENS = "8192";
       VISION_LLM_TEMPERATURE = "0.2";
