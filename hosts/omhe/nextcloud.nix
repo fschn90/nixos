@@ -17,7 +17,6 @@
         deck phonetrack polls cospend
         music;
       # gpoddersync;
-      # integration_paperless; # doesnt seem to work yet
     };
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
@@ -48,30 +47,11 @@
         useACMEHost = "fschn.org";
         forceSSL = true;
       };
-      # ${config.services.onlyoffice.hostname} = {
-      #   useACMEHost = "fschn.org";
-      #   forceSSL = true;
-      # };
     };
   };
 
-
-  # # enabling onlyoffice documentserver
-  # services.onlyoffice = {
-  #   enable = true;
-  #   jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
-  #   hostname = "office.fschn.org";
-  # };
-
-  # # secret deployment for onlyoffice documentserver
-  # sops.secrets."onlyoffice/jwtSecretFile" = {
-  #   owner = "onlyoffice";
-  # };
-
-
   services.prometheus.exporters.zfs.enable = true;
   services.prometheus.exporters.nginx.enable = true;
-  # services.prometheus.exporters.nginxlog.enable = true;
   services.prometheus.exporters.smartctl.enable = true;
   services.prometheus.exporters.postgres.enable = true;
   services.prometheus.exporters.postgres.runAsLocalSuperUser = true;
@@ -86,7 +66,6 @@
     ];
   };
 
-
   # secret deployment for nextcloud-exporter
   sops.secrets."Nextcloud/authToken" = {
     path = "/tank/Nextcloud/authToken";
@@ -95,19 +74,6 @@
   };
 
   users.users.nextcloud-exporter.extraGroups = [ "nextcloud" ];
-
-  # ### Nextcloud postgresql backup
-  # users.users.postgres.extraGroups = [ "nextcloud" ];
-
-  # systemd.tmpfiles.rules = [
-  #   "d /tank/Nextcloud/backups 0750 postgres root  -"
-  # ];
-
-  # services.postgresqlBackup = {
-  #   enable = true;
-  #   databases = [ "nextcloud" "grafana" ];
-  #   location = "/tank/Nextcloud/backups";
-  # };
 
 }
 
