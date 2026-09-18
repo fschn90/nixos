@@ -58,31 +58,6 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # services.nginx = {
-  #   virtualHosts = {
-  #     "fritzbox-eltern.fschn.org" = {
-  #       useACMEHost = "fschn.org";
-  #       forceSSL = true;
-  #       locations."/" = {
-  #         proxyPass = "http://192.168.178.1";
-  #       };
-  #     };
-  #     "adguard-eltern.fschn.org" = {
-  #       useACMEHost = "fschn.org";
-  #       forceSSL = true;
-  #       locations."/" = {
-  #         proxyPass = "http://${toString config.tailnet.berry}:3000";
-  #       };
-  #     };
-  #     "jellyfin.fschn.org" = {
-  #       forceSSL = true;
-  #       useACMEHost = "fschn.org";
-  #       locations."/" = {
-  #         proxyPass = "http://localhost:2223";
-  #       };
-  #     };
-  #   };
-  # };
   # networking.firewall.allowedTCPPorts = [ 2223 ];
   # networking.firewall.allowedUDPPorts = [ 2223 ];
 
