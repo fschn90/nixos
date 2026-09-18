@@ -55,11 +55,22 @@ in
 
   users.users.fschn.extraGroups = [ "paperless" ];
 
-  services.nginx.virtualHosts."paperless.fschn.org" = {
-    forceSSL = true;
-    useACMEHost = "fschn.org";
-    locations."/" = {
-      proxyPass = "http://localhost:28981";
+  services.nginx.virtualHosts = {
+    "paperless.fschn.org" = {
+      forceSSL = true;
+      useACMEHost = "fschn.org";
+      locations."/" = {
+        proxyPass = "http://localhost:28981";
+        proxyWebsockets = true;
+      };
+    };
+    "paperless-gpt.fschn.org" = {
+      forceSSL = true;
+      useACMEHost = "fschn.org";
+      locations."/" = {
+        proxyPass = "http://localhost:28983";
+        proxyWebsockets = true;
+      };
     };
   };
 
