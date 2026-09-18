@@ -6,7 +6,7 @@
 
   services.postgresqlBackup = {
     enable = true;
-    databases = [ "nextcloud" "immich" "paperless" "open-webui" "grafana" ];
+    databases = [ "nextcloud" "immich" "paperless" "grafana" ];
   };
 
 }
