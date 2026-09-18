@@ -136,11 +136,11 @@
             answer = "${toString config.tailnet.omhe}";
             enabled = true;
           }
-          {
-            domain = "ffsync.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
+          # {
+          #   domain = "ffsync.fschn.org";
+          #   answer = "${toString config.tailnet.omhe}";
+          #   enabled = true;
+          # }
           {
             domain = "photos.fschn.org";
             answer = "${toString config.tailnet.omhe}";
@@ -148,6 +148,11 @@
           }
           {
             domain = "paperless.fschn.org";
+            answer = "${toString config.tailnet.omhe}";
+            enabled = true;
+          }
+          {
+            domain = "paperless-gpt.fschn.org";
             answer = "${toString config.tailnet.omhe}";
             enabled = true;
           }
@@ -161,11 +166,11 @@
             answer = "${toString config.tailnet.rainbow}";
             enabled = true;
           }
-          {
-            domain = "office.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
+          # {
+          #   domain = "office.fschn.org";
+          #   answer = "${toString config.tailnet.omhe}";
+          #   enabled = true;
+          # }
           {
             domain = "ai.fschn.org";
             answer = "${toString config.tailnet.rainbow}";
@@ -192,7 +197,6 @@
         blocked_services = {
           ids = [
             "linkedin"
-            "mastodon"
           ];
           schedule = {
             mon = {
