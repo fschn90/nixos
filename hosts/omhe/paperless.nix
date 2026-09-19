@@ -21,6 +21,7 @@ in
     # address = "paperless.fschn.org";
     dataDir = "/tank/Paperless";
     consumptionDir = "${config.services.paperless.dataDir}/from-rainbow";
+    package = pkgs.unstable.paperless-ngx;
     settings = {
       PAPERLESS_CONSUMER_IGNORE_PATTERN = [
         ".DS_STORE/*"
@@ -44,11 +45,13 @@ in
       PAPERLESS_EMAIL_TASK_CRON = "0 * * * *";
       # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
       PAPERLESS_URL = "https://paperless.fschn.org"; # neccessary to avoid error: [WARNING] [django.security.csrf] Forbidden (Origin checking failed - https://paperless.fschn.org does not match any trusted origins.): /accounts/login/
+      PAPERLESS_DBENGINE = "postgresql";
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_DBUSER = "paperless";
       PAPERLESS_DBNAME = "paperless";
-      PAPERLESS_AI_ENABLED = true;
+      # PAPERLESS_AI_ENABLED = true;
     };
+    environmentFile = config.sops.secrets."paperless/env".path;
   };
 
   users.users.paperless.extraGroups = [ "users" ];
@@ -173,7 +176,12 @@ in
   # paperless-gpt #
   #################
 
-  sops.secrets."paperless-gpt-env" = { };
+  sops.secrets = {
+    "paperless-gpt-env" = { };
+    "paperless/env" = {
+      owner = "paperless";
+    };
+  };
 
   virtualisation.oci-containers.containers.paperless-gpt = {
     autoStart = true;
