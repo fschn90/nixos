@@ -187,7 +187,7 @@ in
     autoStart = true;
     image = "icereed/paperless-gpt:latest";
     environment = {
-      PAPERLESS_BASE_URL = "https://paperless.fschn.org/";
+      PAPERLESS_BASE_URL = "http://localhost:28981/";
       # Listen on port 28983 (same as previous paperless-ai for continuity)
       LISTEN_INTERFACE = ":28983";
       # Use OpenAI-compatible provider
