@@ -196,6 +196,11 @@
             answer = "${toString config.tailnet.omhe}";
             enabled = true;
           }
+          {
+            domain = "bazarr.fschn.org";
+            answer = "${toString config.tailnet.omhe}";
+            enabled = true;
+          }
 
         ];
 
