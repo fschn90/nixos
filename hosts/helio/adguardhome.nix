@@ -191,6 +191,11 @@
             answer = "${toString config.tailnet.berry}";
             enabled = true;
           }
+          {
+            domain = "radarr.fschn.org";
+            answer = "${toString config.tailnet.omhe}";
+            enabled = true;
+          }
 
         ];
 
