@@ -22,6 +22,7 @@
 
   services.bazarr = {
     enable = true;
+    group = "media";
   };
 
   # making sure fschn user has access
@@ -48,7 +49,7 @@
       forceSSL = true;
       useACMEHost = "fschn.org";
       locations."/" = {
-        proxyPass = "http://localhost:${toString config.services.bazarr.settings.server.port}";
+        proxyPass = "http://localhost:${toString config.services.bazarr.listenPort}";
         proxyWebsockets = true;
       };
     };
