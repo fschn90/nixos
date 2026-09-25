@@ -19,6 +19,11 @@
     group = "media";
   };
 
+
+  services.bazarr = {
+    enable = true;
+  };
+
   # making sure fschn user has access
   users.users.fschn.extraGroups = [ "media" ];
 
@@ -36,6 +41,14 @@
       useACMEHost = "fschn.org";
       locations."/" = {
         proxyPass = "http://localhost:${toString config.services.radarr.settings.server.port}";
+        proxyWebsockets = true;
+      };
+    };
+    "bazarr.fschn.org" = {
+      forceSSL = true;
+      useACMEHost = "fschn.org";
+      locations."/" = {
+        proxyPass = "http://localhost:${toString config.services.bazarr.settings.server.port}";
         proxyWebsockets = true;
       };
     };
