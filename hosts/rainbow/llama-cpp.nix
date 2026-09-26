@@ -21,15 +21,17 @@
         # so attention/shared tensors for all 40 layers land on the GPU.
         n-gpu-layers = "999";
 
-        # ...and use this instead: pin the first 24 of 40 layers' *expert*
-        # FFN weights to system RAM, everything else stays on the card.
-        # Rough sizing for UD-IQ4_NL (~18 GB, ~90% of that is expert
-        # weight spread over 40 layers, ~0.4 GB/layer): 24 layers moved
-        # off ≈ 9 GB freed, leaving ~8-9 GB of weights resident plus
-        # headroom for KV cache, compute buffers, and GNOME's own VRAM
-        # use on this box. Starting point, not a measured optimum — sweep
-        # below.
-        n-cpu-moe = "24";
+        # ...and use this instead: pin N of 40 layers' *expert* FFN weights
+        # to system RAM, everything else stays on the card. Rough sizing for
+        # UD-IQ4_NL (~18 GB, ~90% expert weight over 40 layers, ~0.4 GB/layer):
+        # N=20 frees ~8 GB, leaving ~10 GB of weights resident. Lowered from
+        # 24 now that KV cache below is quantized, and this is very likely
+        # the same hybrid attention/linear-attention design as the 27B
+        # models (cheap KV cache even at 32k) — so 24 was leaving VRAM on
+        # the table unnecessarily. Still a starting point, not a
+        # measurement: sweep in steps of 2-4 against `rocm-smi
+        # --showmeminfo vram` the way you sized 24 in the first place.
+        n-cpu-moe = "20";
 
         # Hand-tuning the two flags above, so don't let auto-fit override them.
         fit = "off";
@@ -38,6 +40,14 @@
         batch-size = "1024";
         ubatch-size = "256";
         flash-attn = "on";
+
+        # Quantized KV cache: near-lossless, frees VRAM for a lower
+        # n-cpu-moe or a bigger ctx-size. Was unset here unlike the other
+        # three presets, for no apparent reason.
+        cache-type-k = "q8_0";
+        cache-type-v = "q8_0";
+
+        parallel = "1"; # single-user box; matches the other three presets
 
         jinja = "on"; # required for Qwen3.6's chat template + tool calling
 
@@ -55,7 +65,13 @@
         alias = "qwen3.8-27b";
 
         n-gpu-layers = "99";
-        ctx-size = "32768"; # raise until it OOMs, 262144 is the model max
+        fit = "off"; # was implicit; explicit now, matches the MoE preset
+
+        # Only 16 of 64 layers are full attention (the rest are linear
+        # "Gated DeltaNet" with fixed-size state, not a growing KV cache),
+        # so ctx-size is cheap here versus a normal dense 27B — 65536 is a
+        # reasonable next step to test before the 262144 native max (see chat).
+        ctx-size = "32768";
         flash-attn = "on";
         cache-type-k = "q8_0";
         cache-type-v = "q8_0";
@@ -63,6 +79,10 @@
         ubatch-size = "256";
         parallel = "1";
         no-mmproj = "true"; # skips the 931 MB vision projector
+
+        jinja = "on"; # missing before — needed for the think/no-think
+        # switch in Qwen3.8's chat template (see chat)
+        reasoning = "on"; # explicit; matches this preset's "thinking" intent
 
         temp = "1.0";
         top-p = "0.95";
@@ -78,12 +98,18 @@
         alias = "qwen3.8-27b-instruct";
 
         n-gpu-layers = "99";
+        fit = "off";
         ctx-size = "32768";
         flash-attn = "on";
         cache-type-k = "q8_0";
         cache-type-v = "q8_0";
+        batch-size = "512"; # was missing on this preset only — fell back
+        ubatch-size = "256"; # to llama.cpp's larger built-in defaults here
         parallel = "1";
         no-mmproj = "true";
+
+        jinja = "on"; # missing before — reasoning="off" below likely
+        # wasn't taking effect without it (see chat)
         reasoning = "off";
 
         temp = "0.7";
@@ -109,6 +135,7 @@
 
         # 16GB VRAM, full offload
         n-gpu-layers = "99"; # every layer + vision encoder on GPU
+        fit = "off"; # consistent with the other three presets
         ctx-size = "32768"; # images eat context fast; this leaves headroom
         flash-attn = "on"; # required to use the quantized KV cache below
         cache-type-k = "q8_0";
