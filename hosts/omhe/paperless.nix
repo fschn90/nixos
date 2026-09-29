@@ -50,6 +50,10 @@ in
       PAPERLESS_DBUSER = "paperless";
       PAPERLESS_DBNAME = "paperless";
       # PAPERLESS_AI_ENABLED = true;
+
+      PAPERLESS_ENABLE_HTTP_REMOTE_USER = true;
+      PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME = "HTTP_X_WEBAUTH_LOGIN";
+
     };
     environmentFile = config.sops.secrets."paperless/env".path;
   };
