@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 
 let
   backupDirDaily = "/tank/Paperless/backup-daily/";
@@ -13,6 +13,10 @@ let
 in
 
 {
+
+  # this makes sure the services.paperless module is also from unstable. not just the package as specified in services.paperless.package below
+  disabledModules = [ "services/misc/paperless.nix" ];
+  imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/paperless.nix" ];
 
   services.paperless = {
     enable = true;
