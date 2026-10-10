@@ -156,16 +156,22 @@ in
 
   # The module's settings end up in the world-readable Nix store, so the users
   # entry is injected at service start from a systemd credential instead.
-  systemd.services.adguardhome = {
-    serviceConfig.LoadCredential =
-      "password-hash:${config.sops.secrets."adguard/password_hash".path}";
-    preStart = lib.mkAfter ''
-      hash="$(cat "$CREDENTIALS_DIRECTORY/password-hash")" \
-        ${pkgs.yq-go}/bin/yq eval --inplace \
-        '.users = [{"name": "fschn90", "password": strenv(hash)}]' \
-        "$STATE_DIRECTORY/AdGuardHome.yaml"
-    '';
-  };
+  systemd.services.adguardhome.serviceConfig.ExecStartPre = lib.mkAfter [
+    "+${pkgs.writeShellScript "adguardhome-inject-user" ''
+    set -euo pipefail
+    cfg="$STATE_DIRECTORY/AdGuardHome.yaml"
+    tmp="$(mktemp)"
+    trap 'rm -f "$tmp"' EXIT
+
+    hash="$(cat ${config.sops.secrets."adguard/password_hash".path})" \
+      ${pkgs.yq-go}/bin/yq eval \
+      '.users = [{"name": "fschn90", "password": strenv(hash)}]' \
+      "$cfg" > "$tmp"
+
+    # write through the existing file so owner/mode are preserved
+    cat "$tmp" > "$cfg"
+  ''}"
+  ];
 
   services.nginx = {
     enable = true;
