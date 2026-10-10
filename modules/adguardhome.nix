@@ -33,6 +33,7 @@ let
     fritzbox-eltern = "berry";
     adguard-eltern = "berry";
     syncthing-berry = "berry";
+    agents = "omhe";
     # ffsync = "omhe";
     # office = "omhe";
   };
