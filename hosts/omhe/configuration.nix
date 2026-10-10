@@ -14,7 +14,7 @@
       ../../modules/sanoid-backup-target.nix
       ../../modules/nix.nix
       ./nextcloud.nix
-      ./adguardhome.nix
+      ../../modules/adguardhome.nix
       ../../modules/acme.nix
       ./jellyfin.nix
       ../../modules/nginx.nix

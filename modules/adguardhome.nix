@@ -71,7 +71,7 @@ let
     (sections "GermanFilter" [ "adservers" ])
 
     # custom list (URL instead of a local path: AGH rejects /nix/store paths)
-    [ "https://raw.githubusercontent.com/fschn90/nixos/refs/heads/main/hosts/omhe/adguard-mobile-custom.txt" ]
+    [ "https://raw.githubusercontent.com/fschn90/nixos/refs/heads/modules/adguard-mobile-custom.txt" ]
   ];
 
   # ---------------------------------------------------------------------------

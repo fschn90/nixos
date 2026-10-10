@@ -10,7 +10,7 @@
       ../../modules/sops.nix
       ../../modules/tailscale.nix
       ../../modules/nix.nix
-      ./adguardhome.nix
+      ../../modules/adguardhome.nix
       ../../modules/acme.nix
       ../../modules/nginx.nix
       ../../modules/monitoring/prometheus-exporters.nix
