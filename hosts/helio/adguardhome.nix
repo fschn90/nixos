@@ -1,353 +1,180 @@
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  domain = "fschn.org";
+
+  # config.tailnet.<host> -> string
+  tailnetIp = host: toString config.tailnet.${host};
+
+  guiAddress = tailnetIp "helio";
+  guiPort = 3000;
+
+  # ---------------------------------------------------------------------------
+  # DNS rewrites: "<subdomain>" = "<tailnet host>"
+  # ---------------------------------------------------------------------------
+  rewriteMap = {
+    adguard = "helio";
+    cloud = "omhe";
+    monitor = "omhe";
+    jellyfin = "omhe";
+    prometheus = "omhe";
+    deluge = "omhe";
+    photos = "omhe";
+    paperless = "omhe";
+    paperless-gpt = "omhe";
+    radarr = "omhe";
+    bazarr = "omhe";
+    scrutiny-omhe = "omhe";
+    syncthing-omhe = "omhe";
+    scrutiny-oide = "oide";
+    scrutiny-rainbow = "rainbow";
+    syncthing-rainbow = "rainbow";
+    ai = "rainbow";
+    fritzbox-eltern = "berry";
+    adguard-eltern = "berry";
+    syncthing-berry = "berry";
+    # ffsync = "omhe";
+    # office = "omhe";
+  };
+
+  # ---------------------------------------------------------------------------
+  # Filter lists
+  # ---------------------------------------------------------------------------
+  agf = "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master";
+  hagezi = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock";
+
+  # AdGuard "sections" lists: <agf>/<folder>/sections/<name>.txt
+  sections = folder: names: map (n: "${agf}/${folder}/sections/${n}.txt") names;
+
+  # Only lists with network/domain rules are kept, and overlapping broad lists
+  # are avoided: HaGeZi recommends running a single broad list (Pro), so OISD
+  # big, EasyList/EasyPrivacy, Spam404, Disconnect and the generic AdGuard ad
+  # server lists (all largely covered by Pro + TIF) were removed.
+  filterUrls = lib.concatLists [
+    [
+      # broad list + threat intelligence feeds
+      "${hagezi}/pro.txt"
+      "${hagezi}/tif.txt"
+      # not part of Pro: dynamic-DNS and web-hoster abuse
+      "${hagezi}/dyndns.txt"
+      "${hagezi}/hoster.txt"
+      # newly registered phishing domains (30 days)
+      "https://raw.githubusercontent.com/xRuffKez/NRD/refs/heads/main/lists/30-day_phishing/adblock/nrd-phishing-30day_adblock.txt"
+      # german-region ad servers (not covered by Pro)
+      "https://easylist-downloads.adblockplus.org/easylistgermany.txt"
+      # adguard spyware/tracking servers (combined list, includes all Spyware sections)
+      "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt"
+    ]
+
+    # small, distinct adguard lists: CNAME-cloaked trackers and cryptominers
+    (sections "BaseFilter" [ "adservers_firstparty" "cryptominers" ])
+    (sections "GermanFilter" [ "adservers" ])
+
+    # custom list (URL instead of a local path: AGH rejects /nix/store paths)
+    [ "https://raw.githubusercontent.com/fschn90/nixos/refs/heads/main/hosts/omhe/adguard-mobile-custom.txt" ]
+  ];
+
+  # ---------------------------------------------------------------------------
+  # Blocked-services schedule
+  # ---------------------------------------------------------------------------
+  weekdayWindow = { start = "17h"; end = "22h"; };
+  weekendWindow = { start = "12h"; end = "24h"; };
+in
 {
-
   services.adguardhome = {
     enable = true;
     openFirewall = true;
     settings = {
-      http = {
-        # Web interface IP address with port to listen on.
-        address = "${toString config.tailnet.helio}:3000";
-      };
+      http.address = "${guiAddress}:${toString guiPort}";
+
+      theme = "auto";
+
       dns = {
-        # List of upstream DNS servers
+        # Fewer upstreams = less wasted traffic in parallel mode. Filtering is
+        # done locally, so the unfiltered AdGuard resolver is used.
         upstream_dns = [
-          https://cloudflare-dns.com/dns-query
-          https://1.1.1.1/dns-query
-          https://1.0.0.1/dns-query
-          # https://dns.quad9.net/dns-query
-          https://dns.quad9.net:443/dns-query
-          https://dns.adguard.com/dns-query
-          https://dns.mullvad.net/dns-query
-          https://dns-unfiltered.adguard.com/dns-query
-          tls://dns.adguard.com
-          tls://cloudflare-dns.com
-          # tls://dns.quad9.net
+          "https://cloudflare-dns.com/dns-query"
+          "https://dns.quad9.net/dns-query"
+          "https://dns.mullvad.net/dns-query"
+          "https://dns-unfiltered.adguard.com/dns-query"
         ];
-        # Enables DNS-over-HTTP/3 for DNS-over-HTTPS upstreams that support it.
-        use_http3_upstreams = true;
-        # Enables DNS-over-HTTP/3 serving for DNS-over-HTTPS clients as well as for the web UI.
-        serve_http3 = true;
-        # List of DNS servers used for initial hostname resolution in case an upstream server name is a hostname.
-        bootstrap_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
-        # List of fallback DNS servers used when upstream DNS servers are not responding.
-        # fallback_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
-        fallback_dns = [ "1.1.1.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
-        # DNS cache size (in bytes).
-        # cache_size = 33554432;
-        cache_size = 67108864;
-        #The minimum TTL override, in seconds. If the TTL of a response from upstream is below this value, the TTL is replaced with it.
-        cache_ttl_min = 2400;
-        # The maximum TTL override, in seconds. If the TTL of a response from upstream is above this value, the TTL is replaced with it.
-        cache_ttl_max = 86400;
-        # Make AdGuard Home respond from the cache even when the entries are expired and also try to refresh them. such responses is 10 seconds.
-        cache_optimistic = true;
         upstream_mode = "parallel";
-        # Set DNSSEC flag in the outgoing DNS requests and check the result.
+        use_http3_upstreams = true;
+        serve_http3 = true;
+
+        bootstrap_dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+        fallback_dns = [ "1.1.1.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
+
+        # Cache: 16 MiB, optimistic (serve stale + refresh in background)
+        cache_size = 16777216;
+        cache_ttl_min = 600;
+        cache_ttl_max = 43200;
+        cache_optimistic = true;
+
         enable_dnssec = true;
-        # The theme of UI.
-        theme = "auto";
-        # DDoS protection, specifies how many queries per second AdGuard Home should handle. Anything above that is silently dropped. Safe to disable if DNS server is not available from internet.
+        # Only reachable via tailnet, so rate limiting is unnecessary.
         ratelimit = 0;
-        # rarely needed, so refusing to serve them mitigates against attackers trying to use your DNS as a reflection. 
         refuse_any = true;
-        # Maximum number of parallel goroutines for processing incoming requests.
         max_goroutines = 500;
-
-
       };
+
       statistics = {
         enable = true;
-        # Time interval for statistics. It's a string with human-readable duration between an hour (1h) and a year (8760h).
-        # interval = "8760h";
         interval = "720h";
       };
-      # For web interface UI.
-      users = [
-        {
-          name = "fschn";
-          # htpasswd encryped password for web interface UI.
-          password = "$2y$10$pB1oLZdzV5TdkuE2dUxlPuLQsFP.VHG8saWrgygQxsoNL5AgOFPUa";
-        }
-      ];
-      # # somehow crashes my rebuild of adguard home 
-      # clients = 
-      #   {
-      #     persistent = [
-      #       {
-      #         name = "omhe";
-      #         ids = [ "${toString config.tailnet.omhe}" ];
-      #         use_global_settings = true;
-      #       }
-      #     ];
-      #   };
-      filtering = {
-        # Whether any kind of filtering and protection should be performed.
-        protection_enabled = true;
-        # Whether filtering of DNS requests based on rule lists should be performed.
-        filtering_enabled = true;
-        # Time interval in hours for updating filters.
-        filters_update_interval = 12;
-        # List of legacy DNS rewrites, where domain is the domain or wildcard you want to be rewritten and answer is IP address, CNAME record, A or AAAA special values. Special value A keeps A records from the upstream and AAAA keeps AAAA values from the upstream.
-        rewrites = [
-          {
-            domain = "adguard.fschn.org";
-            answer = "${toString config.tailnet.helio}";
-            enabled = true;
-          }
-          {
-            domain = "cloud.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "monitor.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "jellyfin.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "scrutiny-omhe.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "scrutiny-oide.fschn.org";
-            answer = "${toString config.tailnet.oide}";
-            enabled = true;
-          }
-          {
-            domain = "scrutiny-rainbow.fschn.org";
-            answer = "${toString config.tailnet.rainbow}";
-            enabled = true;
-          }
-          {
-            domain = "prometheus.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "deluge.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          # {
-          #   domain = "ffsync.fschn.org";
-          #   answer = "${toString config.tailnet.omhe}";
-          #   enabled = true;
-          # }
-          {
-            domain = "photos.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "paperless.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "paperless-gpt.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "syncthing-omhe.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "syncthing-rainbow.fschn.org";
-            answer = "${toString config.tailnet.rainbow}";
-            enabled = true;
-          }
-          # {
-          #   domain = "office.fschn.org";
-          #   answer = "${toString config.tailnet.omhe}";
-          #   enabled = true;
-          # }
-          {
-            domain = "ai.fschn.org";
-            answer = "${toString config.tailnet.rainbow}";
-            enabled = true;
-          }
-          {
-            domain = "fritzbox-eltern.fschn.org";
-            answer = "${toString config.tailnet.berry}";
-            enabled = true;
-          }
-          {
-            domain = "adguard-eltern.fschn.org";
-            answer = "${toString config.tailnet.berry}";
-            enabled = true;
-          }
-          {
-            domain = "syncthing-berry.fschn.org";
-            answer = "${toString config.tailnet.berry}";
-            enabled = true;
-          }
-          {
-            domain = "radarr.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
-          {
-            domain = "bazarr.fschn.org";
-            answer = "${toString config.tailnet.omhe}";
-            enabled = true;
-          }
 
-        ];
+      filtering = {
+        protection_enabled = true;
+        filtering_enabled = true;
+        filters_update_interval = 12;
+        parental_enabled = false;
+        safe_search.enabled = false;
+
+        rewrites = lib.mapAttrsToList
+          (name: host: {
+            domain = "${name}.${domain}";
+            answer = tailnetIp host;
+            enabled = true;
+          })
+          rewriteMap;
 
         blocked_services = {
-          ids = [
-            "linkedin"
-          ];
-          schedule = {
-            mon = {
-              start = "17h";
-              end = "22h";
-            };
-            tue = {
-              start = "17h";
-              end = "22h";
-            };
-            wed = {
-              start = "17h";
-              end = "22h";
-            };
-            thu = {
-              start = "17h";
-              end = "22h";
-            };
-            fri = {
-              start = "17h";
-              end = "22h";
-            };
-            sat = {
-              start = "12h";
-              end = "24h";
-            };
-            sun = {
-              start = "12h";
-              end = "24h";
-            };
-            time_zone = "Europe/Vienna";
-          };
-        };
-        # Parental control-based DNS requests filtering.
-        parental_enabled = false;
-        # Enforcing "Safe search" option for search engines, when possible.
-        safe_search = {
-          enabled = false;
+          ids = [ "linkedin" ];
+          schedule =
+            lib.genAttrs [ "mon" "tue" "wed" "thu" "fri" ] (_: weekdayWindow)
+            // lib.genAttrs [ "sat" "sun" ] (_: weekendWindow)
+            // { time_zone = "Europe/Vienna"; };
         };
       };
-      # The following notation uses map
-      # to not have to manually create {enabled = true; url = "";} for every filter
-      # This is, however, fully optional
-      filters = map (url: { enabled = true; url = url; }) [
-        #other
-        https://big.oisd.nl
-        https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt
-        https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
-        https://easylist-downloads.adblockplus.org/easylistgermany.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt
-        https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt
-        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt
-        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt
-        https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareAdGuardHome.txt
-        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/dyndns.txt
-        https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/hoster.txt
-        # https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/spam-tlds.txt
-        https://raw.githubusercontent.com/xRuffKez/NRD/refs/heads/main/lists/30-day_phishing/adblock/nrd-phishing-30day_adblock.txt
-        # https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/doh-vpn-proxy-bypass.txt
 
-        # easylist
-        https://easylist.to/easylist/easylist.txt
-        https://easylist.to/easylist/easyprivacy.txt
-        https://secure.fanboy.co.nz/fanboy-annoyance.txt
-        https://easylist.to/easylist/fanboy-social.txt
-
-        # adguard annoyances
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Cookies/sections/cookies_general.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Cookies/sections/cookies_specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/MobileApp/sections/mobile-app_general.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/MobileApp/sections/mobile-app_specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Other/sections/annoyances.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Other/sections/tweaks.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/popups_general.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/popups_specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/push-notifications_general.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/push-notifications_specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/subscriptions_general.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Popups/sections/subscriptions_specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/AnnoyancesFilter/Widgets/sections/widgets.txt
-
-        # adguard basefilter
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/adservers.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/adservers_firstparty.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/antiadblock.txt
-        # https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/banner_sizes.txt # doesnt seem to exist anymore
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/content_blocker.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/cryptominers.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/foreign.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/general_elemhide.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/general_extensions.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/general_url.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/replace.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/BaseFilter/sections/specific.txt
-
-        # adguard german
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/adservers.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/antiadblock.txt
-        # https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_elemhide.txt # doesnt seem to exist anymore
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_extensions.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/general_url.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/replace.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/GermanFilter/sections/specific.txt
-
-        # adguard spyware
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/cookies_general.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/cookies_specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/general_elemhide.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/general_extensions.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/general_url.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/mobile.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/mobile_allowlist.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/specific.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers_firstparty.txt
-
-        # adguard trackingparam
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/general_url.txt
-        https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/TrackParamFilter/sections/specific.txt
-
-        ./adguard-mobile-custom.txt
-        ## url to same file as above to avoid error:  updating filter from url "/nix/store/h6iysbz4sx69w7j9wk0gnxm1mq88jsx4-adguard-mobile-custom.txt": path "/nix/store/h6iysbz4sx69w7j9wk0gnxm1mq88jsx4-adguard-mobile-custom.txt" does not match safe patterns
-        ## really not sure why this doesnt work..
-        https://raw.githubusercontent.com/fschn90/nixos/refs/heads/main/hosts/omhe/adguard-mobile-custom.txt
-      ];
+      filters = map (url: { enabled = true; inherit url; }) filterUrls;
     };
+  };
+
+  # Password hash lives in secrets/main.yaml (key: adguard -> password_hash).
+  sops.secrets."adguard/password_hash".restartUnits = [ "adguardhome.service" ];
+
+  # The module's settings end up in the world-readable Nix store, so the users
+  # entry is injected at service start from a systemd credential instead.
+  systemd.services.adguardhome = {
+    serviceConfig.LoadCredential =
+      "password-hash:${config.sops.secrets."adguard/password_hash".path}";
+    preStart = lib.mkAfter ''
+      hash="$(cat "$CREDENTIALS_DIRECTORY/password-hash")" \
+        ${pkgs.yq-go}/bin/yq eval --inplace \
+        '.users = [{"name": "fschn90", "password": strenv(hash)}]' \
+        "$STATE_DIRECTORY/AdGuardHome.yaml"
+    '';
   };
 
   services.nginx = {
     enable = true;
-    virtualHosts."adguard.fschn.org" = {
-      useACMEHost = "fschn.org";
+    virtualHosts."adguard.${domain}" = {
+      useACMEHost = domain;
       forceSSL = true;
-      locations = {
-        "/" = {
-          proxyPass = "http://${toString config.tailnet.helio}:3000";
-        };
-      };
+      locations."/".proxyPass = "http://${guiAddress}:${toString guiPort}";
     };
   };
 
   networking.firewall.allowedTCPPorts = [ 53 ];
-
 }
