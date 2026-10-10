@@ -38,6 +38,11 @@
     hostName = "helio";
   };
 
+  # tailscale optimisation
+  networking.nftables.enable = true;
+
+  services.tailscale.useRoutingFeatures = "server";
+
   time.timeZone = "Europe/Vienna";
 
   # autologin of user
