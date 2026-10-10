@@ -19,6 +19,11 @@
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
+
+    herdr.url = "github:herdrdev/herdr/v0.9.3"; # builds from source (Rust)
+    collie.url = "github:AltanS/collie";
+    llm-agents.url = "github:numtide/llm-agents.nix"; # don't follow nixpkgs, to keep their binary cache
+
   };
 
   outputs = { self, nixpkgs, home-manager, hardware, sops-nix, ... }@inputs:
