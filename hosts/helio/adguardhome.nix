@@ -138,13 +138,13 @@ in
           })
           rewriteMap;
 
-        blocked_services = {
-          ids = [ "linkedin" ];
-          schedule =
-            lib.genAttrs [ "mon" "tue" "wed" "thu" "fri" ] (_: weekdayWindow)
-            // lib.genAttrs [ "sat" "sun" ] (_: weekendWindow)
-            // { time_zone = "Europe/Vienna"; };
-        };
+        # blocked_services = {
+        #   ids = [ "linkedin" ];
+        #   schedule =
+        #     lib.genAttrs [ "mon" "tue" "wed" "thu" "fri" ] (_: weekdayWindow)
+        #     // lib.genAttrs [ "sat" "sun" ] (_: weekendWindow)
+        #     // { time_zone = "Europe/Vienna"; };
+        # };
       };
 
       filters = map (url: { enabled = true; inherit url; }) filterUrls;
