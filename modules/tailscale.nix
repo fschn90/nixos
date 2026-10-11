@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   options = {
@@ -34,5 +34,15 @@
     services.tailscale.extraUpFlags = [
       "--ssh"
     ];
+
+    networking.firewall = {
+      enable = true;
+      nftables.enable = true;
+      # Always allow traffic from your Tailscale network
+      trustedInterfaces = [ config.services.tailscale.interfaceName ];
+      # Allow the Tailscale UDP port through the firewall
+      allowedUDPPorts = [ config.services.tailscale.port ];
+    };
+
   };
 } 

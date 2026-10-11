@@ -80,9 +80,6 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
-  # tailscale optimisation
-  networking.nftables.enable = true;
-
   services.tailscaleAuth = {
     enable = true;
     user = "nginx";
