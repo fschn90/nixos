@@ -35,12 +35,11 @@
     enable = true;
     nginx = {
       domain = "agents.fschn.org";
-      allowedCIDRs = [ "192.168.0.0/16" "100.64.0.0/10" ]; # LAN + tailnet
+      allowedCIDRs = [ "192.168.0.0/16" "100.64.0.0/10" ]; # lan + tailnet
     };
     herdr.environmentFile = config.sops.secrets."agents/env".path;
   };
-  sops.secrets."agents/env".owner = "agent"; # ANTHROPIC_API_KEY=...
-
+  sops.secrets."agents/env".owner = "agent"; # anthropic_api_key=...
 
   networking.hostName = "omhe"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
