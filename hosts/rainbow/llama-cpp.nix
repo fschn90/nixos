@@ -9,7 +9,16 @@
     enable = true;
     host = "0.0.0.0";
     package = pkgs.unstable.llama-cpp-rocm;
-    extraFlags = [ "--load-mode" "none" "--models-max" "1" "--api-key-file" "${toString config.sops.secrets."llama-cpp/OPENAI_API_KEY".path}" ];
+    extraFlags = [
+      "--load-mode"
+      "none"
+      "--models-max"
+      "1"
+      "--sleep-idle-seconds"
+      "300"
+      "--api-key-file"
+      "${toString config.sops.secrets."llama-cpp/OPENAI_API_KEY".path}"
+    ];
 
     modelsPreset = {
       "qwen3.6-35b-a3b" = {
@@ -119,28 +128,38 @@
         presence-penalty = "1.5";
         repeat-penalty = "1.0";
       };
-      "Qwen3-VL-8B-Instruct" = {
+      # Used by paperless-gpt for both OCR (vision) and metadata (text).
+      # One preset => one resident model => no swapping between the two calls.
+      "qwen3-vl-8b-instruct" = {
         hf-repo = "unsloth/Qwen3-VL-8B-Instruct-GGUF";
-        hf-file = "Qwen3-VL-8B-Instruct-UD-Q6_K_XL.gguf"; # ~7GB weights, leaves room to spare
+        hf-file = "Qwen3-VL-8B-Instruct-UD-Q6_K_XL.gguf"; # ~7 GB weights
         alias = "qwen3-vl-8b-instruct";
-        # mmproj (vision tower) is auto-downloaded from the same repo when using hf-repo
+        # mmproj is auto-downloaded from the same repo
 
-        # Qwen's official "Instruct" (non-thinking) sampling recipe
-        temp = "0.7";
+        n-gpu-layers = "99";
+        fit = "off";
+        ctx-size = "32768"; # page images + prompt; parallel=1 so it's all one slot
+        batch-size = "1024";
+        ubatch-size = "512";
+        flash-attn = "on";
+        cache-type-k = "q8_0";
+        cache-type-v = "q8_0";
+        parallel = "1";
+        jinja = "on";
+
+        # Document extraction, not chat: low temperature, and no presence
+        # penalty, which would punish legitimately repeated tokens (digits,
+        # table headers, IBANs, correspondent names, JSON keys).
+        # Requests that send their own temperature (VISION_LLM_TEMPERATURE) override this.
+        temp = "0.2";
         top-p = "0.8";
         top-k = "20";
         min-p = "0.0";
-        presence-penalty = "1.5";
-        repeat-penalty = "1.0";
+        presence-penalty = "0.0";
+        repeat-penalty = "1.0"; # raise to 1.05 only if OCR starts looping
 
-        # 16GB VRAM, full offload
-        n-gpu-layers = "99"; # every layer + vision encoder on GPU
-        fit = "off"; # consistent with the other three presets
-        ctx-size = "32768"; # images eat context fast; this leaves headroom
-        flash-attn = "on"; # required to use the quantized KV cache below
-        cache-type-k = "q8_0";
-        cache-type-v = "q8_0";
-        jinja = "true"; # required for Qwen3-VL's chat template
+        # Uncomment if your build supports them; tune against a dense A4 page:
+        # image-max-tokens = "4096";
       };
     };
 
@@ -164,6 +183,12 @@
         locations."/" = {
           proxyPass = "http://${toString config.services.llama-cpp.host}:${toString config.services.llama-cpp.port}";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_buffering off;          # keep SSE streaming responsive
+            proxy_read_timeout 3600s;
+            proxy_send_timeout 3600s;
+            client_max_body_size 64m;     # images arrive as base64
+          '';
         };
       };
     };
