@@ -195,19 +195,19 @@ in
     autoStart = true;
     image = "icereed/paperless-gpt:latest";
     environment = {
-      PAPERLESS_BASE_URL = "http://localhost:28981/";
+      PAPERLESS_BASE_URL = "https://paperless.fschn.org/";
       # Listen on port 28983 (same as previous paperless-ai for continuity)
       LISTEN_INTERFACE = ":28983";
       # Use OpenAI-compatible provider
       LLM_PROVIDER = "openai";
       OPENAI_BASE_URL = "http://rainbow:8080";
-      LLM_MODEL = "qwen3.8-27b";
+      LLM_MODEL = "Qwen3-VL-8B-Instruct";
       # LLM-based OCR using the dedicated GLM-OCR vision model.
       OCR_PROVIDER = "llm";
       VISION_LLM_PROVIDER = "openai";
       VISION_LLM_MODEL = "Qwen3-VL-8B-Instruct";
       # Cap OCR-generated output length; prevents runaway vision calls.
-      VISION_LLM_MAX_TOKENS = "8192";
+      VISION_LLM_MAX_TOKENS = "4096";
       VISION_LLM_TEMPERATURE = "0.2";
       OCR_LIMIT_PAGES = "0";
       LLM_LANGUAGE = "German/English";
@@ -221,12 +221,12 @@ in
 
       AUTO_GENERATE_TITLE = "true";
       AUTO_GENERATE_TAGS = "true";
-      CREATE_NEW_TAGS = "true";
+      CREATE_NEW_TAGS = "false";
       AUTO_GENERATE_CORRESPONDENTS = "true";
       AUTO_GENERATE_DOCUMENT_TYPE = "true"; # Only existing document types will be used
-      AUTO_GENERATE_CREATED_DATE = "true";
+      AUTO_GENERATE_CREATED_DATE = "false";
 
-      LOG_LEVEL = "debug";
+      LOG_LEVEL = "info";
     };
     environmentFiles = [
       config.sops.secrets.paperless-gpt-env.path
