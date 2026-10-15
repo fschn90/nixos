@@ -45,6 +45,8 @@
 
   services.openssh.enable = true;
 
+  services.tailscale.useRoutingFeatures = "server";
+
   # allow unfree
   nixpkgs.config.allowUnfree = true;
 
