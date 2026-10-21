@@ -21,7 +21,7 @@
     extraAppsEnable = true;
     autoUpdateApps.enable = true;
     home = "/tank/Nextcloud";
-    package = pkgs.nextcloud34;
+    package = pkgs.nextcloud35;
     settings = {
       # settings for nextcloud log scraping with promtail and loki
       overwriteprotocol = "https";
