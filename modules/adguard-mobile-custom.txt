@@ -1,13 +1,4 @@
-// ||orf.at^$important,client=100.102.59.40
-// @@||audioapi.orf.at^$important,client=100.102.59.40
-// @@||oe1.orf.at^$important,client=100.102.59.40
-// @@||appmeta.orf.at^$important,client=100.102.59.40
-// @@||collector.orf.at^$important,client=100.102.59.40
-// ||theguardian.com^$important,client=100.102.59.40
-// ||zeit.de^$important,client=100.102.59.40
-// ||derstandard.at^$important,client=100.102.59.40
-// ||ft.com^$important,client=100.102.59.40
-// ||9gag.com^$important,client=100.102.59.40
+! ===== Block news / time-wasters (all clients) =====
 ||orf.at^$important
 @@||audioapi.orf.at^$important
 @@||oe1.orf.at^$important
@@ -18,6 +9,7 @@
 ||derstandard.at^$important
 ||ft.com^$important
 ||9gag.com^$important
-||chaos.social^$important,client=100.102.59.40
-||*.social^$important,client=100.102.59.40
-||news.ycombinator.com^$important,client=100.102.59.40
+
+! ===== Specific clients only =====
+||social^$important,client=100.102.59.40|100.122.4.51
+||news.ycombinator.com^$important,client=100.102.59.40|100.122.4.51
