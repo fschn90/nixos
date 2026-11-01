@@ -58,16 +58,21 @@
   # binding privoxy to protonvpn network namespace
   services.privoxy.enable = true;
   systemd.services.privoxy.bindsTo = [ "netns@wg.service" ];
-  systemd.services.privoxy.requires = [ "network-online.target" "wg.service" ];
+  systemd.services.privoxy.requires = [ "netns@wg.service" "network-online.target" "wg.service" ];
   systemd.services.privoxy.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
 
   # to access privoxy from the root namespace, a socket is necesarry
   systemd.sockets."proxy-to-privoxy" = {
     enable = true;
-    description = "Socket for Proxy to Deluge Daemon";
-    listenStreams = [ "8118" ];
+    description = "Socket for Proxy to Privoxy";
+    listenStreams = [ "127.0.0.1:8118" "${toString config.tailnet.omhe}:8118" ];
     wantedBy = [ "sockets.target" ];
+    # allow binding before tailscale0 has its IP (e.g. at boot)
+    socketConfig.FreeBind = true;
   };
+
+  # tailscale0 isn't a trusted interface by default
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 8118 ];
 
   # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
   systemd.services."proxy-to-privoxy" = {
