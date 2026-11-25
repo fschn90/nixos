@@ -28,6 +28,9 @@
   # making sure fschn user has access
   users.users.fschn.extraGroups = [ "media" ];
 
+  # group permissionsfor new files 
+  systemd.services.radarr.serviceConfig.UMask = "0002";
+
   services.nginx.virtualHosts = {
     "prowlarr.fschn.org" = {
       forceSSL = true;
