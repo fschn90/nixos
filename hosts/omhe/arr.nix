@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
 
   users.groups.media = { };
@@ -29,7 +29,8 @@
   users.users.fschn.extraGroups = [ "media" ];
 
   # group permissionsfor new files 
-  systemd.services.radarr.serviceConfig.UMask = "0002";
+  systemd.services.radarr.serviceConfig.UMask = lib.mkForce "0002";
+  systemd.services.deluged.serviceConfig.UMask = lib.mkForce "0002";
 
   services.nginx.virtualHosts = {
     "prowlarr.fschn.org" = {
